@@ -13,6 +13,8 @@
 use Decision_Aid\user_information;
 use Decision_Aid\User;
 use Illuminate\Database\Eloquent;
+use Decision_Aid\Role;
+use Decision_Aid\Http\Controllers;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,7 +58,9 @@ Route::post('/home', [
 
 //Laravel Relations
 
-Route::get('/user_information/{id}/user', function($id){
+//Route::get('/user_information/{id}/user', function($id){
+//
+//   return user_information::find($id)->User;
+//});
 
-   return user_information::find($id)->User;
-});
+Route::resource('questions', 'FormController');    //resourceful controller is being invoked

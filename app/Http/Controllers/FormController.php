@@ -4,7 +4,7 @@ namespace Decision_Aid\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class formcontroller extends Controller
+class FormController extends Controller
 {
     /**
      * Display a listing of the resource.

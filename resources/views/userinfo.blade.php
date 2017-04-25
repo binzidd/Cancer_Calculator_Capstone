@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="title m-b-md">
-        Integrated Cancer Calculator
-    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -15,4 +13,7 @@
                         <br>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 @endsection

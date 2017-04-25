@@ -29,9 +29,10 @@ Route::post('/home', [
     'as'=>'basicinfo'
 ]);
 
-Route::get('/formintro', function(){
-    return view('forms.form_introduction');
-});
+Route::get('/formintro', [
+    'uses'=>'user_information_controller@redirecttoform',
+    'as'=>'form_landing'
+]);
 
 
 //Route::get('/finddata',function (){

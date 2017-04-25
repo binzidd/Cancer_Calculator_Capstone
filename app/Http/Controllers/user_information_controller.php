@@ -27,7 +27,11 @@ class user_information_controller extends Controller
        // $request->user()->user_informations()->save($user_information);  //many isto one
 
 
-        return view('userinfo');
+        return view('forms.form_introduction');
     }
 
+    public function redirecttoform()
+    {
+        return view('forms.form_introduction');
+    }
 }

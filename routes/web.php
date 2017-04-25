@@ -36,8 +36,17 @@ Route::get('/formintro', [
 
 Route::get('/skincancer',[
     'uses'=>'SkinCancerController@viewskincancer',
-    'as'=>'form_questions']);
+    'as'=>'skin_cancer_renderer']);
 
+Route::get('/bowelcancer',[
+    'uses'=>'BowelCancerController@viewbowelcancer',
+    'as'=>'bowel_cancer_renderer'
+]);
+
+Route::get('/generalcancer',[
+    'uses'=>'GeneralCancerController@viewgeneralcancer',
+    'as'=>'genrel_cancer_renderer'
+]);
 
 //Route::get('/finddata',function (){
 //

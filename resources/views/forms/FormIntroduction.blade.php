@@ -37,19 +37,15 @@
 
                     <h3 >Please click on the following links to proceed on Cancer Calculations </h3>
 
-                   {{--TODO: create routes and bind to href. --}}
 
                     <div class="container-fluid">
 
-                        <a class="btn btn-default inline " href="{{route('form_questions')}}">Skin Cancer</a>
-                        <a class="btn btn-default inline " href="https://laracasts.com">Bowel Cancer</a>
-                        <a class="btn btn-default inline " href="https://laravel-news.com">General Cancer</a>
+                        <a class="btn btn-default inline " href="{{route('skin_cancer_renderer')}}">Skin Cancer</a>
+                        <a class="btn btn-default inline " href="{{route('bowel_cancer_renderer')}}">Bowel Cancer</a>
+                        <a class="btn btn-default inline " href="{{route('genrel_cancer_renderer')}}">General Cancer</a>
 
                      </div>
                 </div>
             </div>
-
-
-
 
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BowelCancerController extends Controller
 {
-    function viewskincancer()
+    function viewbowelcancer()
     {
         return view('forms.BowelCancer');
     }

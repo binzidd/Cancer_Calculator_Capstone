@@ -34,6 +34,10 @@ Route::get('/formintro', [
     'as'=>'form_landing'
 ]);
 
+Route::get('/skincancer',[
+    'uses'=>'SkinCancerController@viewskincancer',
+    'as'=>'form_questions']);
+
 
 //Route::get('/finddata',function (){
 //

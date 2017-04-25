@@ -60,6 +60,8 @@ Route::post('/skincancer', [
     'as'=>'skincancerresponse'
 ]);
 
+
+
 //Route::get('/finddata',function (){
 //
 //  $value=user_information::find(1);

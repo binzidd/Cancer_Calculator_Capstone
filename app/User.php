@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //onetoone
     public function user_informations()
     {
         return $this->hasOne('Decision_Aid\user_information','user_id');   //one to one relationship
@@ -35,5 +36,12 @@ class User extends Authenticatable
   //many to many
     public function roles(){
         return $this->belongsToMany('Decision_Aid\Role')->withPivot('created_at');
+    }
+
+    //one to many
+
+    public function skincancer()
+    {
+        return $this->hasMany('Decision_Aid\SkinCancer', 'user_id');
     }
 }

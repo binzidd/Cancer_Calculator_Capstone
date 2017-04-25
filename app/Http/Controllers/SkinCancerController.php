@@ -16,11 +16,13 @@ class SkinCancerController extends Controller
     {
 
      //TODO: Push the value into DB using this SCRIPT
-//        $dob=$request['dob'];
-//        $gender=$request['gender'];
-//        $height=$request['height'];
-//        $weight=$request['weight'];
-//
+//        $var_mf_skin_options=$request['var_mf_skin_options'];
+//        $var_mf_skin_body_options=$request['var_mf_skin_body_options'];
+//        $var_mf_skin_body_moles_options=$request['var_mf_skin_body_moles_options'];
+//        $var_mf_skin_body_cancer_options=$request['var_mf_skin_body_cancer_options'];
+//  //create a new model use the class created
+        //lets say for ABC class new ABC
+        //Save the value in DB
 //        $user_information= new user_information;
 //        $user_information->dob=$dob;
 //        $user_information->gender=$gender;

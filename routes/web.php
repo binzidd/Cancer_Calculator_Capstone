@@ -29,6 +29,10 @@ Route::post('/home', [
     'as'=>'basicinfo'
 ]);
 
+Route::get('/formintro', function(){
+    return view('forms.form_introduction');
+});
+
 
 //Route::get('/finddata',function (){
 //

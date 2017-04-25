@@ -49,6 +49,17 @@ Route::get('/generalcancer',[
     'as'=>'genrel_cancer_renderer'
 ]);
 
+
+
+//          Responses
+
+//TODO 1. skincancerresponse  2. Create a method that captures skin cancer results.
+
+Route::post('/skincancer', [
+    'uses'=>'SkinCancerController@',
+    'as'=>'skincancerresponse'
+]);
+
 //Route::get('/finddata',function (){
 //
 //  $value=user_information::find(1);

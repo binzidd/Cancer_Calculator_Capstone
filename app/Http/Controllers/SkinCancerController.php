@@ -20,7 +20,7 @@ class SkinCancerController extends Controller
     }
 
 
-    function saveskincancerinDB(Request $request)
+    function postsubmit(Request $request)
     {
         $value = computeskincancer();
 

@@ -12,7 +12,7 @@ SKIN_CANCER PAGE
                         <strong>{{$yourMessage}}!</strong>
                     </div>
                 @endif
-                <form action="{{route ('skincancerresponse')}}" method="post">
+                <form action="{{route ('skin_cancer_calculator')}}" method="post">
 
                     <div class="form-control">Session Based Calculation for Detection of Skin Cancer</div>
                     <br>

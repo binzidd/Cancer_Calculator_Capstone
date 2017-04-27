@@ -15,6 +15,8 @@ use Decision_Aid\User;
 use Illuminate\Database\Eloquent;
 use Decision_Aid\Role;
 use Decision_Aid\Http\Controllers;
+use Decision_Aid\SkinCancer;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,10 +26,24 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+//Post calls for capturing Values from forms.
+
 Route::post('/home', [
     'uses'=>'user_information_controller@postwelcome',
     'as'=>'basicinfo'
 ]);
+
+Route::post('/generalcancer', [
+    'uses' => 'GeneralCancerController@postsubmit',
+    'as' => 'general_cancer_calculator'
+]);
+
+Route::post('/skincancer', [
+    'uses' => 'SkinCancerController@postsubmit',
+    'as' => 'skin_cancer_calculator'
+]);
+
+// Get Calls for rendering pages.
 
 Route::get('/formintro', [
     'uses'=>'user_information_controller@redirecttoform',
@@ -53,12 +69,6 @@ Route::get('/generalcancer',[
 
 //          Responses
 
-//TODO 1. skincancerresponse  2. Create a method that captures skin cancer results.
-
-Route::post('/skincancer', [
-    'uses'=>'SkinCancerController@',
-    'as'=>'skincancerresponse'
-]);
 
 
 

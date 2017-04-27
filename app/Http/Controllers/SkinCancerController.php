@@ -48,7 +48,7 @@ class SkinCancerController extends Controller
     {
 
         $inputData = $request->all();
-        //    print_r($inputData);
+        //   print_r($inputData);
         $totalValues_skin = $request->input('var_mf_skin_options') + $request->input('var_mf_skin_body_options') +
             $request->input('var_mf_skin_body_burnt_options') +
             $request->input('var_mf_skin_body_moles_options') +
@@ -56,24 +56,25 @@ class SkinCancerController extends Controller
 //    print_r($totalValues);
 //    Conditions to check the level
         return $totalValues_skin;
-        }
+    }
+
     //TODO:Check this display_result functioning
 
-//        function display_results(Request $request)
-//    {
-//        $totalValues_skin=$this->computeskincancer();
-//        if ($totalValues_skin == 0 || $totalValues_skin == 1) {
-//            $errorMessage = "In General skin cnacer is not common";
-//
-//        } else if ($totalValues_skin <= 2 || $totalValues_skin <= 3) {
-//            $errorMessage = 'You are at average risk of skin cancer and need to be careful in sun ';
-//        } else if ($totalValues_skin >= 4) {
-//            $errorMessage = 'You are at above average risk of skin cancer and need to be careful in sun ';
-//
-//        }
-////print_r($errorMessage);
-////        die;
-//        return view('SkinCancerCalculator', ['yourMessage' => $errorMessage]);
-//    }
+    function display_results(Request $request)
+    {
+        $totalValues_skin = $this->computeskincancer();
+        if ($totalValues_skin == 0 || $totalValues_skin == 1) {
+            $errorMessage = "In General skin cnacer is not common";
+
+        } else if ($totalValues_skin <= 2 || $totalValues_skin <= 3) {
+            $errorMessage = 'You are at average risk of skin cancer and need to be careful in sun ';
+        } else if ($totalValues_skin >= 4) {
+            $errorMessage = 'You are at above average risk of skin cancer and need to be careful in sun ';
+
+        }
+//print_r($errorMessage);
+//        die;
+        return view('SkinCancerCalculator', ['yourMessage' => $errorMessage]);
+    }
 
 }

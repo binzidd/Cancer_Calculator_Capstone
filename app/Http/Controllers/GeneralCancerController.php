@@ -547,38 +547,38 @@ class GeneralCancerController extends Controller
 
         /* Centring the continuous variables */
 
-        $age_1 = age_1 - 4.800777912139893;
-        $age_2 = age_2 - 7.531354427337647;
-        $bmi_1 = bmi_1 - 0.146067067980766;
-        bmi_2 = bmi_2 - 2.616518735885620;
-        town = town - -0.264977723360062;
+        $age_1 = $age_1 - 4.800777912139893;
+        $age_2 = $age_2 - 7.531354427337647;
+        $bmi_1 = $bmi_1 - 0.146067067980766;
+        $bmi_2 = $bmi_2 - 2.616518735885620;
+        $town = $town - -0.264977723360062;
 
         /* Start of Sum */
-        double a = 0;
+        $a = 0;
 
     /* The conditional sums */
 
 
     /* Sum from continuous values */
 
-    a += age_1 * 14.8391010426566920000000000;
-    a += age_2 * -4.8051341054408843000000000;
-    a += bmi_1 * -2.8369035324107057000000000;
-    a += bmi_2 * -0.3634984265900051400000000;
-    a += town * -0.0214278653071876720000000;
+        $a += age_1 * 14.8391010426566920000000000;
+        $a += age_2 * -4.8051341054408843000000000;
+        $a += bmi_1 * -2.8369035324107057000000000;
+        $a += bmi_2 * -0.3634984265900051400000000;
+        $a += $town * -0.0214278653071876720000000;
 
     /* Sum from boolean values */
 
-    a += fh_prostatecancer * 1.2892957682128878000000000;
-    a += new_abdopain * 0.4445588372860774200000000;
-    a += new_appetiteloss * 0.3425581971534915100000000;
-    a += new_haematuria * 1.4890866073593347000000000;
-    a += new_rectalbleed * 0.3478612952033963700000000;
-    a += new_testespain * 0.6387609350076407500000000;
-    a += new_testicularlump * 0.6338177436853567000000000;
-    a += new_vte * 0.5758190804196261500000000;
-    a += new_weightloss * 0.7528736226665873100000000;
-    a += s1_impotence * 0.3692180041534241500000000;
+        $a += fh_prostatecancer * 1.2892957682128878000000000;
+        $v += new_abdopain * 0.4445588372860774200000000;
+        $a += new_appetiteloss * 0.3425581971534915100000000;
+        $a += new_haematuria * 1.4890866073593347000000000;
+        $a += new_rectalbleed * 0.3478612952033963700000000;
+        $a += new_testespain * 0.6387609350076407500000000;
+        $a += new_testicularlump * 0.6338177436853567000000000;
+        #a += $new_vte * 0.5758190804196261500000000;
+        a += $new_weightloss * 0.7528736226665873100000000;
+        a += $s1_impotence * 0.3692180041534241500000000;
     a += s1_nocturia * 1.0381560026453696000000000;
     a += s1_urinaryfreq * 0.7036410253080365200000000;
     a += s1_urinaryretention * 0.8525703399435586900000000;
@@ -587,8 +587,8 @@ class GeneralCancerController extends Controller
 
 
     /* Calculate the score itself */
-    double score = a + -7.8871012697298699000000000;
-    return score;
+        double $score = a + -7.8871012697298699000000000;
+    return $score;
 }
 
 

@@ -447,8 +447,7 @@ class GeneralCancerController extends Controller
         return $score;
     }
 
-    function pancreatic_cancer_male_(Request $request)
-
+    function pancreatic_cancer_male(Request $request)
     {
         $survivor[0] = array();
 
@@ -486,33 +485,109 @@ class GeneralCancerController extends Controller
 
         /* Sum from continuous values */
 
-        $a += age_1 * 8.0275778709105907000000000;
-        $a += age_2 * -2.6082429130982798000000000;
-        $a += bmi_1 * 1.7819574994736820000000000;
-        $a += bmi_2 * -0.0249600064895699750000000;
-        $a += town * -0.0352288140617050480000000;
+        $a += $age_1 * 8.0275778709105907000000000;
+        $a += $age_2 * -2.6082429130982798000000000;
+        $a += $bmi_1 * 1.7819574994736820000000000;
+        $a += $bmi_2 * -0.0249600064895699750000000;
+        $a += $town * -0.0352288140617050480000000;
 
         /* input values */
 
+        $b_chronicpan = $request->input('b_chronicpan');
+        $b_type2 = $request->input('b_type2');
+        $new_abdopain = $request->input('new_abdopain');
+        $new_appetiteloss = $request->input('new_appetiteloss');
+        $new_dysphagia = $request->input('new_dysphagia');
+        $new_gibleed = $request->input('new_gibleed');
+        $new_indigestion = $request->input('new_indigestion');
+        $new_vte = $request->input('new_vte');
+        $new_weightloss = $request->input('new_weightloss');
+        $s1_constipation = $request->input('s1_constipation');
 
         /* Sum from boolean values */
 
-        $a += b_chronicpan * 0.9913246347991823100000000;
-        $a += b_type2 * 0.7396905098202540800000000;
-        $a += new_abdopain * 2.1506984011721579000000000;
-        $a += new_appetiteloss * 1.4272326009960661000000000;
-        $a += new_dysphagia * 0.9168689207526066200000000;
-        $a += new_gibleed * 0.9881061033081149900000000;
-        $a += new_indigestion * 1.2837402377092237000000000;
-        $a += new_vte * 1.1741805346104719000000000;
-        $a += new_weightloss * 2.0466064239967046000000000;
-        $a += s1_constipation * 0.6240548033048214400000000;
+        $a += $b_chronicpan * 0.9913246347991823100000000;
+        $a += $b_type2 * 0.7396905098202540800000000;
+        $a += $new_abdopain * 2.1506984011721579000000000;
+        $a += $new_appetiteloss * 1.4272326009960661000000000;
+        $a += $new_dysphagia * 0.9168689207526066200000000;
+        $a += $new_gibleed * 0.9881061033081149900000000;
+        $a += $new_indigestion * 1.2837402377092237000000000;
+        $a += $new_vte * 1.1741805346104719000000000;
+        $a += $new_weightloss * 2.0466064239967046000000000;
+        $a += $s1_constipation * 0.6240548033048214400000000;
 
         /* Sum from interaction terms */
 
 
         /* Calculate the score itself */
-        double score = a + -9.2275729512009956000000000;
+        $score = $a + -9.2275729512009956000000000;
+        return $score;
+    }
+
+    function prostate_cancer_male(Request $request)
+    {
+        $survivor[0] = array();
+
+
+        /* The conditional arrays */
+
+
+        /* Applying the fractional polynomial transforms */
+        /* (which includes scaling)                      */
+
+        $dage = $request->input('age');
+        $dage = $dage / 10;
+        $age_1 = $dage;
+        $age_2 = $dage * log($dage);
+        $dbmi = 123; //todo: Calculare bmi roso.
+        $dbmi = $dbmi / 10;
+        $$bmi_1 = pow($dbmi, -2);
+        $$bmi_2 = $dbmi;
+
+        /* Centring the continuous variables */
+
+        $age_1 = age_1 - 4.800777912139893;
+        $age_2 = age_2 - 7.531354427337647;
+        $bmi_1 = bmi_1 - 0.146067067980766;
+        bmi_2 = bmi_2 - 2.616518735885620;
+        town = town - -0.264977723360062;
+
+        /* Start of Sum */
+        double a = 0;
+
+    /* The conditional sums */
+
+
+    /* Sum from continuous values */
+
+    a += age_1 * 14.8391010426566920000000000;
+    a += age_2 * -4.8051341054408843000000000;
+    a += bmi_1 * -2.8369035324107057000000000;
+    a += bmi_2 * -0.3634984265900051400000000;
+    a += town * -0.0214278653071876720000000;
+
+    /* Sum from boolean values */
+
+    a += fh_prostatecancer * 1.2892957682128878000000000;
+    a += new_abdopain * 0.4445588372860774200000000;
+    a += new_appetiteloss * 0.3425581971534915100000000;
+    a += new_haematuria * 1.4890866073593347000000000;
+    a += new_rectalbleed * 0.3478612952033963700000000;
+    a += new_testespain * 0.6387609350076407500000000;
+    a += new_testicularlump * 0.6338177436853567000000000;
+    a += new_vte * 0.5758190804196261500000000;
+    a += new_weightloss * 0.7528736226665873100000000;
+    a += s1_impotence * 0.3692180041534241500000000;
+    a += s1_nocturia * 1.0381560026453696000000000;
+    a += s1_urinaryfreq * 0.7036410253080365200000000;
+    a += s1_urinaryretention * 0.8525703399435586900000000;
+
+    /* Sum from interaction terms */
+
+
+    /* Calculate the score itself */
+    double score = a + -7.8871012697298699000000000;
     return score;
 }
 

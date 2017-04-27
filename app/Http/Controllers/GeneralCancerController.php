@@ -137,7 +137,6 @@ class GeneralCancerController extends Controller
 
         $Ialcohol[4] = array("0", "0.0674431700268591780000000", "0.2894952197787854000000000", "0.4419539984974097400000000");
 
-
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
         $dage = $request->input('age');
@@ -278,6 +277,244 @@ class GeneralCancerController extends Controller
         $score = $a + -8.4208700270300625000000000;
         return $score;
     }
+
+    function lung_cancer_male_raw(Request $request)
+    {
+        $survivor[0] = array();
+
+        /* The conditional arrays */
+
+        $Ismoke[5] = array("0", "0.8408574737524464600000000", "1.4966499028172435000000000", "1.7072509513243501000000000", "1.8882615411851338000000000");
+
+
+        /* Applying the fractional polynomial transforms */
+        /* (which includes scaling)                      */
+
+        $dage = $request->input('age');
+        $dage = $dage / 10;
+        $age_1 = $dage;
+        $age_2 = $dage * log($dage);
+        $dbmi = 123;     //todo insert bmi
+        $dbmi = $dbmi / 10;
+        $bmi_1 = pow($dbmi, -2);
+        $bmi_2 = $dbmi;
+
+        /* Centring the continuous variables */
+
+        $age_1 = $age_1 - 4.800777912139893;
+        $age_2 = $age_2 - 7.531354427337647;
+        $bmi_1 = $bmi_1 - 0.146067067980766;
+        $bmi_2 = $bmi_2 - 2.616518735885620;
+        $town = $town - -0.264977723360062;
+
+        /* Start of Sum */
+        $a = 0;
+
+        /* The conditional sums */
+
+        $a += $Ismoke[$request->input('smoke_cat')];
+        /* Sum from continuous values */
+
+        $a += $age_1 * 11.9178089602254960000000000;
+        $a += $age_2 * -3.8503786390624457000000000;
+        $a += $bmi_1 * 1.8605584222949920000000000;
+        $a += $bmi_2 * -0.1132750038800869900000000;
+        $a += $town * 0.0285745703610741780000000;
+
+        /* Sum from boolean values */
+
+        $b_copd = $request->input('b_copd');
+        $c_hb = $request->input('c_hb');
+        $new_abdopain = $request->input('new_abdopain');
+        $new_appetiteloss = $request->input('new_appetiteloss');
+        $new_dysphagia = $request->input('new_dysphagia');
+        $new_haemoptysis = $request->input('new_haemoptysis');
+        $new_indigestion = $request->input('new_indigestion');
+        $new_necklump = $request->input('new_necklump');
+        $new_nightsweats = $request->input('new_nightsweats');
+        $new_vte = $request->input('new_vte');
+        $new_weightloss = $request->input('new_weightloss');
+        $s1_cough = $request->input('s1_cough');
+
+
+        $a += $b_copd * 0.5526127629694074200000000;
+        $a += $c_hb * 0.8243789117069311200000000;
+        $a += $new_abdopain * 0.3996424879103057700000000;
+        $a += $new_appetiteloss * 0.7487413720163385000000000;
+        $a += $new_dysphagia * 1.0410482089004374000000000;
+        $a += $new_haemoptysis * 2.8241680746676243000000000;
+        $a += $new_indigestion * 0.2689673675929089000000000;
+        $a += $new_necklump * 1.1065323833644807000000000;
+        $a += $new_nightsweats * 0.7890696583845964200000000;
+        $a += $new_vte * 0.7991150296038754800000000;
+        $a += $new_weightloss * 1.3738119234931856000000000;
+        $a += $s1_cough * 0.5154179003437485700000000;
+
+        /* Sum from interaction terms */
+
+
+        /* Calculate the score itself */
+        $score = $a + -8.7166918098019277000000000;
+        return $score;
+    }
+
+    function other_cancer_male_raw(Request $request)
+    {
+        $survivor[0] = array();
+
+
+        /* The conditional arrays */
+
+        $Ismoke[5] = array("0", "0.1306282330648657900000000", "0.4156824612593108500000000", "0.4034160393541376700000000", "0.5290383323065179800000000");
+
+        /* Applying the fractional polynomial transforms */
+        /* (which includes scaling)                      */
+
+        $dage = $request->input('age');
+        $dage = $dage / 10;
+        $age_1 = $dage;
+        $age_2 = $dage * log($dage);
+        $dbmi = 123;     //todo BMI Calclulator
+        $dbmi = $dbmi / 10;
+        $bmi_1 = pow($dbmi, -2);
+        $bmi_2 = $dbmi;
+
+        /* Centring the continuous variables */
+
+        $age_1 = $age_1 - 4.800777912139893;
+        $age_2 = $age_2 - 7.531354427337647;
+        $bmi_1 = $bmi_1 - 0.146067067980766;
+        $bmi_2 = $bmi_2 - 2.616518735885620;
+
+        /* Start of Sum */
+        $a = 0;
+
+        /* The conditional sums */
+
+        $a += $Ismoke[$request->input("smoke_cat")];
+
+        /* Sum from continuous values */
+
+        $a += $age_1 * 4.1156415170875666000000000;
+        $a += $age_2 * -1.2786588534988286000000000;
+        $a += $bmi_1 * 2.4067691257533248000000000;
+        $a += $bmi_2 * 0.2566799616335219100000000;
+
+
+        /* Session Inputs*/
+        $b_copd = $request->input('b_copd');
+        $b_type2 = $request->input('b_type2');
+        $c_hb = $request->input('c_hb');
+        $new_abdodist = $request->input('new_abdodist');
+        $new_abdopain = $request->input('new_abdopain');
+        $new_appetiteloss = $request->input('new_appetiteloss');
+        $new_dysphagia = $request->input('new_dysphagia');
+        $new_gibleed = $request->input('new_gibleed');
+        $new_haematuria = $request->input('new_haematuria');
+        $new_haemoptysis = $request->input('new_haemoptysis');
+        $new_indigestion = $request->input('new_indigestion');
+        $new_necklump = $request->input('new_necklump');
+        $new_vte = $request->input('new_vte');
+        $new_weightloss = $request->input('new_weightloss');
+        $s1_bowelchange = $request->input('s1_bowelchange');
+        $s1_constipation = $request->input('s1_constipation');
+
+
+        /* Sum from boolean values */
+
+        $a += $b_copd * 0.2364397443316423000000000;
+        $a += $b_type2 * 0.2390212489103255300000000;
+        $a += $c_hb * 0.9765525865177192600000000;
+        $a += $new_abdodist * 0.7203822227648433200000000;
+        $a += $new_abdopain * 0.8372159579979499000000000;
+        $a += $new_appetiteloss * 1.1647610659454599000000000;
+        $a += $new_dysphagia * 1.0747326525064285000000000;
+        $a += $new_gibleed * 0.4468867932306167000000000;
+        $a += $new_haematuria * 0.5276884520139836200000000;
+        $a += $new_haemoptysis * 0.6465976131208517300000000;
+        $a += $new_indigestion * 0.3156125379576864000000000;
+        $a += $new_necklump * 2.9472448787274570000000000;
+        $a += $new_vte * 1.0954486585194212000000000;
+        $a += $new_weightloss * 1.0550815022699203000000000;
+        $a += $s1_bowelchange * 0.5059485944682162700000000;
+        $a += $s1_constipation * 0.6035170412091727100000000;
+
+        /* Sum from interaction terms */
+
+
+        /* Calculate the score itself */
+        $score = $a + -6.7132875682858542000000000;
+        return $score;
+    }
+
+    function pancreatic_cancer_male_(Request $request)
+
+    {
+        $survivor[0] = array();
+
+        /* The conditional arrays */
+
+        $Ismoke[5] = array("0", "0.2783298172089973500000000", "0.3079418928917603300000000", "0.5647359394991128300000000", "0.7765125427126866600000000");
+
+
+        /* Applying the fractional polynomial transforms */
+        /* (which includes scaling)                      */
+
+        $dage = $request->input('age');
+        $dage = $dage / 10;
+        $age_1 = $dage;
+        $age_2 = $dage * log($dage);
+        $dbmi = 123; //todo bmi()
+        $dbmi = $dbmi / 10;
+        $bmi_1 = pow($dbmi, -2);
+        $bmi_2 = $dbmi;
+
+        /* Centring the continuous variables */
+
+        $age_1 = $age_1 - 4.800777912139893;
+        $age_2 = $age_2 - 7.531354427337647;
+        $bmi_1 = $bmi_1 - 0.146067067980766;
+        $bmi_2 = $bmi_2 - 2.616518735885620;
+        $town = $town - -0.264977723360062;
+
+        /* Start of Sum */
+        $a = 0;
+
+        /* The conditional sums */
+
+        $a += $Ismoke[$request->input('smoke_cat')];
+
+        /* Sum from continuous values */
+
+        $a += age_1 * 8.0275778709105907000000000;
+        $a += age_2 * -2.6082429130982798000000000;
+        $a += bmi_1 * 1.7819574994736820000000000;
+        $a += bmi_2 * -0.0249600064895699750000000;
+        $a += town * -0.0352288140617050480000000;
+
+        /* input values */
+
+
+        /* Sum from boolean values */
+
+        $a += b_chronicpan * 0.9913246347991823100000000;
+        $a += b_type2 * 0.7396905098202540800000000;
+        $a += new_abdopain * 2.1506984011721579000000000;
+        $a += new_appetiteloss * 1.4272326009960661000000000;
+        $a += new_dysphagia * 0.9168689207526066200000000;
+        $a += new_gibleed * 0.9881061033081149900000000;
+        $a += new_indigestion * 1.2837402377092237000000000;
+        $a += new_vte * 1.1741805346104719000000000;
+        $a += new_weightloss * 2.0466064239967046000000000;
+        $a += s1_constipation * 0.6240548033048214400000000;
+
+        /* Sum from interaction terms */
+
+
+        /* Calculate the score itself */
+        double score = a + -9.2275729512009956000000000;
+    return score;
+}
 
 
 }

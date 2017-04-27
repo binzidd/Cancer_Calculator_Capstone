@@ -66,7 +66,6 @@ Route::get('/generalcancer',[
 ]);
 
 
-
 //          Responses
 
 

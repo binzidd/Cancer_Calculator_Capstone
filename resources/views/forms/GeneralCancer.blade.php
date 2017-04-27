@@ -14,7 +14,8 @@
                         <strong>{{$yourMessage}}!</strong>
                     </div>
                 @endif
-                <form action="{{route ('QCancerForm')}}" method="post">
+                {{--TODO: Change this to post and link DB--}}
+                <form action="{{route ('genrel_cancer_renderer')}}" method="get">
                     <div class="form-control">Session Based Calculation for QCancer</div>
                     <br>
                     <div class="form-group col-md-offset-1">
@@ -114,7 +115,7 @@
                             <div class="checkbox-inline">
                                 <label class="checkbox-inline">
                                     <input class="form-check-input" type="checkbox" name="fh_prostatecancer"
-                                           id="var_male_fh_prostatecancer"> Q. a family history of prostate cancer?
+                                           id="var_male_fh_prostatecancer"> a family history of prostate cancer?
                                 </label>
                             </div>
                         </label>
@@ -136,7 +137,7 @@
                             <div class="checkbox-inline">
                                 <label class="checkbox-inline">
                                     <input class="checkbox-inline" type="checkbox" name="b_chronicpan"
-                                           id="var_male_fh_b_chronicpan"> Q. chronic pancreatitis?
+                                           id="var_male_fh_b_chronicpan"> chronic pancreatitis?
                                 </label>
                             </div>
                         </label>
@@ -147,7 +148,7 @@
                             <div class="checkbox-inline">
                                 <label class="checkbox-inline">
                                     <input class="checkbox-inline" type="checkbox" name="b_copd"
-                                           id="var_male_fh_b_copd"> Q. chronic obstructive airways disease (COPD)?
+                                           id="var_male_fh_b_copd"> chronic obstructive airways disease (COPD)?
                                 </label>
                             </div>
                         </label>
@@ -212,29 +213,6 @@
                         </label>
                     </div>
 
-                    <div class="form-group col-md-offset-1">
-                        <label class="col-md-offset-1">
-                            <strong> heartburn or indigestion: </strong>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-option" type="radio" name="heartburn_cat"
-                                           id="var_male_heartburn_cat_0" value="0"> neither
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="heartburn_cat"
-                                           id="var_male_heartburn_cat_1" value="1"> heartburn
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="heartburn_cat"
-                                           id="var_male_heartburn_cat_2" value="2"> indigestion (less than 10)
-                                </label>
-                            </div>
-                        </label>
-                    </div>
 
                     <div class="form-check-inline col-md-offset-1">
                         <label class="form-check-inline col-md-offset-0  ">
@@ -357,7 +335,32 @@
                             </div>
                         </label>
                     </div>
-                    <div>
+
+                    <div class="form-group col-md-offset-1">
+                        <label>
+                            <strong> Condition of heartburn or indigestion: </strong>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-option" type="radio" name="heartburn_cat"
+                                           id="var_male_heartburn_cat_0" value="0"> neither
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="heartburn_cat"
+                                           id="var_male_heartburn_cat_1" value="1"> heartburn
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="heartburn_cat"
+                                           id="var_male_heartburn_cat_2" value="2"> indigestion (less than 10)
+                                </label>
+                            </div>
+                        </label>
+                    </div>
+                    {{--Different Section --}}
+
                         <div>
                             <label name="content-header">In the last year have you seen your GP with...
                             </label>
@@ -468,35 +471,29 @@
                         <div>
                             <label name="content-header col-md-offset-1">
                                 Body mass index
-                            </label>
                             <br>
-                            <div class="form-group col-md-2 col-md-offset-2">
+                                <div class="form-group ">
+                                    {{--col-md-2 col-md-offset-2--}}
                                 <label for="BMI">
                                     <div class="form-group">
-                                        <label for="BMI" class="col-md-offset-2">Height in Centi-Meter
-                                            <div class="col-md-2">
-                                                <br>
+                                        <label for="BMI"><h5>Height in Centi-Meter </h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="height"
                                                        id="height"
                                                        value=''>
-                                            </div>
                                         </label>
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label for="BMI" class="col-md-2">Weight in KGs
-                                            <div class="col-lg-2"><br>
+                                    <div class="form-group ">
+                                        <label for="BMI"><h5>Weight in KGs</h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="weight"
                                                        id="weight"
                                                        value=''>
-                                                <br>
-                                            </div>
                                         </label>
                                     </div>
                                 </label>
                             </div>
+                            </label>
                         </div>
-                    </div>
 
                     <input class="col-md-offset-4" type="submit" name="calcuate" value="Calculate Risk">
                     <input type="hidden" name="_token" value="{{Session::token()}} ">

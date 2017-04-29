@@ -66,7 +66,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
-        $town = $request->input('town');
+        $town = $request->input('$town');
 
         /* Centring the continuous variables */
 
@@ -91,19 +91,19 @@ class GeneralCancerController extends Controller
         $a += $town * -0.0277062426752491610000000;
 
         /* Sum from boolean values */
-        $c_hb = $request->input('c_hb');
+        $c_hb = $request->input('$c_hb');
         $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_dysphagia = $request->input('new_dysphagia');
-        $new_haematuria = $request->input('new_haematuria');
+        $new_haematuria = $request->input('$new_haematuria');
         $new_haemoptysis = $request->input('new_haemoptysis');
         $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_nightsweats = $request->input('new_nightsweats');
+        $new_necklump = $request->input('$new_necklump');
+        $new_nightsweats = $request->input('$new_nightsweats');
         $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
 
         $a += $c_hb * 1.8905802113004144000000000;
         $a += $new_abdodist * 0.8430432197211393800000000;
@@ -122,7 +122,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -7.2591289466850277000000000;
         return $score;
     }
@@ -175,14 +175,14 @@ class GeneralCancerController extends Controller
 
         //input from $request
 
-        $c_hb = $request->input('c_hb');
+        $c_hb = $request->input('$c_hb');
         $fh_gicancer = $request->input('fh_gicancer');
         $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_rectalbleed = $request->input('new_rectalbleed');
-        $new_weightloss = $request->input('new_weightloss');
-        $s1_bowelchange = $request->input('s1_bowelchange');
+        $new_weightloss = $request->input('$new_weightloss');
+        $s1_bowelchange = $request->input('$s1_bowelchange');
         $s1_constipation = $request->input('s1_constipation');
 
         //performing calculations based on questions
@@ -199,7 +199,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -7.6876342765226262000000000;
         return $score;
     }
@@ -250,15 +250,15 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $c_hb = $request->input('c_hb');
-        $new_abdopain = $request->input('new_abdopain');
+        $c_hb = $request->input('$c_hb');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_dysphagia = $request->input('new_dysphagia');
         $new_gibleed = $request->input('new_gibleed');
         $new_heartburn = $request->input('new_heartburn');
         $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_necklump = $request->input('$new_necklump');
+        $new_weightloss = $request->input('$new_weightloss');
 
         $a += $c_hb * 1.1065543049459461000000000;
         $a += $new_abdopain * 1.0280133043080188000000000;
@@ -273,7 +273,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -8.4208700270300625000000000;
         return $score;
     }
@@ -324,16 +324,16 @@ class GeneralCancerController extends Controller
         /* Sum from boolean values */
 
         $b_copd = $request->input('b_copd');
-        $c_hb = $request->input('c_hb');
-        $new_abdopain = $request->input('new_abdopain');
+        $c_hb = $request->input('$c_hb');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_dysphagia = $request->input('new_dysphagia');
         $new_haemoptysis = $request->input('new_haemoptysis');
         $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_nightsweats = $request->input('new_nightsweats');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_necklump = $request->input('$new_necklump');
+        $new_nightsweats = $request->input('$new_nightsweats');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
         $s1_cough = $request->input('s1_cough');
 
 
@@ -353,7 +353,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -8.7166918098019277000000000;
         return $score;
     }
@@ -404,19 +404,19 @@ class GeneralCancerController extends Controller
         /* Session Inputs*/
         $b_copd = $request->input('b_copd');
         $b_type2 = $request->input('b_type2');
-        $c_hb = $request->input('c_hb');
+        $c_hb = $request->input('$c_hb');
         $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_dysphagia = $request->input('new_dysphagia');
         $new_gibleed = $request->input('new_gibleed');
-        $new_haematuria = $request->input('new_haematuria');
+        $new_haematuria = $request->input('$new_haematuria');
         $new_haemoptysis = $request->input('new_haemoptysis');
         $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
-        $s1_bowelchange = $request->input('s1_bowelchange');
+        $new_necklump = $request->input('$new_necklump');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
+        $s1_bowelchange = $request->input('$s1_bowelchange');
         $s1_constipation = $request->input('s1_constipation');
 
 
@@ -442,7 +442,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -6.7132875682858542000000000;
         return $score;
     }
@@ -495,13 +495,13 @@ class GeneralCancerController extends Controller
 
         $b_chronicpan = $request->input('b_chronicpan');
         $b_type2 = $request->input('b_type2');
-        $new_abdopain = $request->input('new_abdopain');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
         $new_dysphagia = $request->input('new_dysphagia');
         $new_gibleed = $request->input('new_gibleed');
         $new_indigestion = $request->input('new_indigestion');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
         $s1_constipation = $request->input('s1_constipation');
 
         /* Sum from boolean values */
@@ -520,7 +520,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -9.2275729512009956000000000;
         return $score;
     }
@@ -570,14 +570,14 @@ class GeneralCancerController extends Controller
         /* Session Inputs*/
 
         $fh_prostatecancer = $request->input('fh_prostatecancer');
-        $new_abdopain = $request->input('new_abdopain');
+        $new_abdopain = $request->input('$new_abdopain');
         $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_haematuria = $request->input('new_haematuria');
+        $new_haematuria = $request->input('$new_haematuria');
         $new_rectalbleed = $request->input('new_rectalbleed');
         $new_testespain = $request->input('new_testespain');
         $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
         $s1_impotence = $request->input('s1_impotence');
         $s1_nocturia = $request->input('s1_nocturia');
         $s1_urinaryfreq = $request->input('s1_urinaryfreq');
@@ -603,7 +603,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -7.8871012697298699000000000;
         return $score;
     }
@@ -653,10 +653,10 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $new_abdopain = $request->input('new_abdopain');
-        $new_haematuria = $request->input('new_haematuria');
-        $new_nightsweats = $request->input('new_nightsweats');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_abdopain = $request->input('$new_abdopain');
+        $new_haematuria = $request->input('$new_haematuria');
+        $new_nightsweats = $request->input('$new_nightsweats');
+        $new_weightloss = $request->input('$new_weightloss');
 
 
         $a += $new_abdopain * 0.6089465678909584700000000;
@@ -667,7 +667,7 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -8.3006555398942510000000000;
         return $score;
     }
@@ -676,11 +676,11 @@ class GeneralCancerController extends Controller
     {
         $survivor = array();
 
-        $dage = $request->input('age');;
+        $dage = $request->input('age');
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
-        $dbmi = 123;   //todo create a bmi
+        $dbmi = 123;   //todo create $a bmi
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
@@ -707,7 +707,7 @@ class GeneralCancerController extends Controller
 
         $new_testespain = $request->input('new_testespain');
         $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('new_vte');
+        $new_vte = $request->input('$new_vte');
 
         /* Sum from boolean values */
 
@@ -718,226 +718,153 @@ class GeneralCancerController extends Controller
         /* Sum from interaction terms */
 
 
-        /* Calculate the score itself */
+        /* Calculate the $score itself */
         $score = $a + -8.7592209887895898000000000;
         return $score;
     }
 
     /* Female Functions */
 
-    static $blood_cancer_female_raw(
-int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_necklump,int new_nightsweats,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange,int s1_bruising
-)
+    function blood_cancer_female(Request $request)
+    {
+        $survivor = array();
+
+
+        /* The conditional arrays */
+
+
+        /* Applying the fractional polynomial transforms */
+        /* (which includes scaling)                      */
+
+        $dage = $request->input('age');
+        $dage = $dage / 10;
+        $age_1 = pow($dage, -2);
+        $age_2 = pow($dage, -2) * log($dage);
+        $dbmi = 123;  //todo bmi calculator 
+        $dbmi = $dbmi / 10;
+        $bmi_1 = pow($dbmi, -2);
+        $bmi_2 = pow($dbmi, -2) * log($dbmi);
+
+        /* Centring the continuous variables */
+
+        $age_1 = $age_1 - 0.039541322737932;
+        $age_2 = $age_2 - 0.063867323100567;
+        $bmi_1 = $bmi_1 - 0.151021569967270;
+        $bmi_2 = $bmi_2 - 0.142740502953529;
+
+        /* Start of Sum */
+        $a = 0;
+
+        /* The conditional sums */
+
+
+        /* Sum from continuous values */
+
+        $a += $age_1 * 35.9405666896283120000000000;
+        $a += $age_2 * -68.8496375977904480000000000;
+        $a += $bmi_1 * 0.0785171223057501980000000;
+        $a += $bmi_2 * -5.3730627788681424000000000;
+
+
+        /*Input for values*/
+
+        $c_hb = $request->input('c_hb');
+        $new_abdopain = $request->input('$new_abdopain');
+        $new_haematuria = $request->input('$new_haematuria');
+        $new_necklump = $request->input('new_necklump');
+        $new_nightsweats = $request->input('new_nightsweats');
+        $new_pmb = $request->input('new_pmb');
+        $new_vte = $request->input('$new_vte');
+        $new_weightloss = $request->input('$new_weightloss');
+        $s1_bowelchange = $request->input('s1_bowelchange');
+        $s1_bruising = $request->input('s1_bruising');
+
+        /* Sum from boolean values */
+
+        $a += $c_hb * 1.7035866502297630000000000;
+        $a += $new_abdopain * 0.3779206239385797800000000;
+        $a += $new_haematuria * 0.4086662974598894700000000;
+        $a += $new_necklump * 2.9539029476671903000000000;
+        $a += $new_nightsweats * 1.3792892192392403000000000;
+        $a += $new_pmb * 0.4689216313440992500000000;
+        $a += $new_vte * 0.6036630662990674100000000;
+        $a += $new_weightloss * 0.8963398932306315700000000;
+        $a += $s1_bowelchange * 0.7291379612468620300000000;
+        $a += $s1_bruising * 1.0255003552753392000000000;
+
+        /* Sum from interaction terms */
+
+
+        /* Calculate the $score itself */
+        $score = $a + -7.4207849482565749000000000;
+        return $score;
+    }
+
+
+    /* breast_cancer */
+
+    function breast_cancer_female(Request $request)
 {
-	$survivor[0] = {
+    $survivor = array();
 
-	}
+    /* The conditional arrays */
 
-;
-
-/* The conditional arrays */
-
-
-/* Applying the fractional polynomial transforms */
-/* (which includes scaling)                      */
-
-$dage = age;
-dage = dage / 10;
-$age_1 = pow(dage, -2);
-$age_2 = pow(dage, -2) * log(dage);
-$dbmi = bmi;
-dbmi = dbmi / 10;
-$bmi_1 = pow(dbmi, -2);
-$bmi_2 = pow(dbmi, -2) * log(dbmi);
-
-/* Centring the continuous variables */
-
-age_1 = age_1 - 0.039541322737932;
-age_2 = age_2 - 0.063867323100567;
-bmi_1 = bmi_1 - 0.151021569967270;
-bmi_2 = bmi_2 - 0.142740502953529;
-
-/* Start of Sum */
-$a = 0;
-
-/* The conditional sums */
-
-
-/* Sum from continuous values */
-
-a += age_1 * 35.9405666896283120000000000;
-a += age_2 * -68.8496375977904480000000000;
-a += bmi_1 * 0.0785171223057501980000000;
-a += bmi_2 * -5.3730627788681424000000000;
-
-/* Sum from boolean values */
-
-a += c_hb * 1.7035866502297630000000000;
-a += new_abdopain * 0.3779206239385797800000000;
-a += new_haematuria * 0.4086662974598894700000000;
-a += new_necklump * 2.9539029476671903000000000;
-a += new_nightsweats * 1.3792892192392403000000000;
-a += new_pmb * 0.4689216313440992500000000;
-a += new_vte * 0.6036630662990674100000000;
-a += new_weightloss * 0.8963398932306315700000000;
-a += s1_bowelchange * 0.7291379612468620300000000;
-a += s1_bruising * 1.0255003552753392000000000;
-
-/* Sum from interaction terms */
-
-
-/* Calculate the score itself */
-$score = a + -7.4207849482565749000000000;
-return score;
-}
-
-static int blood_cancer_female_validation(
-    int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_necklump,int new_nightsweats,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange,int s1_bruising,char * errorBuf,int errorBufSize
-)
-{
-    int ok = 1;
-	*errorBuf = 0;
-	if (!i_in_range(age, 25, 89)) {
-        ok = 0;
-        strlcat(errorBuf, "error: age must be in range (25,89)\n", errorBufSize);
-    }
-	if (!d_in_range(bmi, 20, 40)) {
-        ok = 0;
-        strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
-    }
-	if (!is_boolean(c_hb)) {
-        ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_abdopain)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_haematuria)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_necklump)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_necklump must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_nightsweats)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_nightsweats must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_pmb)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_vte)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_weightloss)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(s1_bowelchange)) {
-        ok = 0;
-        strlcat(errorBuf, "error: s1_bowelchange must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(s1_bruising)) {
-        ok = 0;
-        strlcat(errorBuf, "error: s1_bruising must be in range (0,1)\n", errorBufSize);
-    }
-	return ok;
-}
-
-$blood_cancer_female(
-    int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_necklump,int new_nightsweats,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange,int s1_bruising,int * error,char * errorBuf,int errorBufSize
-)
-{
-    *
-    error = 0;
-    int ok = blood_cancer_female_validation(age, bmi, c_hb, new_abdopain, new_haematuria, new_necklump, new_nightsweats, new_pmb, new_vte, new_weightloss, s1_bowelchange, s1_bruising, errorBuf, errorBufSize);
-	if (!ok) {
-        *
-        error = 1;
-        return 0.0;
-    }
-	return blood_cancer_female_raw(age, bmi, c_hb, new_abdopain, new_haematuria, new_necklump, new_nightsweats, new_pmb, new_vte, new_weightloss, s1_bowelchange, s1_bruising);
-}
-
-/* End of blood_cancer */
-
-/* breast_cancer */
-
-static $breast_cancer_female_raw(
-int age,int alcohol_cat4,$bmi,int fh_breastcancer,int new_breastlump,int new_breastpain,int new_breastskin,int new_pmb,int new_vte,$town
-)
-{
-    $survivor[0] = {
-
-};
-
-	/* The conditional arrays */
-
-	$Ialcohol[4] = {
-    0,
-		0.0543813075945134560000000,
-		0.1245709972983817800000000,
-		0.1855198679261514700000000
-	};
-
+    $Ialcohol[] = array("0", "0.0543813075945134560000000", "0.1245709972983817800000000", "0.1855198679261514700000000");
+   
 	/* Applying the fractional polynomial transforms */
 	/* (which includes scaling)                      */
 
-	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
-	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+    $dage = $request->input('age');
+    $dage = $dage / 10;
+    $age_1 = pow($dage, -2);
+    $age_2 = pow($dage, -2) * log($dage);
+    $dbmi = 123;  //todo bmi funciton
+    $dbmi = $dbmi / 10;
+    $bmi_1 = pow($dbmi, -2);
+    $bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
-	town = town - -0.383295059204102;
+    $age_1 = $age_1 - 0.039541322737932;
+    $age_2 = $age_2 - 0.063867323100567;
+    $bmi_1 = $bmi_1 - 0.151021569967270;
+    $bmi_2 = $bmi_2 - 0.142740502953529;
+    $town = $town - -0.383295059204102;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ialcohol[alcohol_cat4];
+    $a += $Ialcohol[$request->input('alcohol_cat4')];
 
 	/* Sum from continuous values */
 
-	a += age_1 * -14.3029484067898500000000000;
-	a += age_2 * -25.9301811377364260000000000;
-	a += bmi_1 * -1.7540983825680900000000000;
-	a += bmi_2 * 2.0601979121740364000000000;
-	a += town * -0.0160766972632234440000000;
+    $a += $age_1 * -14.3029484067898500000000000;
+    $a += $age_2 * -25.9301811377364260000000000;
+    $a += $bmi_1 * -1.7540983825680900000000000;
+    $a += $bmi_2 * 2.0601979121740364000000000;
+    $a += $town * -0.0160766972632234440000000;
 
 	/* Sum from boolean values */
 
-	a += fh_breastcancer * 0.3863899675953914000000000;
-	a += new_breastlump * 3.9278533274888368000000000;
-	a += new_breastpain * 0.8779616078329102200000000;
-	a += new_breastskin * 2.2320296233987880000000000;
-	a += new_pmb * 0.4465053002248299800000000;
-	a += new_vte * 0.2728610297213165400000000;
+    $a += $fh_breastcancer * 0.3863899675953914000000000;
+    $a += $new_breastlump * 3.9278533274888368000000000;
+    $a += $new_breastpain * 0.8779616078329102200000000;
+    $a += $new_breastskin * 2.2320296233987880000000000;
+    $a += $new_pmb * 0.4465053002248299800000000;
+    $a += $new_vte * 0.2728610297213165400000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -6.1261694200869234000000000;
-	return score;
+    /* Calculate the $score itself */
+    $score = $a + -6.1261694200869234000000000;
+    return $score;
 }
 
 static int breast_cancer_female_validation(
-    int age,int alcohol_cat4,$bmi,int fh_breastcancer,int new_breastlump,int new_breastpain,int new_breastskin,int new_pmb,int new_vte,$town,char * errorBuf,int errorBufSize
+int age, int alcohol_cat4, $bmi, int $fh_breastcancer, int $new_breastlump, int $new_breastpain, int $new_breastskin, int $new_pmb, int $new_vte, $town, char * errorBuf, int errorBufSize
 )
 {
     int ok = 1;
@@ -954,50 +881,50 @@ static int breast_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(fh_breastcancer)) {
+if (!is_boolean($fh_breastcancer)) {
         ok = 0;
-        strlcat(errorBuf, "error: fh_breastcancer must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $fh_breastcancer must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_breastlump)) {
+if (!is_boolean($new_breastlump)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_breastlump must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $new_breastlump must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_breastpain)) {
+if (!is_boolean($new_breastpain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_breastpain must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $new_breastpain must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_breastskin)) {
+if (!is_boolean($new_breastskin)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_breastskin must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $new_breastskin must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+    strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
-	if (!d_in_range(town, -7, 11)) {
+if (!d_in_range($town, -7, 11)) {
         ok = 0;
-        strlcat(errorBuf, "error: town must be in range (-7,11)\n", errorBufSize);
+    strlcat(errorBuf, "error: $town must be in range (-7,11)\n", errorBufSize);
     }
 	return ok;
 }
 
 $breast_cancer_female(
-    int age,int alcohol_cat4,$bmi,int fh_breastcancer,int new_breastlump,int new_breastpain,int new_breastskin,int new_pmb,int new_vte,$town,int * error,char * errorBuf,int errorBufSize
+    int age,int alcohol_cat4,$bmi,int $fh_breastcancer,int $new_breastlump,int $new_breastpain,int $new_breastskin,int $new_pmb,int $new_vte,$town,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = breast_cancer_female_validation(age, alcohol_cat4, bmi, fh_breastcancer, new_breastlump, new_breastpain, new_breastskin, new_pmb, new_vte, town, errorBuf, errorBufSize);
+    int ok = breast_cancer_female_validation(age, alcohol_cat4, bmi, $fh_breastcancer, $new_breastlump, $new_breastpain, $new_breastskin, $new_pmb, $new_vte, $town, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return breast_cancer_female_raw(age, alcohol_cat4, bmi, fh_breastcancer, new_breastlump, new_breastpain, new_breastskin, new_pmb, new_vte, town);
+	return breast_cancer_female_raw(age, alcohol_cat4, bmi, $fh_breastcancer, $new_breastlump, $new_breastpain, $new_breastskin, $new_pmb, $new_vte, $town);
 }
 
 /* End of breast_cancer */
@@ -1005,7 +932,7 @@ $breast_cancer_female(
 /* cervical_cancer */
 
 static $cervical_cancer_female_raw(
-int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_postcoital,int new_vte,int smoke_cat,$town
+int age,$bmi,int $c_hb,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_postcoital,int $new_vte,int smoke_cat,$town
 )
 {
     $survivor[0] = {
@@ -1026,57 +953,57 @@ int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_imb,int new_pm
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
-	town = town - -0.383295059204102;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
+	$town = $town - -0.383295059204102;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ismoke[smoke_cat];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * 10.1663393107505800000000000;
-	a += age_2 * -16.9118902491100020000000000;
-	a += bmi_1 * -0.5675143308052614800000000;
-	a += bmi_2 * -2.6377586334504044000000000;
-	a += town * 0.0573200669650633030000000;
+	$a += $age_1 * 10.1663393107505800000000000;
+	$a += $age_2 * -16.9118902491100020000000000;
+	$a += $bmi_1 * -0.5675143308052614800000000;
+	$a += $bmi_2 * -2.6377586334504044000000000;
+	$a += $town * 0.0573200669650633030000000;
 
 	/* Sum from boolean values */
 
-	a += c_hb * 1.2205973555195053000000000;
-	a += new_abdopain * 0.7229870191773574200000000;
-	a += new_haematuria * 1.6126499968790107000000000;
-	a += new_imb * 1.9527008812518938000000000;
-	a += new_pmb * 3.3618997560756485000000000;
-	a += new_postcoital * 3.1391568551730864000000000;
-	a += new_vte * 1.1276327958138455000000000;
+	$a += $c_hb * 1.2205973555195053000000000;
+	$a += $new_abdopain * 0.7229870191773574200000000;
+	$a += $new_haematuria * 1.6126499968790107000000000;
+	$a += $new_imb * 1.9527008812518938000000000;
+	$a += $new_pmb * 3.3618997560756485000000000;
+	$a += $new_postcoital * 3.1391568551730864000000000;
+	$a += $new_vte * 1.1276327958138455000000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -8.8309098444401926000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -8.8309098444401926000000000;
+	return $score;
 }
 
 static int cervical_cancer_female_validation(
-    int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_postcoital,int new_vte,int smoke_cat,$town,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_postcoital,int $new_vte,int smoke_cat,$town,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -1089,58 +1016,58 @@ static int cervical_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(c_hb)) {
+	if (!is_boolean($c_hb)) {
         ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $c_hb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_haematuria)) {
+	if (!is_boolean($new_haematuria)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_haematuria must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_imb)) {
+	if (!is_boolean($new_imb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_imb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_imb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+	if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_postcoital)) {
+	if (!is_boolean($new_postcoital)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_postcoital must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_postcoital must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
 	if (!i_in_range(smoke_cat, 0, 4)) {
         ok = 0;
         strlcat(errorBuf, "error: smoke_cat must be in range (0,4)\n", errorBufSize);
     }
-	if (!d_in_range(town, -7, 11)) {
+	if (!d_in_range($town, -7, 11)) {
         ok = 0;
-        strlcat(errorBuf, "error: town must be in range (-7,11)\n", errorBufSize);
+        strlcat(errorBuf, "error: $town must be in range (-7,11)\n", errorBufSize);
     }
 	return ok;
 }
 
 $cervical_cancer_female(
-    int age,$bmi,int c_hb,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_postcoital,int new_vte,int smoke_cat,$town,int * error,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_postcoital,int $new_vte,int smoke_cat,$town,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = cervical_cancer_female_validation(age, bmi, c_hb, new_abdopain, new_haematuria, new_imb, new_pmb, new_postcoital, new_vte, smoke_cat, town, errorBuf, errorBufSize);
+    int ok = cervical_cancer_female_validation(age, bmi, $c_hb, $new_abdopain, $new_haematuria, $new_imb, $new_pmb, $new_postcoital, $new_vte, smoke_cat, $town, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return cervical_cancer_female_raw(age, bmi, c_hb, new_abdopain, new_haematuria, new_imb, new_pmb, new_postcoital, new_vte, smoke_cat, town);
+	return cervical_cancer_female_raw(age, bmi, $c_hb, $new_abdopain, $new_haematuria, $new_imb, $new_pmb, $new_postcoital, $new_vte, smoke_cat, $town);
 }
 
 /* End of cervical_cancer */
@@ -1148,7 +1075,7 @@ $cervical_cancer_female(
 /* colorectal_cancer */
 
 static $colorectal_cancer_female_raw(
-int age,int alcohol_cat4,$bmi,int c_hb,int fh_gicancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_rectalbleed,int new_vte,int new_weightloss,int s1_bowelchange,int s1_constipation
+int age,int alcohol_cat4,$bmi,int $c_hb,int fh_gicancer,int new_abdodist,int $new_abdopain,int new_appetiteloss,int new_rectalbleed,int $new_vte,int $new_weightloss,int $s1_bowelchange,int s1_constipation
 )
 {
     $survivor[0] = {
@@ -1168,130 +1095,72 @@ int age,int alcohol_cat4,$bmi,int c_hb,int fh_gicancer,int new_abdodist,int new_
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ialcohol[alcohol_cat4];
+	$a += Ialcohol[alcohol_cat4];
 
 	/* Sum from continuous values */
 
-	a += age_1 * -11.6175606616390770000000000;
-	a += age_2 * -42.9098057686870220000000000;
-	a += bmi_1 * -0.5344237822753052900000000;
-	a += bmi_2 * 2.6900552265408226000000000;
+	$a += $age_1 * -11.6175606616390770000000000;
+	$a += $age_2 * -42.9098057686870220000000000;
+	$a += $bmi_1 * -0.5344237822753052900000000;
+	$a += $bmi_2 * 2.6900552265408226000000000;
 
 	/* Sum from boolean values */
 
-	a += c_hb * 1.4759238359186861000000000;
-	a += fh_gicancer * 0.4044501048847998200000000;
-	a += new_abdodist * 0.6630074287856559900000000;
-	a += new_abdopain * 1.4990872468711913000000000;
-	a += new_appetiteloss * 0.5068020107261922400000000;
-	a += new_rectalbleed * 2.7491673095810105000000000;
-	a += new_vte * 0.7072816884002932600000000;
-	a += new_weightloss * 1.0288860866585736000000000;
-	a += s1_bowelchange * 0.7664414123199643200000000;
-	a += s1_constipation * 0.3375158123121173600000000;
+	$a += $c_hb * 1.4759238359186861000000000;
+	$a += fh_gicancer * 0.4044501048847998200000000;
+	$a += new_abdodist * 0.6630074287856559900000000;
+	$a += $new_abdopain * 1.4990872468711913000000000;
+	$a += new_appetiteloss * 0.5068020107261922400000000;
+	$a += new_rectalbleed * 2.7491673095810105000000000;
+	$a += $new_vte * 0.7072816884002932600000000;
+	$a += $new_weightloss * 1.0288860866585736000000000;
+	$a += $s1_bowelchange * 0.7664414123199643200000000;
+	$a += s1_constipation * 0.3375158123121173600000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -7.5466948789670942000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -7.5466948789670942000000000;
+	return $score;
 }
 
-static int colorectal_cancer_female_validation(
-    int age,int alcohol_cat4,$bmi,int c_hb,int fh_gicancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_rectalbleed,int new_vte,int new_weightloss,int s1_bowelchange,int s1_constipation,char * errorBuf,int errorBufSize
-)
-{
-    int ok = 1;
-	*errorBuf = 0;
-	if (!i_in_range(age, 25, 89)) {
-        ok = 0;
-        strlcat(errorBuf, "error: age must be in range (25,89)\n", errorBufSize);
-    }
-	if (!i_in_range(alcohol_cat4, 0, 3)) {
-        ok = 0;
-        strlcat(errorBuf, "error: alcohol_cat4 must be in range (0,3)\n", errorBufSize);
-    }
-	if (!d_in_range(bmi, 20, 40)) {
-        ok = 0;
-        strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
-    }
-	if (!is_boolean(c_hb)) {
-        ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(fh_gicancer)) {
-        ok = 0;
-        strlcat(errorBuf, "error: fh_gicancer must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_abdodist)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_abdodist must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_abdopain)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_appetiteloss)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_appetiteloss must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_rectalbleed)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_rectalbleed must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_vte)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_weightloss)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(s1_bowelchange)) {
-        ok = 0;
-        strlcat(errorBuf, "error: s1_bowelchange must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(s1_constipation)) {
-        ok = 0;
-        strlcat(errorBuf, "error: s1_constipation must be in range (0,1)\n", errorBufSize);
-    }
-	return ok;
+
 }
 
 $colorectal_cancer_female(
-    int age,int alcohol_cat4,$bmi,int c_hb,int fh_gicancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_rectalbleed,int new_vte,int new_weightloss,int s1_bowelchange,int s1_constipation,int * error,char * errorBuf,int errorBufSize
+    int age,int alcohol_cat4,$bmi,int $c_hb,int fh_gicancer,int new_abdodist,int $new_abdopain,int new_appetiteloss,int new_rectalbleed,int $new_vte,int $new_weightloss,int $s1_bowelchange,int s1_constipation,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = colorectal_cancer_female_validation(age, alcohol_cat4, bmi, c_hb, fh_gicancer, new_abdodist, new_abdopain, new_appetiteloss, new_rectalbleed, new_vte, new_weightloss, s1_bowelchange, s1_constipation, errorBuf, errorBufSize);
+    int ok = colorectal_cancer_female_validation(age, alcohol_cat4, bmi, $c_hb, fh_gicancer, new_abdodist, $new_abdopain, new_appetiteloss, new_rectalbleed, $new_vte, $new_weightloss, $s1_bowelchange, s1_constipation, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return colorectal_cancer_female_raw(age, alcohol_cat4, bmi, c_hb, fh_gicancer, new_abdodist, new_abdopain, new_appetiteloss, new_rectalbleed, new_vte, new_weightloss, s1_bowelchange, s1_constipation);
+	return colorectal_cancer_female_raw(age, alcohol_cat4, bmi, $c_hb, fh_gicancer, new_abdodist, $new_abdopain, new_appetiteloss, new_rectalbleed, $new_vte, $new_weightloss, $s1_bowelchange, s1_constipation);
 }
 
 /* End of colorectal_cancer */
@@ -1299,7 +1168,7 @@ $colorectal_cancer_female(
 /* gastro_oesophageal_cancer */
 
 static $gastro_oesophageal_cancer_female_raw(
-int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_heartburn,int new_indigestion,int new_vte,int new_weightloss,int smoke_cat
+int age,$bmi,int $c_hb,int $new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_heartburn,int new_indigestion,int $new_vte,int $new_weightloss,int smoke_cat
 )
 {
     $survivor[0] = {
@@ -1320,133 +1189,62 @@ int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_dysphagia,in
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ismoke[smoke_cat];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * 5.5127932958160830000000000;
-	a += age_2 * -70.2734062916161830000000000;
-	a += bmi_1 * 2.6063377632938987000000000;
-	a += bmi_2 * -1.2389834515079798000000000;
+	$a += $age_1 * 5.5127932958160830000000000;
+	$a += $age_2 * -70.2734062916161830000000000;
+	$a += $bmi_1 * 2.6063377632938987000000000;
+	$a += $bmi_2 * -1.2389834515079798000000000;
 
 	/* Sum from boolean values */
 
-	a += c_hb * 1.2479756970482034000000000;
-	a += new_abdopain * 0.7825304005124729100000000;
-	a += new_appetiteloss * 0.6514592236889243900000000;
-	a += new_dysphagia * 3.7751714910656862000000000;
-	a += new_gibleed * 1.4264472204617833000000000;
-	a += new_heartburn * 0.8178746069193373300000000;
-	a += new_indigestion * 1.4998439683677578000000000;
-	a += new_vte * 0.7199894658172598700000000;
-	a += new_weightloss * 1.2287925630053846000000000;
+	$a += $c_hb * 1.2479756970482034000000000;
+	$a += $new_abdopain * 0.7825304005124729100000000;
+	$a += new_appetiteloss * 0.6514592236889243900000000;
+	$a += new_dysphagia * 3.7751714910656862000000000;
+	$a += new_gibleed * 1.4264472204617833000000000;
+	$a += new_heartburn * 0.8178746069193373300000000;
+	$a += new_indigestion * 1.4998439683677578000000000;
+	$a += $new_vte * 0.7199894658172598700000000;
+	$a += $new_weightloss * 1.2287925630053846000000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -8.8746031610250764000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -8.8746031610250764000000000;
+	return $score;
 }
 
-static int gastro_oesophageal_cancer_female_validation(
-    int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_heartburn,int new_indigestion,int new_vte,int new_weightloss,int smoke_cat,char * errorBuf,int errorBufSize
-)
-{
-    int ok = 1;
-	*errorBuf = 0;
-	if (!i_in_range(age, 25, 89)) {
-        ok = 0;
-        strlcat(errorBuf, "error: age must be in range (25,89)\n", errorBufSize);
-    }
-	if (!d_in_range(bmi, 20, 40)) {
-        ok = 0;
-        strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
-    }
-	if (!is_boolean(c_hb)) {
-        ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_abdopain)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_appetiteloss)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_appetiteloss must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_dysphagia)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_dysphagia must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_gibleed)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_gibleed must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_heartburn)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_heartburn must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_indigestion)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_vte)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
-    }
-	if (!is_boolean(new_weightloss)) {
-        ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
-    }
-	if (!i_in_range(smoke_cat, 0, 4)) {
-        ok = 0;
-        strlcat(errorBuf, "error: smoke_cat must be in range (0,4)\n", errorBufSize);
-    }
-	return ok;
-}
-
-$gastro_oesophageal_cancer_female(
-    int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_heartburn,int new_indigestion,int new_vte,int new_weightloss,int smoke_cat,int * error,char * errorBuf,int errorBufSize
-)
-{
-    *
-    error = 0;
-    int ok = gastro_oesophageal_cancer_female_validation(age, bmi, c_hb, new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_heartburn, new_indigestion, new_vte, new_weightloss, smoke_cat, errorBuf, errorBufSize);
-	if (!ok) {
-        *
-        error = 1;
-        return 0.0;
-    }
-	return gastro_oesophageal_cancer_female_raw(age, bmi, c_hb, new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_heartburn, new_indigestion, new_vte, new_weightloss, smoke_cat);
-}
 
 /* End of gastro_oesophageal_cancer */
 
 /* lung_cancer */
 
 static $lung_cancer_female_raw(
-int age,int b_copd,$bmi,int c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int new_necklump,int new_vte,int new_weightloss,int s1_cough,int smoke_cat,$town
+int age,int b_copd,$bmi,int $c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int $new_necklump,int $new_vte,int $new_weightloss,int s1_cough,int smoke_cat,$town
 )
 {
     $survivor[0] = {
@@ -1467,60 +1265,60 @@ int age,int b_copd,$bmi,int c_hb,int new_appetiteloss,int new_dysphagia,int new_
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
-	town = town - -0.383295059204102;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
+	$town = $town - -0.383295059204102;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ismoke[smoke_cat];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * -117.2405737502962500000000000;
-	a += age_2 * 25.1702254741268090000000000;
-	a += bmi_1 * 2.5845488133924350000000000;
-	a += bmi_2 * -0.6083523966762799400000000;
-	a += town * 0.0406920461830567460000000;
+	$a += $age_1 * -117.2405737502962500000000000;
+	$a += $age_2 * 25.1702254741268090000000000;
+	$a += $bmi_1 * 2.5845488133924350000000000;
+	$a += $bmi_2 * -0.6083523966762799400000000;
+	$a += $town * 0.0406920461830567460000000;
 
 	/* Sum from boolean values */
 
-	a += b_copd * 0.7942901962671364800000000;
-	a += c_hb * 0.8627980324401628400000000;
-	a += new_appetiteloss * 0.7170232121379446200000000;
-	a += new_dysphagia * 0.6718426806077323300000000;
-	a += new_haemoptysis * 2.9286439157734474000000000;
-	a += new_indigestion * 0.3634893730114273600000000;
-	a += new_necklump * 1.2097240380091590000000000;
-	a += new_vte * 0.8907072670032341000000000;
-	a += new_weightloss * 1.1384524885073082000000000;
-	a += s1_cough * 0.6439917053275602300000000;
+	$a += b_copd * 0.7942901962671364800000000;
+	$a += $c_hb * 0.8627980324401628400000000;
+	$a += new_appetiteloss * 0.7170232121379446200000000;
+	$a += new_dysphagia * 0.6718426806077323300000000;
+	$a += new_haemoptysis * 2.9286439157734474000000000;
+	$a += new_indigestion * 0.3634893730114273600000000;
+	$a += $new_necklump * 1.2097240380091590000000000;
+	$a += $new_vte * 0.8907072670032341000000000;
+	$a += $new_weightloss * 1.1384524885073082000000000;
+	$a += s1_cough * 0.6439917053275602300000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -8.6449002971789692000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -8.6449002971789692000000000;
+	return $score;
 }
 
 static int lung_cancer_female_validation(
-    int age,int b_copd,$bmi,int c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int new_necklump,int new_vte,int new_weightloss,int s1_cough,int smoke_cat,$town,char * errorBuf,int errorBufSize
+    int age,int b_copd,$bmi,int $c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int $new_necklump,int $new_vte,int $new_weightloss,int s1_cough,int smoke_cat,$town,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -1537,9 +1335,9 @@ static int lung_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(c_hb)) {
+	if (!is_boolean($c_hb)) {
         ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $c_hb must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_appetiteloss)) {
         ok = 0;
@@ -1557,17 +1355,17 @@ static int lung_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_necklump)) {
+	if (!is_boolean($new_necklump)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_necklump must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_necklump must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_weightloss)) {
+	if (!is_boolean($new_weightloss)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_weightloss must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(s1_cough)) {
         ok = 0;
@@ -1577,26 +1375,26 @@ static int lung_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: smoke_cat must be in range (0,4)\n", errorBufSize);
     }
-	if (!d_in_range(town, -7, 11)) {
+	if (!d_in_range($town, -7, 11)) {
         ok = 0;
-        strlcat(errorBuf, "error: town must be in range (-7,11)\n", errorBufSize);
+        strlcat(errorBuf, "error: $town must be in range (-7,11)\n", errorBufSize);
     }
 	return ok;
 }
 
 $lung_cancer_female(
-    int age,int b_copd,$bmi,int c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int new_necklump,int new_vte,int new_weightloss,int s1_cough,int smoke_cat,$town,int * error,char * errorBuf,int errorBufSize
+    int age,int b_copd,$bmi,int $c_hb,int new_appetiteloss,int new_dysphagia,int new_haemoptysis,int new_indigestion,int $new_necklump,int $new_vte,int $new_weightloss,int s1_cough,int smoke_cat,$town,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = lung_cancer_female_validation(age, b_copd, bmi, c_hb, new_appetiteloss, new_dysphagia, new_haemoptysis, new_indigestion, new_necklump, new_vte, new_weightloss, s1_cough, smoke_cat, town, errorBuf, errorBufSize);
+    int ok = lung_cancer_female_validation(age, b_copd, bmi, $c_hb, new_appetiteloss, new_dysphagia, new_haemoptysis, new_indigestion, $new_necklump, $new_vte, $new_weightloss, s1_cough, smoke_cat, $town, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return lung_cancer_female_raw(age, b_copd, bmi, c_hb, new_appetiteloss, new_dysphagia, new_haemoptysis, new_indigestion, new_necklump, new_vte, new_weightloss, s1_cough, smoke_cat, town);
+	return lung_cancer_female_raw(age, b_copd, bmi, $c_hb, new_appetiteloss, new_dysphagia, new_haemoptysis, new_indigestion, $new_necklump, $new_vte, $new_weightloss, s1_cough, smoke_cat, $town);
 }
 
 /* End of lung_cancer */
@@ -1604,7 +1402,7 @@ $lung_cancer_female(
 /* other_cancer */
 
 static $other_cancer_female_raw(
-int age,int alcohol_cat4,int b_copd,$bmi,int c_hb,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_breastlump,int new_dysphagia,int new_gibleed,int new_haematuria,int new_indigestion,int new_necklump,int new_pmb,int new_vte,int new_weightloss,int s1_constipation,int smoke_cat
+int age,int alcohol_cat4,int b_copd,$bmi,int $c_hb,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_breastlump,int new_dysphagia,int new_gibleed,int $new_haematuria,int new_indigestion,int $new_necklump,int $new_pmb,int $new_vte,int $new_weightloss,int s1_constipation,int smoke_cat
 )
 {
     $survivor[0] = {
@@ -1631,64 +1429,64 @@ int age,int alcohol_cat4,int b_copd,$bmi,int c_hb,int new_abdodist,int new_abdop
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ialcohol[alcohol_cat4];
-	a += Ismoke[smoke_cat];
+	$a += Ialcohol[alcohol_cat4];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * 35.8208987302204780000000000;
-	a += age_2 * -68.3294741037719150000000000;
-	a += bmi_1 * 1.8969796480108396000000000;
-	a += bmi_2 * -3.7755945945329574000000000;
+	$a += $age_1 * 35.8208987302204780000000000;
+	$a += $age_2 * -68.3294741037719150000000000;
+	$a += $bmi_1 * 1.8969796480108396000000000;
+	$a += $bmi_2 * -3.7755945945329574000000000;
 
 	/* Sum from boolean values */
 
-	a += b_copd * 0.2823021429107943600000000;
-	a += c_hb * 1.0476364795173587000000000;
-	a += new_abdodist * 0.9628688090459262000000000;
-	a += new_abdopain * 0.8335710066715610300000000;
-	a += new_appetiteloss * 0.8450972438476546100000000;
-	a += new_breastlump * 1.0400807427059522000000000;
-	a += new_dysphagia * 0.8905342895684595900000000;
-	a += new_gibleed * 0.3839632265134078600000000;
-	a += new_haematuria * 0.6143184647549447800000000;
-	a += new_indigestion * 0.2457016002992454300000000;
-	a += new_necklump * 2.1666504706191545000000000;
-	a += new_pmb * 0.4219383252623540900000000;
-	a += new_vte * 1.0630784861733920000000000;
-	a += new_weightloss * 1.1058752771736007000000000;
-	a += s1_constipation * 0.3780143641299491500000000;
+	$a += b_copd * 0.2823021429107943600000000;
+	$a += $c_hb * 1.0476364795173587000000000;
+	$a += new_abdodist * 0.9628688090459262000000000;
+	$a += $new_abdopain * 0.8335710066715610300000000;
+	$a += new_appetiteloss * 0.8450972438476546100000000;
+	$a += $new_breastlump * 1.0400807427059522000000000;
+	$a += new_dysphagia * 0.8905342895684595900000000;
+	$a += new_gibleed * 0.3839632265134078600000000;
+	$a += $new_haematuria * 0.6143184647549447800000000;
+	$a += new_indigestion * 0.2457016002992454300000000;
+	$a += $new_necklump * 2.1666504706191545000000000;
+	$a += $new_pmb * 0.4219383252623540900000000;
+	$a += $new_vte * 1.0630784861733920000000000;
+	$a += $new_weightloss * 1.1058752771736007000000000;
+	$a += s1_constipation * 0.3780143641299491500000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -6.7864501668594306000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -6.7864501668594306000000000;
+	return $score;
 }
 
 static int other_cancer_female_validation(
-    int age,int alcohol_cat4,int b_copd,$bmi,int c_hb,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_breastlump,int new_dysphagia,int new_gibleed,int new_haematuria,int new_indigestion,int new_necklump,int new_pmb,int new_vte,int new_weightloss,int s1_constipation,int smoke_cat,char * errorBuf,int errorBufSize
+    int age,int alcohol_cat4,int b_copd,$bmi,int $c_hb,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_breastlump,int new_dysphagia,int new_gibleed,int $new_haematuria,int new_indigestion,int $new_necklump,int $new_pmb,int $new_vte,int $new_weightloss,int s1_constipation,int smoke_cat,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -1709,25 +1507,25 @@ static int other_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(c_hb)) {
+	if (!is_boolean($c_hb)) {
         ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $c_hb must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_abdodist)) {
         ok = 0;
         strlcat(errorBuf, "error: new_abdodist must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_appetiteloss)) {
         ok = 0;
         strlcat(errorBuf, "error: new_appetiteloss must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_breastlump)) {
+	if (!is_boolean($new_breastlump)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_breastlump must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_breastlump must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_dysphagia)) {
         ok = 0;
@@ -1737,29 +1535,29 @@ static int other_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: new_gibleed must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_haematuria)) {
+	if (!is_boolean($new_haematuria)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_haematuria must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_indigestion)) {
         ok = 0;
         strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_necklump)) {
+	if (!is_boolean($new_necklump)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_necklump must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_necklump must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+	if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_weightloss)) {
+	if (!is_boolean($new_weightloss)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_weightloss must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(s1_constipation)) {
         ok = 0;
@@ -1773,18 +1571,18 @@ static int other_cancer_female_validation(
 }
 
 $other_cancer_female(
-    int age,int alcohol_cat4,int b_copd,$bmi,int c_hb,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_breastlump,int new_dysphagia,int new_gibleed,int new_haematuria,int new_indigestion,int new_necklump,int new_pmb,int new_vte,int new_weightloss,int s1_constipation,int smoke_cat,int * error,char * errorBuf,int errorBufSize
+    int age,int alcohol_cat4,int b_copd,$bmi,int $c_hb,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_breastlump,int new_dysphagia,int new_gibleed,int $new_haematuria,int new_indigestion,int $new_necklump,int $new_pmb,int $new_vte,int $new_weightloss,int s1_constipation,int smoke_cat,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = other_cancer_female_validation(age, alcohol_cat4, b_copd, bmi, c_hb, new_abdodist, new_abdopain, new_appetiteloss, new_breastlump, new_dysphagia, new_gibleed, new_haematuria, new_indigestion, new_necklump, new_pmb, new_vte, new_weightloss, s1_constipation, smoke_cat, errorBuf, errorBufSize);
+    int ok = other_cancer_female_validation(age, alcohol_cat4, b_copd, bmi, $c_hb, new_abdodist, $new_abdopain, new_appetiteloss, $new_breastlump, new_dysphagia, new_gibleed, $new_haematuria, new_indigestion, $new_necklump, $new_pmb, $new_vte, $new_weightloss, s1_constipation, smoke_cat, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return other_cancer_female_raw(age, alcohol_cat4, b_copd, bmi, c_hb, new_abdodist, new_abdopain, new_appetiteloss, new_breastlump, new_dysphagia, new_gibleed, new_haematuria, new_indigestion, new_necklump, new_pmb, new_vte, new_weightloss, s1_constipation, smoke_cat);
+	return other_cancer_female_raw(age, alcohol_cat4, b_copd, bmi, $c_hb, new_abdodist, $new_abdopain, new_appetiteloss, $new_breastlump, new_dysphagia, new_gibleed, $new_haematuria, new_indigestion, $new_necklump, $new_pmb, $new_vte, $new_weightloss, s1_constipation, smoke_cat);
 }
 
 /* End of other_cancer */
@@ -1792,7 +1590,7 @@ $other_cancer_female(
 /* ovarian_cancer */
 
 static $ovarian_cancer_female_raw(
-int age,$bmi,int c_hb,int fh_ovariancancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange
+int age,$bmi,int $c_hb,int fh_ovariancancer,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_vte,int $new_weightloss,int $s1_bowelchange
 )
 {
     $survivor[0] = {
@@ -1806,20 +1604,20 @@ int age,$bmi,int c_hb,int fh_ovariancancer,int new_abdodist,int new_abdopain,int
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
@@ -1829,35 +1627,35 @@ int age,$bmi,int c_hb,int fh_ovariancancer,int new_abdodist,int new_abdopain,int
 
 	/* Sum from continuous values */
 
-	a += age_1 * -61.0831814462568940000000000;
-	a += age_2 * 20.3028612701106890000000000;
-	a += bmi_1 * -2.1261135335028407000000000;
-	a += bmi_2 * 3.2168200408772472000000000;
+	$a += $age_1 * -61.0831814462568940000000000;
+	$a += $age_2 * 20.3028612701106890000000000;
+	$a += $bmi_1 * -2.1261135335028407000000000;
+	$a += $bmi_2 * 3.2168200408772472000000000;
 
 	/* Sum from boolean values */
 
-	a += c_hb * 1.3625636791018674000000000;
-	a += fh_ovariancancer * 1.9951774809951830000000000;
-	a += new_abdodist * 2.9381020883363806000000000;
-	a += new_abdopain * 1.7307824546132513000000000;
-	a += new_appetiteloss * 1.0606947909647773000000000;
-	a += new_haematuria * 0.4958835997468107900000000;
-	a += new_indigestion * 0.3843731027493998400000000;
-	a += new_pmb * 1.5869592940878865000000000;
-	a += new_vte * 1.6839747529852673000000000;
-	a += new_weightloss * 0.4774332393821720800000000;
-	a += s1_bowelchange * 0.6849850007182314300000000;
+	$a += $c_hb * 1.3625636791018674000000000;
+	$a += fh_ovariancancer * 1.9951774809951830000000000;
+	$a += new_abdodist * 2.9381020883363806000000000;
+	$a += $new_abdopain * 1.7307824546132513000000000;
+	$a += new_appetiteloss * 1.0606947909647773000000000;
+	$a += $new_haematuria * 0.4958835997468107900000000;
+	$a += new_indigestion * 0.3843731027493998400000000;
+	$a += $new_pmb * 1.5869592940878865000000000;
+	$a += $new_vte * 1.6839747529852673000000000;
+	$a += $new_weightloss * 0.4774332393821720800000000;
+	$a += $s1_bowelchange * 0.6849850007182314300000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -7.5609929644491318000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -7.5609929644491318000000000;
+	return $score;
 }
 
 static int ovarian_cancer_female_validation(
-    int age,$bmi,int c_hb,int fh_ovariancancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int fh_ovariancancer,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_vte,int $new_weightloss,int $s1_bowelchange,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -1870,9 +1668,9 @@ static int ovarian_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(c_hb)) {
+	if (!is_boolean($c_hb)) {
         ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $c_hb must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(fh_ovariancancer)) {
         ok = 0;
@@ -1882,54 +1680,54 @@ static int ovarian_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: new_abdodist must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_appetiteloss)) {
         ok = 0;
         strlcat(errorBuf, "error: new_appetiteloss must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_haematuria)) {
+	if (!is_boolean($new_haematuria)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_haematuria must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_indigestion)) {
         ok = 0;
         strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+	if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_weightloss)) {
+	if (!is_boolean($new_weightloss)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_weightloss must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(s1_bowelchange)) {
+	if (!is_boolean($s1_bowelchange)) {
         ok = 0;
-        strlcat(errorBuf, "error: s1_bowelchange must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $s1_bowelchange must be in range (0,1)\n", errorBufSize);
     }
 	return ok;
 }
 
 $ovarian_cancer_female(
-    int age,$bmi,int c_hb,int fh_ovariancancer,int new_abdodist,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_vte,int new_weightloss,int s1_bowelchange,int * error,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int fh_ovariancancer,int new_abdodist,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_vte,int $new_weightloss,int $s1_bowelchange,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = ovarian_cancer_female_validation(age, bmi, c_hb, fh_ovariancancer, new_abdodist, new_abdopain, new_appetiteloss, new_haematuria, new_indigestion, new_pmb, new_vte, new_weightloss, s1_bowelchange, errorBuf, errorBufSize);
+    int ok = ovarian_cancer_female_validation(age, bmi, $c_hb, fh_ovariancancer, new_abdodist, $new_abdopain, new_appetiteloss, $new_haematuria, new_indigestion, $new_pmb, $new_vte, $new_weightloss, $s1_bowelchange, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return ovarian_cancer_female_raw(age, bmi, c_hb, fh_ovariancancer, new_abdodist, new_abdopain, new_appetiteloss, new_haematuria, new_indigestion, new_pmb, new_vte, new_weightloss, s1_bowelchange);
+	return ovarian_cancer_female_raw(age, bmi, $c_hb, fh_ovariancancer, new_abdodist, $new_abdopain, new_appetiteloss, $new_haematuria, new_indigestion, $new_pmb, $new_vte, $new_weightloss, $s1_bowelchange);
 }
 
 /* End of ovarian_cancer */
@@ -1937,7 +1735,7 @@ $ovarian_cancer_female(
 /* pancreatic_cancer */
 
 static $pancreatic_cancer_female_raw(
-int age,int b_chronicpan,int b_type2,$bmi,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int new_vte,int new_weightloss,int s1_bowelchange,int smoke_cat
+int age,int b_chronicpan,int b_type2,$bmi,int $new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int $new_vte,int $new_weightloss,int $s1_bowelchange,int smoke_cat
 )
 {
     $survivor[0] = {
@@ -1958,58 +1756,58 @@ int age,int b_chronicpan,int b_type2,$bmi,int new_abdopain,int new_appetiteloss,
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ismoke[smoke_cat];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * -6.8219654517231225000000000;
-	a += age_2 * -65.6404897305188650000000000;
-	a += bmi_1 * 3.9715559458995728000000000;
-	a += bmi_2 * -3.1161107999130500000000000;
+	$a += $age_1 * -6.8219654517231225000000000;
+	$a += $age_2 * -65.6404897305188650000000000;
+	$a += $bmi_1 * 3.9715559458995728000000000;
+	$a += $bmi_2 * -3.1161107999130500000000000;
 
 	/* Sum from boolean values */
 
-	a += b_chronicpan * 1.1948138830441282000000000;
-	a += b_type2 * 0.7951745325664703000000000;
-	a += new_abdopain * 1.9230379689782926000000000;
-	a += new_appetiteloss * 1.5209568259888571000000000;
-	a += new_dysphagia * 1.0107551560302726000000000;
-	a += new_gibleed * 0.9324059153254259400000000;
-	a += new_indigestion * 1.1134012616631439000000000;
-	a += new_vte * 1.4485586969016084000000000;
-	a += new_weightloss * 1.5791912580663912000000000;
-	a += s1_bowelchange * 0.9361738611941444700000000;
+	$a += b_chronicpan * 1.1948138830441282000000000;
+	$a += b_type2 * 0.7951745325664703000000000;
+	$a += $new_abdopain * 1.9230379689782926000000000;
+	$a += new_appetiteloss * 1.5209568259888571000000000;
+	$a += new_dysphagia * 1.0107551560302726000000000;
+	$a += new_gibleed * 0.9324059153254259400000000;
+	$a += new_indigestion * 1.1134012616631439000000000;
+	$a += $new_vte * 1.4485586969016084000000000;
+	$a += $new_weightloss * 1.5791912580663912000000000;
+	$a += $s1_bowelchange * 0.9361738611941444700000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -9.2782129678657608000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -9.2782129678657608000000000;
+	return $score;
 }
 
 static int pancreatic_cancer_female_validation(
-    int age,int b_chronicpan,int b_type2,$bmi,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int new_vte,int new_weightloss,int s1_bowelchange,int smoke_cat,char * errorBuf,int errorBufSize
+    int age,int b_chronicpan,int b_type2,$bmi,int $new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int $new_vte,int $new_weightloss,int $s1_bowelchange,int smoke_cat,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -2030,9 +1828,9 @@ static int pancreatic_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_appetiteloss)) {
         ok = 0;
@@ -2050,17 +1848,17 @@ static int pancreatic_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_weightloss)) {
+	if (!is_boolean($new_weightloss)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_weightloss must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(s1_bowelchange)) {
+	if (!is_boolean($s1_bowelchange)) {
         ok = 0;
-        strlcat(errorBuf, "error: s1_bowelchange must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $s1_bowelchange must be in range (0,1)\n", errorBufSize);
     }
 	if (!i_in_range(smoke_cat, 0, 4)) {
         ok = 0;
@@ -2070,18 +1868,18 @@ static int pancreatic_cancer_female_validation(
 }
 
 $pancreatic_cancer_female(
-    int age,int b_chronicpan,int b_type2,$bmi,int new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int new_vte,int new_weightloss,int s1_bowelchange,int smoke_cat,int * error,char * errorBuf,int errorBufSize
+    int age,int b_chronicpan,int b_type2,$bmi,int $new_abdopain,int new_appetiteloss,int new_dysphagia,int new_gibleed,int new_indigestion,int $new_vte,int $new_weightloss,int $s1_bowelchange,int smoke_cat,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = pancreatic_cancer_female_validation(age, b_chronicpan, b_type2, bmi, new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_indigestion, new_vte, new_weightloss, s1_bowelchange, smoke_cat, errorBuf, errorBufSize);
+    int ok = pancreatic_cancer_female_validation(age, b_chronicpan, b_type2, bmi, $new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_indigestion, $new_vte, $new_weightloss, $s1_bowelchange, smoke_cat, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return pancreatic_cancer_female_raw(age, b_chronicpan, b_type2, bmi, new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_indigestion, new_vte, new_weightloss, s1_bowelchange, smoke_cat);
+	return pancreatic_cancer_female_raw(age, b_chronicpan, b_type2, bmi, $new_abdopain, new_appetiteloss, new_dysphagia, new_gibleed, new_indigestion, $new_vte, $new_weightloss, $s1_bowelchange, smoke_cat);
 }
 
 /* End of pancreatic_cancer */
@@ -2089,7 +1887,7 @@ $pancreatic_cancer_female(
 /* renal_tract_cancer */
 
 static $renal_tract_cancer_female_raw(
-int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_weightloss,int smoke_cat
+int age,$bmi,int $c_hb,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_weightloss,int smoke_cat
 )
 {
     $survivor[0] = {
@@ -2110,55 +1908,55 @@ int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_haematuria,i
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
 
 	/* The conditional sums */
 
-	a += Ismoke[smoke_cat];
+	$a += Ismoke[smoke_cat];
 
 	/* Sum from continuous values */
 
-	a += age_1 * -0.0323226569626617470000000;
-	a += age_2 * -56.3551410786635780000000000;
-	a += bmi_1 * 1.2103910535779330000000000;
-	a += bmi_2 * -4.7221299079939785000000000;
+	$a += $age_1 * -0.0323226569626617470000000;
+	$a += $age_2 * -56.3551410786635780000000000;
+	$a += $bmi_1 * 1.2103910535779330000000000;
+	$a += $bmi_2 * -4.7221299079939785000000000;
 
 	/* Sum from boolean values */
 
-	a += c_hb * 1.2666531852544143000000000;
-	a += new_abdopain * 0.6155954984707594500000000;
-	a += new_appetiteloss * 0.6842184594676019600000000;
-	a += new_haematuria * 4.1791444537241542000000000;
-	a += new_indigestion * 0.5694329224821874600000000;
-	a += new_pmb * 1.2541097882792864000000000;
-	a += new_weightloss * 0.7711610560290518300000000;
+	$a += $c_hb * 1.2666531852544143000000000;
+	$a += $new_abdopain * 0.6155954984707594500000000;
+	$a += new_appetiteloss * 0.6842184594676019600000000;
+	$a += $new_haematuria * 4.1791444537241542000000000;
+	$a += new_indigestion * 0.5694329224821874600000000;
+	$a += $new_pmb * 1.2541097882792864000000000;
+	$a += $new_weightloss * 0.7711610560290518300000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -8.9440775553776248000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -8.9440775553776248000000000;
+	return $score;
 }
 
 static int renal_tract_cancer_female_validation(
-    int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_weightloss,int smoke_cat,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_weightloss,int smoke_cat,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -2171,33 +1969,33 @@ static int renal_tract_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(c_hb)) {
+	if (!is_boolean($c_hb)) {
         ok = 0;
-        strlcat(errorBuf, "error: c_hb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $c_hb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_appetiteloss)) {
         ok = 0;
         strlcat(errorBuf, "error: new_appetiteloss must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_haematuria)) {
+	if (!is_boolean($new_haematuria)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_haematuria must be in range (0,1)\n", errorBufSize);
     }
 	if (!is_boolean(new_indigestion)) {
         ok = 0;
         strlcat(errorBuf, "error: new_indigestion must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+	if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_weightloss)) {
+	if (!is_boolean($new_weightloss)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_weightloss must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_weightloss must be in range (0,1)\n", errorBufSize);
     }
 	if (!i_in_range(smoke_cat, 0, 4)) {
         ok = 0;
@@ -2207,18 +2005,18 @@ static int renal_tract_cancer_female_validation(
 }
 
 $renal_tract_cancer_female(
-    int age,$bmi,int c_hb,int new_abdopain,int new_appetiteloss,int new_haematuria,int new_indigestion,int new_pmb,int new_weightloss,int smoke_cat,int * error,char * errorBuf,int errorBufSize
+    int age,$bmi,int $c_hb,int $new_abdopain,int new_appetiteloss,int $new_haematuria,int new_indigestion,int $new_pmb,int $new_weightloss,int smoke_cat,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = renal_tract_cancer_female_validation(age, bmi, c_hb, new_abdopain, new_appetiteloss, new_haematuria, new_indigestion, new_pmb, new_weightloss, smoke_cat, errorBuf, errorBufSize);
+    int ok = renal_tract_cancer_female_validation(age, bmi, $c_hb, $new_abdopain, new_appetiteloss, $new_haematuria, new_indigestion, $new_pmb, $new_weightloss, smoke_cat, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return renal_tract_cancer_female_raw(age, bmi, c_hb, new_abdopain, new_appetiteloss, new_haematuria, new_indigestion, new_pmb, new_weightloss, smoke_cat);
+	return renal_tract_cancer_female_raw(age, bmi, $c_hb, $new_abdopain, new_appetiteloss, $new_haematuria, new_indigestion, $new_pmb, $new_weightloss, smoke_cat);
 }
 
 /* End of renal_tract_cancer */
@@ -2226,7 +2024,7 @@ $renal_tract_cancer_female(
 /* uterine_cancer */
 
 static $uterine_cancer_female_raw(
-int age,int b_endometrial,int b_type2,$bmi,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_vte
+int age,int b_endometrial,int b_type2,$bmi,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_vte
 )
 {
     $survivor[0] = {
@@ -2240,20 +2038,20 @@ int age,int b_endometrial,int b_type2,$bmi,int new_abdopain,int new_haematuria,i
 	/* (which includes scaling)                      */
 
 	$dage = age;
-	dage = dage / 10;
-	$age_1 = pow(dage, -2);
-	$age_2 = pow(dage, -2) * log(dage);
+	$dage = $dage / 10;
+	$age_1 = pow($dage, -2);
+	$age_2 = pow($dage, -2) * log($dage);
 	$dbmi = bmi;
-	dbmi = dbmi / 10;
-	$bmi_1 = pow(dbmi, -2);
-	$bmi_2 = pow(dbmi, -2) * log(dbmi);
+	$dbmi = $dbmi / 10;
+	$bmi_1 = pow($dbmi, -2);
+	$bmi_2 = pow($dbmi, -2) * log($dbmi);
 
 	/* Centring the continuous variables */
 
-	age_1 = age_1 - 0.039541322737932;
-	age_2 = age_2 - 0.063867323100567;
-	bmi_1 = bmi_1 - 0.151021569967270;
-	bmi_2 = bmi_2 - 0.142740502953529;
+	$age_1 = $age_1 - 0.039541322737932;
+	$age_2 = $age_2 - 0.063867323100567;
+	$bmi_1 = $bmi_1 - 0.151021569967270;
+	$bmi_2 = $bmi_2 - 0.142740502953529;
 
 	/* Start of Sum */
 	$a = 0;
@@ -2263,31 +2061,31 @@ int age,int b_endometrial,int b_type2,$bmi,int new_abdopain,int new_haematuria,i
 
 	/* Sum from continuous values */
 
-	a += age_1 * 2.7778124257317254000000000;
-	a += age_2 * -59.5333514566633330000000000;
-	a += bmi_1 * 3.7623897936404322000000000;
-	a += bmi_2 * -26.8045450074654320000000000;
+	$a += $age_1 * 2.7778124257317254000000000;
+	$a += $age_2 * -59.5333514566633330000000000;
+	$a += $bmi_1 * 3.7623897936404322000000000;
+	$a += $bmi_2 * -26.8045450074654320000000000;
 
 	/* Sum from boolean values */
 
-	a += b_endometrial * 0.8742311851235286000000000;
-	a += b_type2 * 0.2655181024063555900000000;
-	a += new_abdopain * 0.6891953836735580400000000;
-	a += new_haematuria * 1.6798617740998527000000000;
-	a += new_imb * 1.7853122923827887000000000;
-	a += new_pmb * 4.4770199876067398000000000;
-	a += new_vte * 1.0362058616761669000000000;
+	$a += b_endometrial * 0.8742311851235286000000000;
+	$a += b_type2 * 0.2655181024063555900000000;
+	$a += $new_abdopain * 0.6891953836735580400000000;
+	$a += $new_haematuria * 1.6798617740998527000000000;
+	$a += $new_imb * 1.7853122923827887000000000;
+	$a += $new_pmb * 4.4770199876067398000000000;
+	$a += $new_vte * 1.0362058616761669000000000;
 
 	/* Sum from interaction terms */
 
 
-	/* Calculate the score itself */
-	$score = a + -8.9931390822564037000000000;
-	return score;
+	/* Calculate the $score itself */
+	$score = $a + -8.9931390822564037000000000;
+	return $score;
 }
 
 static int uterine_cancer_female_validation(
-    int age,int b_endometrial,int b_type2,$bmi,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_vte,char * errorBuf,int errorBufSize
+    int age,int b_endometrial,int b_type2,$bmi,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_vte,char * errorBuf,int errorBufSize
 )
 {
     int ok = 1;
@@ -2308,42 +2106,42 @@ static int uterine_cancer_female_validation(
         ok = 0;
         strlcat(errorBuf, "error: bmi must be in range (20,40)\n", errorBufSize);
     }
-	if (!is_boolean(new_abdopain)) {
+	if (!is_boolean($new_abdopain)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_abdopain must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_abdopain must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_haematuria)) {
+	if (!is_boolean($new_haematuria)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_haematuria must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_haematuria must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_imb)) {
+	if (!is_boolean($new_imb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_imb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_imb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_pmb)) {
+	if (!is_boolean($new_pmb)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_pmb must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_pmb must be in range (0,1)\n", errorBufSize);
     }
-	if (!is_boolean(new_vte)) {
+	if (!is_boolean($new_vte)) {
         ok = 0;
-        strlcat(errorBuf, "error: new_vte must be in range (0,1)\n", errorBufSize);
+        strlcat(errorBuf, "error: $new_vte must be in range (0,1)\n", errorBufSize);
     }
 	return ok;
 }
 
 $uterine_cancer_female(
-    int age,int b_endometrial,int b_type2,$bmi,int new_abdopain,int new_haematuria,int new_imb,int new_pmb,int new_vte,int * error,char * errorBuf,int errorBufSize
+    int age,int b_endometrial,int b_type2,$bmi,int $new_abdopain,int $new_haematuria,int $new_imb,int $new_pmb,int $new_vte,int * error,char * errorBuf,int errorBufSize
 )
 {
     *
     error = 0;
-    int ok = uterine_cancer_female_validation(age, b_endometrial, b_type2, bmi, new_abdopain, new_haematuria, new_imb, new_pmb, new_vte, errorBuf, errorBufSize);
+    int ok = uterine_cancer_female_validation(age, b_endometrial, b_type2, bmi, $new_abdopain, $new_haematuria, $new_imb, $new_pmb, $new_vte, errorBuf, errorBufSize);
 	if (!ok) {
         *
         error = 1;
         return 0.0;
     }
-	return uterine_cancer_female_raw(age, b_endometrial, b_type2, bmi, new_abdopain, new_haematuria, new_imb, new_pmb, new_vte);
+	return uterine_cancer_female_raw(age, b_endometrial, b_type2, bmi, $new_abdopain, $new_haematuria, $new_imb, $new_pmb, $new_vte);
 }
 
 /* End of uterine_cancer *.

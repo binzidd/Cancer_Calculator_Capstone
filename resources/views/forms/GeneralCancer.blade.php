@@ -479,14 +479,14 @@
                                         <label for="BMI"><h5>Height in CentiMeter </h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="height"
                                                        id="height"
-                                                       value={{\Decision_Aid\user_information::user_information()->height}}</label>
+                                                       value=""></label>
                                     </div>
 
                                     <div class="form-group ">
                                         <label for="BMI"><h5>Weight in KGs</h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="weight"
                                                        id="weight"
-                                                       value=''>
+                                                       value="">
                                         </label>
                                     </div>
                                 </label>

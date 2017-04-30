@@ -21,7 +21,6 @@ class user_information extends Model implements Authenticatable
 
 ];
 
-
     public function user()
     {
         return $this->belongsTo('Decision_Aid\User');

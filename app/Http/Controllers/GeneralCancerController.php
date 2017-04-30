@@ -69,25 +69,26 @@ class GeneralCancerController extends Controller
 //        sum += resultsArray[i++];
     }
 
-    function index(Request $request)
-    {
-
-        $cahcevalue = $request->all();
-
-        var_dump($new_appetiteloss = $request->input('new_appetiteloss'));
-        if ($new_appetiteloss) {
-            $generealCancel = new GeneralCance;
-            $generealCancel->appetiteloss = 1;
-        }
-        return view('forms.Inspection');
-    }
+//    function index(Request $request)
+//    {
+//
+//        $cahcevalue = $request->all();
+//
+//        var_dump($new_appetiteloss = $request->input('new_appetiteloss'));
+//        if ($new_appetiteloss) {
+//            $generealCancel = new GeneralCancer;
+//            $generealCancel->appetiteloss = 1;
+//        }
+//        return view('forms.Inspection');
+//    }
 
     function calculatebmi(Request $request)
     {
-        $height = $request->input('height');
+        $height = ($request->input('height')) / 100;
         $mass = $request->input('weight');
         $bmi = $mass / ($height * $height);
         return $bmi;
+        //return view('forms.Inspection');
     }
 
 
@@ -103,11 +104,8 @@ class GeneralCancerController extends Controller
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
-        $name = $request->input('name');
-        var_dump($name);
+
         $dage = $request->input('age');
-        var_dump($arrData);
-        die;
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);

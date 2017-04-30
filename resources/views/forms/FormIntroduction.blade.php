@@ -44,7 +44,8 @@
 
                         <a class="btn btn-default inline " href="{{route('skin_cancer_renderer')}}">Skin Cancer</a>
                         <a class="btn btn-default inline " href="{{route('bowel_cancer_renderer')}}">Bowel Cancer</a>
-                        <a class="btn btn-default inline " href="{{route('genrel_cancer_renderer')}}">General Cancer</a>
+                        <a class="btn btn-default inline " href="{{route('general_cancer_renderer')}}">General
+                            Cancer</a>
 
                      </div>
                 </div>

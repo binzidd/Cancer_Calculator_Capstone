@@ -29,6 +29,13 @@ class user_information_controller extends Controller
 
         return view('forms.FormIntroduction');
     }
+//     public function getheightandweight(Request $request)
+//     {
+//          $height=$request->input('height');
+//          $weight=$request->input('weight');
+//
+//          return value($height,$weight);
+//     }
 
     public function redirecttoform()
     {

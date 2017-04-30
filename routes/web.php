@@ -33,10 +33,10 @@ Route::post('/home', [
     'as'=>'basicinfo'
 ]);
 
-Route::post('/generalcancer', [
-    'uses' => 'GeneralCancerController@postsubmit',
-    'as' => 'general_cancer_calculator'
-]);
+//Route::post('/generalcancer', [
+//    'uses' => 'GeneralCancerController@postsubmit',
+//    'as' => 'general_cancer_calculator'
+//]);
 
 Route::post('/skincancer', [
     'uses' => 'SkinCancerController@postsubmit',
@@ -60,13 +60,30 @@ Route::get('/bowelcancer',[
     'as'=>'bowel_cancer_renderer'
 ]);
 
-Route::get('/generalcancer',[
+//step-1
+Route::any('/generalcancer', [
     'uses'=>'GeneralCancerController@viewgeneralcancer',
-    'as'=>'genrel_cancer_renderer'
+    'as' => 'general_cancer_renderer'
+]);
+
+//          Post Calls for Calculations
+
+// step-3
+Route::get('/generalcancer1', [
+    'uses' => 'GeneralCancerController@calculate_all_male_cancer1',
+    'as' => 'compute_cancer']);
+
+//step-2
+//Debugging Center
+Route::post('/generalcancer2', [
+    'uses' => 'GeneralCancerController@index',
+    'as' => 'inspect'
 ]);
 
 
-//          Responses
+Route::get('/inspection', function () {
+    return view('forms.Inspection');
+});
 
 
 

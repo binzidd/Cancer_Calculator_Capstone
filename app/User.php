@@ -5,6 +5,7 @@ namespace Decision_Aid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent;
+use Decision_Aid\SkinCancer;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,6 @@ class User extends Authenticatable
 
     public function skincancer()
     {
-        return $this->hasMany('Decision_Aid\SkinCancer', 'user_id');
+        return $this->hasOne('Decision_Aid\SkinCancer', 'id');
     }
 }

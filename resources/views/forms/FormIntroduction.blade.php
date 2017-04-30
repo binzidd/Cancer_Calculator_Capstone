@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@yield('title')
+<title>Integrated Cancer Calculator Detection</title>
 
 @section('content')
 

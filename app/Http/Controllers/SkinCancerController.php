@@ -3,16 +3,13 @@
 namespace Decision_Aid\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Decision_Aid\SkinCancer;
+use Auth;
 
 //$GLOBALS= integerValue('totalValues_skin');
 
 class SkinCancerController extends Controller
 {
-//    protected $glob;
-
-//    function __construct() {
-//    global $GLOBALS;
-//    $this->glob =& $GLOBALS;
 
     function viewskincancer()
     {
@@ -22,9 +19,10 @@ class SkinCancerController extends Controller
 
     function postsubmit(Request $request)
     {
-        $value = computeskincancer();
+        $value = SkinCancerController::computeskincancer($request);
 
         //TODO: Push the value into DB using this SCRIPT
+        $user = Auth::user();   //user object
 
         $skin_option = $request['var_mf_skin_options'];
         $skin_body_option = $request['var_mf_skin_body_options'];
@@ -37,12 +35,15 @@ class SkinCancerController extends Controller
         $SkinCancer->skin_body_moles_options = $skin_body_moles_options;
         $SkinCancer->skin_body_cancer_options = $skin_body_cancer_options;
         $SkinCancer->skin_cancer_score = $value;
+        $SkinCancer->user_id = $user->id;  // for user
+
         $SkinCancer->save();
 
         $errorMessage = "You have completed Skin Cancer Questions";
 
-        return view('forms.FormIntroduction', ['yourMessage' => $errorMessage]);
+        return view('forms.Inspection', ['yourMessage' => $errorMessage]);
     }
+
 
     function computeskincancer(Request $request)
     {

@@ -3,11 +3,12 @@
 namespace Decision_Aid;
 
 use Illuminate\Database\Eloquent\Model;
+use Decision_Aid\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 
-class SkinCancer extends Model
+class SkinCancer extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
     use Notifiable;

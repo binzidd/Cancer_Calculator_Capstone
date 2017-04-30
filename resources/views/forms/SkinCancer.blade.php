@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-SKIN_CANCER PAGE
+@yield('title')
+<title>Skin Cancer Detection</title>
 
 @section('content')
 

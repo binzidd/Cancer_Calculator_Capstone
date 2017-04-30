@@ -1,9 +1,9 @@
+
 @extends('layouts.app')
 
+@yield('title')
+<title>QCancer Detection</title>
 
-@section('title')
-    <title> QCancer Detection </title>
-@endsection
 
 @section('content')
     <div class="container">
@@ -15,7 +15,7 @@
                     </div>
                 @endif
                 {{--TODO: Change this to post and link DB--}}
-                <form action="{{route ('genrel_cancer_renderer')}}" method="get">
+                <form action="{{route ('inspect')}}" method="post">
                     <div class="form-control">Session Based Calculation for QCancer</div>
                     <br>
                     <div class="form-group col-md-offset-1">
@@ -476,11 +476,10 @@
                                     {{--col-md-2 col-md-offset-2--}}
                                 <label for="BMI">
                                     <div class="form-group">
-                                        <label for="BMI"><h5>Height in Centi-Meter </h5>
+                                        <label for="BMI"><h5>Height in CentiMeter </h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="height"
                                                        id="height"
-                                                       value=''>
-                                        </label>
+                                                       value={{\Decision_Aid\user_information::user_information()->height}}</label>
                                     </div>
 
                                     <div class="form-group ">
@@ -495,7 +494,7 @@
                             </label>
                         </div>
 
-                    <input class="col-md-offset-4" type="submit" name="calcuate" value="Calculate Risk">
+                    <input class="col-md-offset-4" type="submit" name="submit" value="submit">
                     <input type="hidden" name="_token" value="{{Session::token()}} ">
                 </form>
             </div>

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 {{--TODO: Migrate the questions from view->userinfo to here--}}
 
+@yield('title')
+<title>QCancer Detection</title>
 @section('content')
-    <title>Integrated Cancer Calculator</title>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -12,7 +13,7 @@
                     <div class="panel-body">
                         <div class="form-control"> Let us get familiar</div>
                         <br>
-                        <form action="{{route('basicinfo')}}" method="post">
+                        <form action="{{route('inspect')}}" method="post">
                             {{--Date of Birth--}}
                             <div class="form-group col-md-offset-1">
                                 <label class="col-md-offset-1">

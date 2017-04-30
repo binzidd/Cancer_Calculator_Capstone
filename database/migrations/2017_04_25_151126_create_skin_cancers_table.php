@@ -1,8 +1,10 @@
 <?php
 
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Decision_Aid\User;
 
 class CreateSkinCancersTable extends Migration
 {
@@ -19,7 +21,8 @@ class CreateSkinCancersTable extends Migration
             $table->integer('skin_body_option')->unsigned();
             $table->integer('skin_body_moles_options')->unsigned();
             $table->integer('skin_body_cancer_options')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->references('id')->on('users');   //user table one to one
+            $table->integer('skin_cancer_score');
             $table->rememberToken();
             $table->timestamps();
         });

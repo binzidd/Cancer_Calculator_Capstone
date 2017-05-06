@@ -16,7 +16,6 @@ class GeneralCancerController extends Controller
     }
 
 
-
     /*Calculating different form of Cancers based on these inputs
 
     Male
@@ -63,18 +62,69 @@ class GeneralCancerController extends Controller
     function calculate_all_male_cancer(Request $request)
     {
 //
-        $blood_cancer_score = $this->blood_cancer_male($request);
-        $colorectal_cancer_male = $this->colorectal_cancer_male($request);
-        $gastro_oesophageal_cancer_male = $this->gastro_oesophageal_cancer_male($request);
-        $lung_cancer_male = $this->lung_cancer_male($request);
-        $other_cancer_male = $this->other_cancer_male($request);
-        $pancreatic_cancer_male = $this->pancreatic_cancer_male($request);
-        $prostate_cancer_male = $this->prostate_cancer_male($request);
-        $renal_tract_cancer_male = $this->renal_tract_cancer_male($request);
-        $testicular_cancer_male = $this->testicular_cancer_male($request);
+        $i = 1;
+        $sum = 1;
+//        $resultsarray = array();
 
 
-        return view('forms.GeneralCancer', $blood_cancer_score, $colorectal_cancer_male, $gastro_oesophageal_cancer_male, $lung_cancer_male, $other_cancer_male, $pancreatic_cancer_male, $renal_tract_cancer_male, $prostate_cancer_male, $testicular_cancer_male);
+        $blood_cancer_score = exp($this->blood_cancer_male($request));
+        $resultsarray[$i] = $blood_cancer_score;
+        $sum += $blood_cancer_score;
+
+
+        $colorectal_cancer_male = exp($this->colorectal_cancer_male($request));
+        $resultsarray[2] = $colorectal_cancer_male;
+        $sum += $colorectal_cancer_male;
+
+        $gastro_oesophageal_cancer_male = exp($this->gastro_oesophageal_cancer_male($request));
+        $resultsarray[3] = $gastro_oesophageal_cancer_male;
+        $sum += $gastro_oesophageal_cancer_male;
+
+        $lung_cancer_male = exp($this->lung_cancer_male($request));
+        $resultsarray[4] = $lung_cancer_male;
+        $sum += $lung_cancer_male;
+
+        $other_cancer_male = exp($this->other_cancer_male($request));
+        $resultsarray[5] = $other_cancer_male;
+        $sum += $other_cancer_male;
+
+        $pancreatic_cancer_male = exp($this->pancreatic_cancer_male($request));
+        $resultsarray[6] = $pancreatic_cancer_male;
+        $sum += $pancreatic_cancer_male;
+
+        $prostate_cancer_male = exp($this->prostate_cancer_male($request));
+        $resultsarray[7] = $prostate_cancer_male;
+        $sum += $prostate_cancer_male;
+
+        $renal_tract_cancer_male = exp($this->renal_tract_cancer_male($request));
+        $resultsarray[8] = $renal_tract_cancer_male;
+        $sum += $renal_tract_cancer_male;
+
+        $testicular_cancer_male = exp($this->testicular_cancer_male($request));
+        $resultsarray[9] = $testicular_cancer_male;
+        $sum += $testicular_cancer_male;
+
+
+        for ($j = 1, $sum2 = 0; $j < 10; $j++) {
+            $resultsarray[$j] *= 100 / $sum;  //resultsArray[i]=(resultArray[i]*100)/sum
+            $sum2 += $resultsarray[$j];            //sum2=sum2+resultsArray[i]
+        }
+
+        /*  Add the risk of no event to the start of the result array */
+        $resultsarray[0] = 100 - $sum2;
+
+        // checking
+
+        $arrlength = count($resultsarray);
+
+        for ($x = 0; $x < $arrlength; $x++) {
+            return view('forms.Inspection', "<br>" + $resultsarray[$x]);
+
+        }
+
+        // ashdiaoshduahsfiuashfiuhsaidufhasiudfhiuashdfuiashfduisahfuih
+
+        //return view('forms.GeneralCancer', $blood_cancer_score, $colorectal_cancer_male, $gastro_oesophageal_cancer_male, $lung_cancer_male, $other_cancer_male, $pancreatic_cancer_male, $renal_tract_cancer_male, $prostate_cancer_male, $testicular_cancer_male);
 //        $colorectal_cancer_score = GeneralCancerController::colorectal_cancer_male($request);
 //        $gastro_oesophageal_cancer_score = GeneralCancerController::gastro_oesophageal_cancer_male($request);
 //

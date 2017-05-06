@@ -85,7 +85,7 @@ Route::get('/generalcancer1', [
 //step-2
 //Debugging Center
 Route::post('/generalcancer2', [
-    'uses' => 'GeneralCancerController@age',
+    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
     'as' => 'inspect'
 ]);
 

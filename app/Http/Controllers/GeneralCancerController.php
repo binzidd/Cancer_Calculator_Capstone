@@ -10,8 +10,11 @@ class GeneralCancerController extends Controller
 {
     function viewgeneralcancer()
     {
-        return view('forms.GeneralCancer');
+        $userId = Auth::user()->id;
+        $userInfo = user_information::where('user_id', $userId)->first();
+        return view('forms.GeneralCancer')->with('userinfo', $userInfo);
     }
+
 
 
     /*Calculating different form of Cancers based on these inputs
@@ -43,10 +46,11 @@ class GeneralCancerController extends Controller
 
     public function calculate_all_male_cancer1(Request $request)
     {
-        var_dump($request->input('name'));
+        var_dump($request->input('dob'));
     }
 
     public function printSessionVariable(Request $request)
+
     {
         // Take this code to any controller wher u wnat to fetch the session data of your form from "formData" key of session
         $data = session('formData');
@@ -58,10 +62,19 @@ class GeneralCancerController extends Controller
 
     function calculate_all_male_cancer(Request $request)
     {
-//        $chitya1 = $data['chutiya'];
-        $blood_cancer_score = GeneralCancerController::blood_cancer_male($request);
+//
+        $blood_cancer_score = $this->blood_cancer_male($request);
+        $colorectal_cancer_male = $this->colorectal_cancer_male($request);
+        $gastro_oesophageal_cancer_male = $this->gastro_oesophageal_cancer_male($request);
+        $lung_cancer_male = $this->lung_cancer_male($request);
+        $other_cancer_male = $this->other_cancer_male($request);
+        $pancreatic_cancer_male = $this->pancreatic_cancer_male($request);
+        $prostate_cancer_male = $this->prostate_cancer_male($request);
+        $renal_tract_cancer_male = $this->renal_tract_cancer_male($request);
+        $testicular_cancer_male = $this->testicular_cancer_male($request);
 
-        return view('forms.GeneralCancer', $blood_cancer_score);
+
+        return view('forms.GeneralCancer', $blood_cancer_score, $colorectal_cancer_male, $gastro_oesophageal_cancer_male, $lung_cancer_male, $other_cancer_male, $pancreatic_cancer_male, $renal_tract_cancer_male, $prostate_cancer_male, $testicular_cancer_male);
 //        $colorectal_cancer_score = GeneralCancerController::colorectal_cancer_male($request);
 //        $gastro_oesophageal_cancer_score = GeneralCancerController::gastro_oesophageal_cancer_male($request);
 //
@@ -69,20 +82,8 @@ class GeneralCancerController extends Controller
 //        sum += resultsArray[i++];
     }
 
-//    function index(Request $request)
-//    {
-//
-//        $cahcevalue = $request->all();
-//
-//        var_dump($new_appetiteloss = $request->input('new_appetiteloss'));
-//        if ($new_appetiteloss) {
-//            $generealCancel = new GeneralCancer;
-//            $generealCancel->appetiteloss = 1;
-//        }
-//        return view('forms.Inspection');
-//    }
 
-    function calculatebmi(Request $request)
+    public static function calculatebmi(Request $request)
     {
         $height = ($request->input('height')) / 100;
         $mass = $request->input('weight');
@@ -91,6 +92,19 @@ class GeneralCancerController extends Controller
         //return view('forms.Inspection');
     }
 
+    public static function age(Request $request)
+    {
+
+        $birthDate = $request->input("dob");
+        var_dump($request);
+//        $birthDate = explode("-", $birthDate);
+//        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+//            ? ((date("Y") - $birthDate[2]) - 1)
+//            : (date("Y") - $birthDate[2]));
+        $age = date_diff(date_create($birthDate), date_create('now'))->y;
+        return $age;
+
+    }
 
     function blood_cancer_male(Request $request)
     {
@@ -105,7 +119,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->age($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -327,7 +341,7 @@ class GeneralCancerController extends Controller
         return $score;
     }
 
-    function lung_cancer_male_raw(Request $request)
+    function lung_cancer_male(Request $request)
     {
         $survivor[0] = array();
 
@@ -408,7 +422,7 @@ class GeneralCancerController extends Controller
         return $score;
     }
 
-    function other_cancer_male_raw(Request $request)
+    function other_cancer_male(Request $request)
     {
         $survivor[0] = array();
 
@@ -661,7 +675,7 @@ class GeneralCancerController extends Controller
         return $score;
     }
 
-    function renal_tract_cancer_male_raw(Request $request)
+    function renal_tract_cancer_male(Request $request)
     {
         $survivor = array();
 

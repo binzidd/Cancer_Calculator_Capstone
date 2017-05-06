@@ -25,7 +25,6 @@
                         <input type="number" class="form-control" id="age" value="">
 
                     </div>
-
                     <div class="form-group col-md-offset-1">
                         <label class="col-md-offset-0">
                             <strong> Q. Smoking Status? </strong>
@@ -104,7 +103,8 @@
                             <div class="checkbox-inline">
                                 <label class="checkbox-inline">
                                     <input class="form-check-input" type="checkbox" name="fh_gicancer"
-                                           id="var_male_fh_gicancer"> a family history of gastrointestinal cancer?
+                                           id="var_male_fh_gicancer" value="1"> a family history of gastrointestinal
+                                    cancer?
                                 </label>
                             </div>
                         </label>
@@ -115,7 +115,8 @@
                             <div class="checkbox-inline">
                                 <label class="checkbox-inline">
                                     <input class="form-check-input" type="checkbox" name="fh_prostatecancer"
-                                           id="var_male_fh_prostatecancer"> a family history of prostate cancer?
+                                           id="var_male_fh_prostatecancer" value="1"> a family history of prostate
+                                    cancer?
                                 </label>
                             </div>
                         </label>
@@ -479,14 +480,14 @@
                                         <label for="BMI"><h5>Height in CentiMeter </h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="height"
                                                        id="height"
-                                                       value=""></label>
+                                                       value="{{$userinfo->height}}"></label>
                                     </div>
 
                                     <div class="form-group ">
                                         <label for="BMI"><h5>Weight in KGs</h5>
                                                 <input class="form-control col-md-offset-2" type="number" name="weight"
                                                        id="weight"
-                                                       value="">
+                                                       value="{{$userinfo->weight}}">
                                         </label>
                                     </div>
                                 </label>

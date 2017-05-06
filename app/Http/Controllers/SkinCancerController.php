@@ -16,7 +16,7 @@ class SkinCancerController extends Controller
         return view('forms.SkinCancer');
     }
 
-
+// public static method($params)
     function postsubmit(Request $request)
     {
         $value = SkinCancerController::computeskincancer($request);
@@ -73,9 +73,8 @@ class SkinCancerController extends Controller
             $errorMessage = 'You are at above average risk of skin cancer and need to be careful in sun ';
 
         }
-//print_r($errorMessage);
-//        die;
-        return view('SkinCancerCalculator', ['yourMessage' => $errorMessage]);
+
+        return view('forms.Inspection', ['yourMessage' => $errorMessage]);
     }
 
 }

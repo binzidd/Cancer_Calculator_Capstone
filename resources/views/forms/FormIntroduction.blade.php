@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="panel-heading"> Welcome {{ Auth::User()->name}}</div>
+    {{--<div class="panel-heading col-lg-offset-1"> Welcome {{ Auth::User()->name}}</div>--}}
 
     <div class="jumbotron">
         <div style="background:transparent !important; " class="container">

@@ -79,17 +79,23 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                    <image image-rendering="optimizeSpeed" src="Images/usyd_head.gif" alt="University of Sydney"
+                           aria-haspopup="best uni"></image>
+                    <br>
                     Integrated Cancer Calculator
+
+
                 </div>
 
-                <div claRoutess="links">
 
-                    <a href="https://laravel.com/docs">Personal Details</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                {{--<div claRoutess="links">--}}
+
+                {{--<a href="https://laravel.com/docs">Personal Details</a>  --}}
+                {{--<a href="https://laracasts.com">Laracasts</a>--}}
+                {{--<a href="https://laravel-news.com">News</a>--}}
+                {{--<a href="https://forge.laravel.com">Forge</a>--}}
+                {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
+                {{--</div>--}}
             </div>
         </div>
     </body>

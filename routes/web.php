@@ -43,7 +43,16 @@ Route::post('/skincancer', [
     'as' => 'skin_cancer_calculator'
 ]);
 
+Route::post('/disclaimer', [
+    'uses' => 'FormController@postroute',
+    'as' => 'disclaimer_accepted'
+]);
+
 // Get Calls for rendering pages.
+
+Route::get('/disclaimer', function () {
+    return view('forms.Disclaimer');
+});
 
 Route::get('/formintro', [
     'uses'=>'user_information_controller@redirecttoform',
@@ -70,13 +79,13 @@ Route::any('/generalcancer', [
 
 // step-3
 Route::get('/generalcancer1', [
-    'uses' => 'GeneralCancerController@calculate_all_male_cancer1',
+    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
     'as' => 'compute_cancer']);
 
 //step-2
 //Debugging Center
 Route::post('/generalcancer2', [
-    'uses' => 'GeneralCancerController@blood_cancer_male',
+    'uses' => 'GeneralCancerController@age',
     'as' => 'inspect'
 ]);
 

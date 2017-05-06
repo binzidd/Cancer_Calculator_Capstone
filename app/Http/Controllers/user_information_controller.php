@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Decision_Aid\user_information;
 use Decision_Aid\User;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class user_information_controller extends Controller
 {
     public function postwelcome(Request $request)
     {
+
         $dob=$request['dob'];
         $gender=$request['gender'];
         $height=$request['height'];
@@ -21,6 +23,7 @@ class user_information_controller extends Controller
         $user_information->gender=$gender;
         $user_information->height=$height;
         $user_information->weight=$weight;
+        $user_information->user_id = Auth::user()->id;
 
         $user_information->save();
 

@@ -1,3 +1,13 @@
 @extends('layouts.app')
 
-{{$resultsarray()}}
+@foreach($resultsarray as $value)
+    {{ $value['name'] }}
+    {{ $value['score'] }}
+@endforeach
+
+
+
+
+
+
+

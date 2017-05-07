@@ -10,6 +10,7 @@ use Auth;
 
 class user_information_controller extends Controller
 {
+
     public function postwelcome(Request $request)
     {
 
@@ -17,28 +18,30 @@ class user_information_controller extends Controller
         $gender=$request['gender'];
         $height=$request['height'];
         $weight=$request['weight'];
+        $age = $this->age($request);
+        echo $dob;
+        die;
 
         $user_information= new user_information;
         $user_information->dob=$dob;
         $user_information->gender=$gender;
         $user_information->height=$height;
         $user_information->weight=$weight;
+        $user_information->age = $age;
         $user_information->user_id = Auth::user()->id;
 
         $user_information->save();
 
-       // $request->user()->user_informations()->save($user_information);  //many isto one
-
-
         return view('forms.FormIntroduction');
     }
-//     public function getheightandweight(Request $request)
-//     {
-//          $height=$request->input('height');
-//          $weight=$request->input('weight');
-//
-//          return value($height,$weight);
-//     }
+
+
+    public static function age(Request $request)
+    {
+        $birthDate = $request->input("dob");
+        $age = date_diff(date_create($birthDate), date_create('now'))->y;
+        return $age;
+    }
 
     public function redirecttoform()
     {

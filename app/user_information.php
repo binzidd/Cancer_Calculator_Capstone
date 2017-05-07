@@ -16,6 +16,7 @@ class user_information extends Model implements Authenticatable
         'dob',
         'gender',
         'height',
+        'age',
         'weight',
         'user_id',
 

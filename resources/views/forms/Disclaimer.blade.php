@@ -42,7 +42,7 @@
                     <div class="container-fluid">
 
 
-                        <form {{route("disclaimer_accepted")}} method="post"
+                        <form action="{{route("disclaimer_accepted")}}" method="post"
                               onsubmit="if(document.getElementById('agree').checked)
               {
             return true;
@@ -63,6 +63,8 @@
                         </form>
                     </div>
                 </div>
-
             </div>
+        </div>
+
+    </div>
 @endsection

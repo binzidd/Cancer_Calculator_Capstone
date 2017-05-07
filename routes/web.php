@@ -26,6 +26,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+/*conditions here :
+1. If the user is new, we go ahead and create his new details to be stored in DB (Getting Started)
+2. Else, we pass him to the declaration phase. (Declaration) */
+
+
+
 //Post calls for capturing Values from forms.
 
 Route::post('/home', [

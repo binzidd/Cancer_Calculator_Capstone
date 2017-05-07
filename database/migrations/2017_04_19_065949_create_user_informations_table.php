@@ -20,6 +20,7 @@ class CreateUserInformationsTable extends Migration
             $table->string('gender');
             $table->float('height');
             $table->float('weight');
+            $table->integer('age'); // check this12
             $table->integer('user_id')->unsigned()->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();

@@ -5,14 +5,37 @@ namespace Decision_Aid\Http\Controllers;
 use Illuminate\Http\Request;
 use Decision_Aid\user_information;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class GeneralCancerController extends Controller
 {
-    function viewgeneralcancer()
+    public static function retrieveage(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $age = DB::table('user_informations')->where('user_id', $userId)->value('age');
+        return $age;
+    }
+
+
+    public static function viewgeneralcancer()
     {
         $userId = Auth::user()->id;
         $userInfo = user_information::where('user_id', $userId)->first();
         return view('forms.GeneralCancer')->with('userinfo', $userInfo);
+    }
+//  getGender() Camel case method
+//GetGender Pascal Case class
+// routes "post-welcome";
+
+    public function getgender(Request $request)
+    {
+        $gender = DB::table('user_informations')->where('user_id', $userId)->value('gender');
+
+        if ($gender == "F") {
+            $this->calculate_all_female_cancer();
+        } elseif ($gender == 'M') {
+            $this->calculate_all_male_cancer($request);
+        }
     }
 
 
@@ -45,116 +68,85 @@ class GeneralCancerController extends Controller
 
     public function calculate_all_male_cancer1(Request $request)
     {
-        var_dump($request->input('dob'));
-    }
-
-    public function printSessionVariable(Request $request)
-
-    {
-        // Take this code to any controller wher u wnat to fetch the session data of your form from "formData" key of session
-        $data = session('formData');
-        $arrData = json_decode($data, true);
-        print_r($arrData['height']);  // cancer data to be pulled from here
-        return view('forms.Inspection', ['viewData' => session('formData')]);
+        var_dump($request->get('dob'));
     }
 
 
-    function calculate_all_male_cancer(Request $request)
+    public function calculate_all_male_cancer(Request $request)
     {
-//
         $i = 1;
         $sum = 1;
-//        $resultsarray = array();
 
 
         $blood_cancer_score = exp($this->blood_cancer_male($request));
-        $resultsarray[$i] = $blood_cancer_score;
+        $resultsarray[$i]['score'] = $blood_cancer_score;
+        $resultsarray[$i]['name'] = "blood_cancer_score";
         $sum += $blood_cancer_score;
 
 
         $colorectal_cancer_male = exp($this->colorectal_cancer_male($request));
-        $resultsarray[2] = $colorectal_cancer_male;
+        $resultsarray[2]['score'] = $colorectal_cancer_male;
+        $resultsarray[2]['name'] = "colorectal_cancer_male";
         $sum += $colorectal_cancer_male;
 
         $gastro_oesophageal_cancer_male = exp($this->gastro_oesophageal_cancer_male($request));
-        $resultsarray[3] = $gastro_oesophageal_cancer_male;
+        $resultsarray[3]['score'] = $gastro_oesophageal_cancer_male;
+        $resultsarray[3]['name'] = "gastro_oesophageal_cancer_male";
         $sum += $gastro_oesophageal_cancer_male;
 
         $lung_cancer_male = exp($this->lung_cancer_male($request));
-        $resultsarray[4] = $lung_cancer_male;
+        $resultsarray[4]['score'] = $lung_cancer_male;
+        $resultsarray[4]['name'] = "lung_cancer_male";
         $sum += $lung_cancer_male;
 
         $other_cancer_male = exp($this->other_cancer_male($request));
-        $resultsarray[5] = $other_cancer_male;
+        $resultsarray[5]['score'] = $other_cancer_male;
+        $resultsarray[5]['name'] = "other_cancer_male";
         $sum += $other_cancer_male;
 
         $pancreatic_cancer_male = exp($this->pancreatic_cancer_male($request));
-        $resultsarray[6] = $pancreatic_cancer_male;
+        $resultsarray[6] ['score'] = $pancreatic_cancer_male;
+        $resultsarray[6]['name'] = "pancreatic_cancer_male";
         $sum += $pancreatic_cancer_male;
 
         $prostate_cancer_male = exp($this->prostate_cancer_male($request));
-        $resultsarray[7] = $prostate_cancer_male;
+        $resultsarray[7] ['score'] = $prostate_cancer_male;
+        $resultsarray[7] ['name'] = "prostate_cancer_male";
         $sum += $prostate_cancer_male;
 
         $renal_tract_cancer_male = exp($this->renal_tract_cancer_male($request));
-        $resultsarray[8] = $renal_tract_cancer_male;
+        $resultsarray[8]['score'] = $renal_tract_cancer_male;
+        $resultsarray[8]['name'] = "renal_tract_cancer_male";
         $sum += $renal_tract_cancer_male;
 
         $testicular_cancer_male = exp($this->testicular_cancer_male($request));
-        $resultsarray[9] = $testicular_cancer_male;
+        $resultsarray[9]['score'] = $testicular_cancer_male;
+        $resultsarray[9]['name'] = "testicular_cancer_male";
         $sum += $testicular_cancer_male;
 
 
         for ($j = 1, $sum2 = 0; $j < 10; $j++) {
-            $resultsarray[$j] *= 100 / $sum;  //resultsArray[i]=(resultArray[i]*100)/sum
-            $sum2 += $resultsarray[$j];            //sum2=sum2+resultsArray[i]
+
+            $resultsarray[$j]['score'] *= 100 / $sum;  //resultsArray[i]=(resultArray[i]*100)/sum
+            $sum2 += $resultsarray[$j]['score'];            //sum2=sum2+resultsArray[i]
         }
 
         /*  Add the risk of no event to the start of the result array */
         $resultsarray[0] = 100 - $sum2;
+        return view('forms.Inspection')->with('resultsarray', $resultsarray);
 
-        // checking
-
-        $arrlength = count($resultsarray);
-
-        for ($x = 0; $x < $arrlength; $x++) {
-            return view('forms.Inspection', "<br>" + $resultsarray[$x]);
-
-        }
-
-        // ashdiaoshduahsfiuashfiuhsaidufhasiudfhiuashdfuiashfduisahfuih
-
-        //return view('forms.GeneralCancer', $blood_cancer_score, $colorectal_cancer_male, $gastro_oesophageal_cancer_male, $lung_cancer_male, $other_cancer_male, $pancreatic_cancer_male, $renal_tract_cancer_male, $prostate_cancer_male, $testicular_cancer_male);
-//        $colorectal_cancer_score = GeneralCancerController::colorectal_cancer_male($request);
-//        $gastro_oesophageal_cancer_score = GeneralCancerController::gastro_oesophageal_cancer_male($request);
-//
-//        $resultsArray[] = exp(blood_cancer_score);    // why exp ?
-//        sum += resultsArray[i++];
     }
 
 
     public static function calculatebmi(Request $request)
     {
-        $height = ($request->input('height')) / 100;
-        $mass = $request->input('weight');
+        $height = ($request->get('height')) / 100;
+        $mass = $request->get('weight');
         $bmi = $mass / ($height * $height);
         return $bmi;
         //return view('forms.Inspection');
     }
 
-    public static function age(Request $request)
-    {
-
-        $birthDate = $request->input("dob");
-        var_dump($request);
-//        $birthDate = explode("-", $birthDate);
-//        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
-//            ? ((date("Y") - $birthDate[2]) - 1)
-//            : (date("Y") - $birthDate[2]));
-        $age = date_diff(date_create($birthDate), date_create('now'))->y;
-        return $age;
-
-    }
 
     function blood_cancer_male(Request $request)
     {
@@ -169,7 +161,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $this->age($request);
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -178,7 +170,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
-        $town = $request->input('town');
+        $town = $request->get('town');
 
         /* Centring the continuous variables */
 
@@ -203,19 +195,19 @@ class GeneralCancerController extends Controller
         $a += $town * -0.0277062426752491610000000;
 
         /* Sum from boolean values */
-        $c_hb = $request->input('$c_hb');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');  //on
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_haemoptysis = $request->input('new_haemoptysis');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('$new_necklump');
-        $new_nightsweats = $request->input('$new_nightsweats');
-        $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
+        $c_hb = $request->get('$c_hb');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');  //on
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_haemoptysis = $request->get('new_haemoptysis');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_necklump = $request->get('$new_necklump');
+        $new_nightsweats = $request->get('$new_nightsweats');
+        $new_testicularlump = $request->get('new_testicularlump');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
 
         $a += $c_hb * 1.8905802113004144000000000;
         $a += $new_abdodist * 0.8430432197211393800000000;
@@ -241,7 +233,6 @@ class GeneralCancerController extends Controller
 
     function colorectal_cancer_male(Request $request)
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -251,7 +242,7 @@ class GeneralCancerController extends Controller
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -271,10 +262,10 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
-
-        $a += $Ialcohol[$request->input('alcohol_cat4')];
+        $Ialcohol[$request->get('alcohol_cat')] = $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
@@ -285,17 +276,17 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        //input from $request
+        //get from $request
 
-        $c_hb = $request->input('$c_hb');
-        $fh_gicancer = $request->input('fh_gicancer');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_rectalbleed = $request->input('new_rectalbleed');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_bowelchange = $request->input('$s1_bowelchange');
-        $s1_constipation = $request->input('s1_constipation');
+        $c_hb = $request->get('$c_hb');
+        $fh_gicancer = $request->get('fh_gicancer');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_rectalbleed = $request->get('new_rectalbleed');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_bowelchange = $request->get('$s1_bowelchange');
+        $s1_constipation = $request->get('s1_constipation');
 
         //performing calculations based on questions
         $a += $c_hb * 1.4066322376473517000000000;
@@ -319,7 +310,7 @@ class GeneralCancerController extends Controller
 
     function gastro_oesophageal_cancer_male(Request $request)
     {
-        $survivor[0] = array();
+
 
 
         /* The conditional arrays */
@@ -330,7 +321,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -349,10 +340,11 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
@@ -363,15 +355,15 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $c_hb = $request->input('$c_hb');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-        $new_heartburn = $request->input('new_heartburn');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('$new_necklump');
-        $new_weightloss = $request->input('$new_weightloss');
+        $c_hb = $request->get('$c_hb');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+        $new_heartburn = $request->get('new_heartburn');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_necklump = $request->get('$new_necklump');
+        $new_weightloss = $request->get('$new_weightloss');
 
         $a += $c_hb * 1.1065543049459461000000000;
         $a += $new_abdopain * 1.0280133043080188000000000;
@@ -393,7 +385,6 @@ class GeneralCancerController extends Controller
 
     function lung_cancer_male(Request $request)
     {
-        $survivor[0] = array();
 
         /* The conditional arrays */
 
@@ -403,7 +394,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -412,7 +403,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 4.800777912139893;
@@ -423,10 +414,12 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
+        $b = 0;
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
         /* Sum from continuous values */
 
         $a += $age_1 * 11.9178089602254960000000000;
@@ -437,18 +430,18 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $b_copd = $request->input('b_copd');
-        $c_hb = $request->input('$c_hb');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_haemoptysis = $request->input('new_haemoptysis');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('$new_necklump');
-        $new_nightsweats = $request->input('$new_nightsweats');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_cough = $request->input('s1_cough');
+        $b_copd = $request->get('b_copd');
+        $c_hb = $request->get('$c_hb');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_haemoptysis = $request->get('new_haemoptysis');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_necklump = $request->get('$new_necklump');
+        $new_nightsweats = $request->get('$new_nightsweats');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_cough = $request->get('s1_cough');
 
 
         $a += $b_copd * 0.5526127629694074200000000;
@@ -474,7 +467,7 @@ class GeneralCancerController extends Controller
 
     function other_cancer_male(Request $request)
     {
-        $survivor[0] = array();
+
 
 
         /* The conditional arrays */
@@ -484,7 +477,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -503,10 +496,11 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input("smoke_cat")];
+        $Ismoke[$request->get("smoke_cat")] = $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
@@ -517,22 +511,22 @@ class GeneralCancerController extends Controller
 
 
         /* Session Inputs*/
-        $b_copd = $request->input('b_copd');
-        $b_type2 = $request->input('b_type2');
-        $c_hb = $request->input('$c_hb');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_haemoptysis = $request->input('new_haemoptysis');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('$new_necklump');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_bowelchange = $request->input('$s1_bowelchange');
-        $s1_constipation = $request->input('s1_constipation');
+        $b_copd = $request->get('b_copd');
+        $b_type2 = $request->get('b_type2');
+        $c_hb = $request->get('$c_hb');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_haemoptysis = $request->get('new_haemoptysis');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_necklump = $request->get('$new_necklump');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_bowelchange = $request->get('$s1_bowelchange');
+        $s1_constipation = $request->get('s1_constipation');
 
 
         /* Sum from boolean values */
@@ -564,7 +558,6 @@ class GeneralCancerController extends Controller
 
     function pancreatic_cancer_male(Request $request)
     {
-        $survivor[0] = array();
 
         /* The conditional arrays */
 
@@ -574,7 +567,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -583,7 +576,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 4.800777912139893;
@@ -594,10 +587,12 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
+
 
         /* Sum from continuous values */
 
@@ -607,18 +602,18 @@ class GeneralCancerController extends Controller
         $a += $bmi_2 * -0.0249600064895699750000000;
         $a += $town * -0.0352288140617050480000000;
 
-        /* input values */
+        /* get values */
 
-        $b_chronicpan = $request->input('b_chronicpan');
-        $b_type2 = $request->input('b_type2');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_constipation = $request->input('s1_constipation');
+        $b_chronicpan = $request->get('b_chronicpan');
+        $b_type2 = $request->get('b_type2');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_constipation = $request->get('s1_constipation');
 
         /* Sum from boolean values */
 
@@ -643,7 +638,6 @@ class GeneralCancerController extends Controller
 
     function prostate_cancer_male(Request $request)
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -652,7 +646,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -661,7 +655,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = $dbmi;
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 4.800777912139893;
@@ -686,19 +680,19 @@ class GeneralCancerController extends Controller
 
         /* Session Inputs*/
 
-        $fh_prostatecancer = $request->input('fh_prostatecancer');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_rectalbleed = $request->input('new_rectalbleed');
-        $new_testespain = $request->input('new_testespain');
-        $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_impotence = $request->input('s1_impotence');
-        $s1_nocturia = $request->input('s1_nocturia');
-        $s1_urinaryfreq = $request->input('s1_urinaryfreq');
-        $s1_urinaryretention = $request->input('s1_urinaryretention');
+        $fh_prostatecancer = $request->get('fh_prostatecancer');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_rectalbleed = $request->get('new_rectalbleed');
+        $new_testespain = $request->get('new_testespain');
+        $new_testicularlump = $request->get('new_testicularlump');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_impotence = $request->get('s1_impotence');
+        $s1_nocturia = $request->get('s1_nocturia');
+        $s1_urinaryfreq = $request->get('s1_urinaryfreq');
+        $s1_urinaryretention = $request->get('s1_urinaryretention');
 
 
         /* Sum from boolean values */
@@ -727,8 +721,6 @@ class GeneralCancerController extends Controller
 
     function renal_tract_cancer_male(Request $request)
     {
-        $survivor = array();
-
         $Ismoke = array(
             "0",
             "0.4183007995792849000000000",
@@ -738,7 +730,7 @@ class GeneralCancerController extends Controller
         );
 
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -757,10 +749,12 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
+        $b = 0;
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
@@ -771,10 +765,10 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $new_abdopain = $request->input('new_abdopain');
-        $new_haematuria = $request->input('new_haematuria');
-        $new_nightsweats = $request->input('new_nightsweats');
-        $new_weightloss = $request->input('new_weightloss');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_haematuria = $request->get('new_haematuria');
+        $new_nightsweats = $request->get('new_nightsweats');
+        $new_weightloss = $request->get('new_weightloss');
 
 
         $a += $new_abdopain * 0.6089465678909584700000000;
@@ -792,9 +786,8 @@ class GeneralCancerController extends Controller
 
     function testicular_cancer_male(Request $request)
     {
-        $survivor = array();
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = $dage;
         $age_2 = $dage * log($dage);
@@ -824,9 +817,9 @@ class GeneralCancerController extends Controller
         $a += $bmi_1 * 2.0160796798276812000000000;
         $a += $bmi_2 * -0.0427340437454773740000000;
 
-        $new_testespain = $request->input('new_testespain');
-        $new_testicularlump = $request->input('new_testicularlump');
-        $new_vte = $request->input('$new_vte');
+        $new_testespain = $request->get('new_testespain');
+        $new_testicularlump = $request->get('new_testicularlump');
+        $new_vte = $request->get('$new_vte');
 
         /* Sum from boolean values */
 
@@ -846,8 +839,6 @@ class GeneralCancerController extends Controller
 
     function blood_cancer_female(Request $request)
     {
-        $survivor = array();
-
 
         /* The conditional arrays */
 
@@ -855,7 +846,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -888,16 +879,16 @@ class GeneralCancerController extends Controller
 
         /*Input for values*/
 
-        $c_hb = $request->input('c_hb');
-        $new_abdopain = $request->input('$new_abdopain');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_necklump = $request->input('new_necklump');
-        $new_nightsweats = $request->input('new_nightsweats');
-        $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_bowelchange = $request->input('s1_bowelchange');
-        $s1_bruising = $request->input('s1_bruising');
+        $c_hb = $request->get('c_hb');
+        $new_abdopain = $request->get('$new_abdopain');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_necklump = $request->get('new_necklump');
+        $new_nightsweats = $request->get('new_nightsweats');
+        $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_bowelchange = $request->get('s1_bowelchange');
+        $s1_bruising = $request->get('s1_bruising');
 
         /* Sum from boolean values */
 
@@ -925,7 +916,6 @@ class GeneralCancerController extends Controller
 
     function breast_cancer_female(Request $request)
     {
-        $survivor = array();
 
         /* The conditional arrays */
 
@@ -934,7 +924,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -943,7 +933,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = pow($dbmi, -2) * log($dbmi);
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 0.039541322737932;
@@ -954,10 +944,12 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
+        $b = 0;
 
         /* The conditional sums */
 
-        $a += $Ialcohol[$request->input('alcohol_cat4')];
+        $Ialcohol[$request->get('alcohol_cat4')] += $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
@@ -968,14 +960,14 @@ class GeneralCancerController extends Controller
         $a += $town * -0.0160766972632234440000000;
 
 
-        /*input from form*/
+        /*get from form*/
 
-        $fh_breastcancer = $request->input('fh_breastcancer');
-        $new_breastlump = $request->input('new_breastlump');
-        $new_breastpain = $request->input('new_breastpain');
-        $new_breastskin = $request->input('new_breastskin');
-        $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('new_vte');
+        $fh_breastcancer = $request->get('fh_breastcancer');
+        $new_breastlump = $request->get('new_breastlump');
+        $new_breastpain = $request->get('new_breastpain');
+        $new_breastskin = $request->get('new_breastskin');
+        $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('new_vte');
 
 
         /* Sum from boolean values */
@@ -1013,7 +1005,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1022,7 +1014,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = pow($dbmi, -2) * log($dbmi);
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 0.039541322737932;
@@ -1036,7 +1028,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1048,13 +1040,13 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $c_hb = $request->input('c_hb');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_haematuria = $request->input('new_haematuria');
-        $new_imb = $request->input('new_imb');
-        $new_pmb = $request->input('new_pmb');
-        $new_postcoital = $request->input('new_postcoital');
-        $new_vte = $request->input('new_vte');
+        $c_hb = $request->get('c_hb');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_haematuria = $request->get('new_haematuria');
+        $new_imb = $request->get('new_imb');
+        $new_pmb = $request->get('new_pmb');
+        $new_postcoital = $request->get('new_postcoital');
+        $new_vte = $request->get('new_vte');
 
         $a += $c_hb * 1.2205973555195053000000000;
         $a += $new_abdopain * 0.7229870191773574200000000;
@@ -1079,7 +1071,6 @@ class GeneralCancerController extends Controller
 
     function colorectal_cancer_female_raw(Request $request)
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -1094,7 +1085,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1116,7 +1107,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ialcohol[$request->input('alcohol_cat4')];
+        $a += $Ialcohol[$request->get('alcohol_cat4')];
 
         /* Sum from continuous values */
 
@@ -1126,16 +1117,16 @@ class GeneralCancerController extends Controller
         $a += $bmi_2 * 2.6900552265408226000000000;
 
         /* Sum from boolean values */
-        $c_hb = $request->input('c_hb');
-        $fh_gicancer = $request->input('fh_gicancer');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_rectalbleed = $request->input('new_rectalbleed');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
-        $s1_bowelchange = $request->input('s1_bowelchange');
-        $s1_constipation = $request->input('s1_constipation');
+        $c_hb = $request->get('c_hb');
+        $fh_gicancer = $request->get('fh_gicancer');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_rectalbleed = $request->get('new_rectalbleed');
+        $new_vte = $request->get('new_vte');
+        $new_weightloss = $request->get('new_weightloss');
+        $s1_bowelchange = $request->get('s1_bowelchange');
+        $s1_constipation = $request->get('s1_constipation');
 
         $a += $c_hb * 1.4759238359186861000000000;
         $a += $fh_gicancer * 0.4044501048847998200000000;
@@ -1160,7 +1151,6 @@ class GeneralCancerController extends Controller
     function gastro_oesophageal_cancer_female_raw(Request $request)
 
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -1175,7 +1165,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1197,7 +1187,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1208,15 +1198,15 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $c_hb = $request->input('c_hb');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-        $new_heartburn = $request->input('new_heartburn');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
+        $c_hb = $request->get('c_hb');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+        $new_heartburn = $request->get('new_heartburn');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_vte = $request->get('new_vte');
+        $new_weightloss = $request->get('new_weightloss');
 
 
         $a += $c_hb * 1.2479756970482034000000000;
@@ -1245,7 +1235,7 @@ class GeneralCancerController extends Controller
     function lung_cancer_female(Request $request)
 
     {
-        $survivor[0] = array();
+
 
 
         /* The conditional arrays */
@@ -1261,7 +1251,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');;
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1270,7 +1260,7 @@ class GeneralCancerController extends Controller
         $dbmi = $dbmi / 10;
         $bmi_1 = pow($dbmi, -2);
         $bmi_2 = pow($dbmi, -2) * log($dbmi);
-        $town = $request->input('town');
+        $town = $request->get('town');
         /* Centring the continuous variables */
 
         $age_1 = $age_1 - 0.039541322737932;
@@ -1284,7 +1274,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1296,16 +1286,16 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $b_copd = $request->input('b_copd');
-        $c_hb = $request->input('c_hb');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_haemoptysis = $request->input('new_haemoptysis');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_vte = $request->input('new_vte');
-        $new_weightloss = $request->input('new_weightloss');
-        $s1_cough = $request->input('s1_cough');
+        $b_copd = $request->get('b_copd');
+        $c_hb = $request->get('c_hb');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_haemoptysis = $request->get('new_haemoptysis');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_necklump = $request->get('new_necklump');
+        $new_vte = $request->get('new_vte');
+        $new_weightloss = $request->get('new_weightloss');
+        $s1_cough = $request->get('s1_cough');
 
         $a += $b_copd * 0.7942901962671364800000000;
         $a += $c_hb * 0.8627980324401628400000000;
@@ -1333,7 +1323,7 @@ class GeneralCancerController extends Controller
 
     function other_cancer_female_raw(Request $request)
     {
-        $survivor[0] = array();
+
 
 
         /* The conditional arrays */
@@ -1356,7 +1346,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1378,8 +1368,8 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ialcohol[$request->input('alcohol_cat4')];
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ialcohol[$request->get('alcohol_cat4')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1390,23 +1380,23 @@ class GeneralCancerController extends Controller
 
         /* Sum from boolean values */
 
-        $b_copd = $request->input('b_copd');
-        $c_hb = $request->input('c_hb');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-        $new_breastlump = $request->input('new_breastlump');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_indigestion = $request->input('$new_indigestion');
-        $new_necklump = $request->input('new_necklump');
-        $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-        $s1_constipation = $request->input('s1_constipation');
-        //$s1_bowelchange = $request->input('s1_bowelchange');
-        //$s1_bruising = $request->input('s1_bruising');
+        $b_copd = $request->get('b_copd');
+        $c_hb = $request->get('c_hb');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+        $new_breastlump = $request->get('new_breastlump');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_indigestion = $request->get('$new_indigestion');
+        $new_necklump = $request->get('new_necklump');
+        $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+        $s1_constipation = $request->get('s1_constipation');
+        //$s1_bowelchange = $request->get('s1_bowelchange');
+        //$s1_bruising = $request->get('s1_bruising');
 
         $a += $b_copd * 0.2823021429107943600000000;
         $a += $c_hb * 1.0476364795173587000000000;
@@ -1439,7 +1429,6 @@ class GeneralCancerController extends Controller
 
     function ovarian_cancer_female_raw(Request $request)
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -1448,7 +1437,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1479,24 +1468,24 @@ class GeneralCancerController extends Controller
         $a += $bmi_2 * 3.2168200408772472000000000;
 
         /* Sum from boolean values */
-        //$b_copd = $request->input('b_copd');
-        $c_hb = $request->input('c_hb');
-        $fh_ovariancancer = $request->input('fh_ovariancancer');
-        $new_abdodist = $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-//    $new_breastlump=$request->input('new_breastlump');
-//    $new_dysphagia=$request->input('new_dysphagia');
-//    $new_gibleed=$request->input('new_gibleed');
-        $new_haematuria = $request->input('$new_haematuria');
-        $new_indigestion = $request->input('$new_indigestion');
-//    $new_necklump = $request->input('new_necklump');
-        $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-//    $s1_constipation = $request->input('s1_constipation');
-        $s1_bowelchange = $request->input('s1_bowelchange');
-        //$s1_bruising = $request->input('s1_bruising');
+        //$b_copd = $request->get('b_copd');
+        $c_hb = $request->get('c_hb');
+        $fh_ovariancancer = $request->get('fh_ovariancancer');
+        $new_abdodist = $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+//    $new_breastlump=$request->get('new_breastlump');
+//    $new_dysphagia=$request->get('new_dysphagia');
+//    $new_gibleed=$request->get('new_gibleed');
+        $new_haematuria = $request->get('$new_haematuria');
+        $new_indigestion = $request->get('$new_indigestion');
+//    $new_necklump = $request->get('new_necklump');
+        $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+//    $s1_constipation = $request->get('s1_constipation');
+        $s1_bowelchange = $request->get('s1_bowelchange');
+        //$s1_bruising = $request->get('s1_bruising');
 
         $a += $c_hb * 1.3625636791018674000000000;
         $a += $fh_ovariancancer * 1.9951774809951830000000000;
@@ -1527,7 +1516,6 @@ class GeneralCancerController extends Controller
     function pancreatic_cancer_female(Request $request)
 
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -1543,7 +1531,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1565,7 +1553,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1574,29 +1562,29 @@ class GeneralCancerController extends Controller
         $a += $bmi_1 * 3.9715559458995728000000000;
         $a += $bmi_2 * -3.1161107999130500000000000;
 
-        /*input from $Request
+        /*get from $Request
         */
 
-        $b_chronicpan = $request->input('b_chronicpan');
-        $b_type2 = $request->input('b_type2');
-//	$b_copd = $request->input('b_copd');
-//    $c_hb = $request->input('c_hb');
-//    $fh_ovariancancer=$request->input('fh_ovariancancer');
-//    $new_abdodist= $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-//    $new_breastlump=$request->input('new_breastlump');
-        $new_dysphagia = $request->input('new_dysphagia');
-        $new_gibleed = $request->input('new_gibleed');
-//    $new_haematuria = $request->input('$new_haematuria');
-        $new_indigestion = $request->input('$new_indigestion');
-//    $new_necklump = $request->input('new_necklump');
-//    $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-//    $s1_constipation = $request->input('s1_constipation');
-        $s1_bowelchange = $request->input('s1_bowelchange');
-        //$s1_bruising = $request->input('s1_bruising');
+        $b_chronicpan = $request->get('b_chronicpan');
+        $b_type2 = $request->get('b_type2');
+//	$b_copd = $request->get('b_copd');
+//    $c_hb = $request->get('c_hb');
+//    $fh_ovariancancer=$request->get('fh_ovariancancer');
+//    $new_abdodist= $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+//    $new_breastlump=$request->get('new_breastlump');
+        $new_dysphagia = $request->get('new_dysphagia');
+        $new_gibleed = $request->get('new_gibleed');
+//    $new_haematuria = $request->get('$new_haematuria');
+        $new_indigestion = $request->get('$new_indigestion');
+//    $new_necklump = $request->get('new_necklump');
+//    $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+//    $s1_constipation = $request->get('s1_constipation');
+        $s1_bowelchange = $request->get('s1_bowelchange');
+        //$s1_bruising = $request->get('s1_bruising');
 
         /* Sum from boolean values */
 
@@ -1627,7 +1615,6 @@ class GeneralCancerController extends Controller
     function renal_tract_cancer_female(Request $request)
 
     {
-        $survivor[0] = array();
 
 
         /* The conditional arrays */
@@ -1642,7 +1629,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1664,7 +1651,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $a += $Ismoke[$request->input('smoke_cat')];
+        $a += $Ismoke[$request->get('smoke_cat')];
 
         /* Sum from continuous values */
 
@@ -1673,28 +1660,28 @@ class GeneralCancerController extends Controller
         $a += $bmi_1 * 1.2103910535779330000000000;
         $a += $bmi_2 * -4.7221299079939785000000000;
 
-        /* input from browser */
-//    $b_chronicpan= $request->input('b_chronicpan');
-//    $b_type2= $request->input('b_type2');
-//	$b_copd = $request->input('b_copd');
-        $c_hb = $request->input('c_hb');
-//    $fh_ovariancancer=$request->input('fh_ovariancancer');
-//    $new_abdodist= $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_appetiteloss = $request->input('new_appetiteloss');
-//    $new_breastlump=$request->input('new_breastlump');
-//    $new_dysphagia=$request->input('new_dysphagia');
-//    $new_gibleed=$request->input('new_gibleed');
-        $new_haematuria = $request->input('new_haematuria');
-        $new_indigestion = $request->input('new_indigestion');
-        $new_pmb = $request->input('new_pmb');
-//    $new_necklump = $request->input('new_necklump');
-//    $new_pmb = $request->input('new_pmb');
-//    $new_vte = $request->input('$new_vte');
-        $new_weightloss = $request->input('$new_weightloss');
-//    $s1_constipation = $request->input('s1_constipation');
-//    $s1_bowelchange = $request->input('s1_bowelchange');
-//    $s1_bruising = $request->input('s1_bruising');
+        /* get from browser */
+//    $b_chronicpan= $request->get('b_chronicpan');
+//    $b_type2= $request->get('b_type2');
+//	$b_copd = $request->get('b_copd');
+        $c_hb = $request->get('c_hb');
+//    $fh_ovariancancer=$request->get('fh_ovariancancer');
+//    $new_abdodist= $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_appetiteloss = $request->get('new_appetiteloss');
+//    $new_breastlump=$request->get('new_breastlump');
+//    $new_dysphagia=$request->get('new_dysphagia');
+//    $new_gibleed=$request->get('new_gibleed');
+        $new_haematuria = $request->get('new_haematuria');
+        $new_indigestion = $request->get('new_indigestion');
+        $new_pmb = $request->get('new_pmb');
+//    $new_necklump = $request->get('new_necklump');
+//    $new_pmb = $request->get('new_pmb');
+//    $new_vte = $request->get('$new_vte');
+        $new_weightloss = $request->get('$new_weightloss');
+//    $s1_constipation = $request->get('s1_constipation');
+//    $s1_bowelchange = $request->get('s1_bowelchange');
+//    $s1_bruising = $request->get('s1_bruising');
 
 
         /* Sum from boolean values */
@@ -1722,8 +1709,6 @@ class GeneralCancerController extends Controller
     function uterine_cancer_female_raw(Request $request)
 
     {
-        $survivor[0] = array();
-
 
         /* The conditional arrays */
 
@@ -1731,7 +1716,7 @@ class GeneralCancerController extends Controller
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
 
-        $dage = $request->input('age');
+        $dage = $this->retrieveage($request);
         $dage = $dage / 10;
         $age_1 = pow($dage, -2);
         $age_2 = pow($dage, -2) * log($dage);
@@ -1761,29 +1746,29 @@ class GeneralCancerController extends Controller
         $a += $bmi_1 * 3.7623897936404322000000000;
         $a += $bmi_2 * -26.8045450074654320000000000;
 
-        /*input from request */
-        $b_endometrial = $request->input('b_endometrial');
-        $b_type2 = $request->input('b_type2');
-//	$b_copd = $request->input('b_copd');
-//    $c_hb = $request->input('c_hb');
-//    $fh_ovariancancer=$request->input('fh_ovariancancer');
-//    $new_abdodist= $request->input('new_abdodist');
-        $new_abdopain = $request->input('new_abdopain');
-        $new_haematuria = $request->input('new_haematuria');
-//    $new_breastlump=$request->input('new_breastlump');
-//    $new_dysphagia=$request->input('new_dysphagia');
-//    $new_gibleed=$request->input('new_gibleed');
-        $new_haematuria = $request->input('new_haematuria');
-        $new_imb = $request->input('new_imb');
-//    $new_indigestion = $request->input('new_indigestion');
-        $new_pmb = $request->input('new_pmb');
-//    $new_necklump = $request->input('new_necklump');
-//    $new_pmb = $request->input('new_pmb');
-        $new_vte = $request->input('$new_vte');
-        // $new_weightloss = $request->input('$new_weightloss');
-//    $s1_constipation = $request->input('s1_constipation');
-//    $s1_bowelchange = $request->input('s1_bowelchange');
-//    $s1_bruising = $request->input('s1_bruising');
+        /*get from request */
+        $b_endometrial = $request->get('b_endometrial');
+        $b_type2 = $request->get('b_type2');
+//	$b_copd = $request->get('b_copd');
+//    $c_hb = $request->get('c_hb');
+//    $fh_ovariancancer=$request->get('fh_ovariancancer');
+//    $new_abdodist= $request->get('new_abdodist');
+        $new_abdopain = $request->get('new_abdopain');
+        $new_haematuria = $request->get('new_haematuria');
+//    $new_breastlump=$request->get('new_breastlump');
+//    $new_dysphagia=$request->get('new_dysphagia');
+//    $new_gibleed=$request->get('new_gibleed');
+        $new_haematuria = $request->get('new_haematuria');
+        $new_imb = $request->get('new_imb');
+//    $new_indigestion = $request->get('new_indigestion');
+        $new_pmb = $request->get('new_pmb');
+//    $new_necklump = $request->get('new_necklump');
+//    $new_pmb = $request->get('new_pmb');
+        $new_vte = $request->get('$new_vte');
+        // $new_weightloss = $request->get('$new_weightloss');
+//    $s1_constipation = $request->get('s1_constipation');
+//    $s1_bowelchange = $request->get('s1_bowelchange');
+//    $s1_bruising = $request->get('s1_bruising');
 
 
         /* Sum from boolean values */

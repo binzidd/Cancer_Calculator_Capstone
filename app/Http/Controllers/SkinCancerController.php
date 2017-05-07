@@ -21,7 +21,6 @@ class SkinCancerController extends Controller
     {
         $value = SkinCancerController::computeskincancer($request);
 
-        //TODO: Push the value into DB using this SCRIPT
         $user = Auth::user();   //user object
 
         $skin_option = $request['var_mf_skin_options'];
@@ -49,17 +48,14 @@ class SkinCancerController extends Controller
     {
 
         $inputData = $request->all();
-        //   print_r($inputData);
         $totalValues_skin = $request->input('var_mf_skin_options') + $request->input('var_mf_skin_body_options') +
             $request->input('var_mf_skin_body_burnt_options') +
             $request->input('var_mf_skin_body_moles_options') +
             $request->input('var_mf_skin_body_cancer_options');
-//    print_r($totalValues);
-//    Conditions to check the level
+
         return $totalValues_skin;
     }
 
-    //TODO:Check this display_result functioning
 
     function display_results(Request $request)
     {

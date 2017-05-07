@@ -22,7 +22,8 @@
                         <label class="col-md-offset-0">
                             Age
                         </label>
-                        <input type="number" class="form-control" id="age" value="">
+                        <input type="number" class="form-control" id="age" value="{{$userinfo->age}}">
+
 
                     </div>
                     <div class="form-group col-md-offset-1">

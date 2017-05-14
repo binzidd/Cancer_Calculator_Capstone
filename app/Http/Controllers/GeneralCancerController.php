@@ -29,6 +29,7 @@ class GeneralCancerController extends Controller
 
     public function getgender(Request $request)
     {
+        $userId = Auth::user()->id;
         $gender = DB::table('user_informations')->where('user_id', $userId)->value('gender');
 
         if ($gender == "F") {
@@ -128,7 +129,8 @@ class GeneralCancerController extends Controller
         for ($j = 1, $sum2 = 0; $j < 10; $j++) {
 
             $resultsarray[$j]['score'] *= 100 / $sum;  //resultsArray[i]=(resultArray[i]*100)/sum
-            $sum2 += $resultsarray[$j]['score'];            //sum2=sum2+resultsArray[i]
+            $sum2 += $resultsarray[$j]['score'];
+            //sum2=sum2+resultsArray[i]
         }
 
         /*  Add the risk of no event to the start of the result array */

@@ -19,8 +19,6 @@ class user_information_controller extends Controller
         $height=$request['height'];
         $weight=$request['weight'];
         $age = $this->age($request);
-        echo $dob;
-        die;
 
         $user_information= new user_information;
         $user_information->dob=$dob;

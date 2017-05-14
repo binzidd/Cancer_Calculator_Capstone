@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/customapp.css') }}" rel="stylesheet">
     @yield('title')
     <!-- Scripts -->
     <script>

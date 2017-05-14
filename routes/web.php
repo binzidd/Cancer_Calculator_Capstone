@@ -54,6 +54,10 @@ Route::post('/disclaimer', [
     'as' => 'disclaimer_accepted'
 ]);
 
+Route::post('/bowelcancer', [
+    'uses' => 'BowelCancerController@onpost_Default_Value',
+    'as' => 'bowel_onpost'
+]);
 // Get Calls for rendering pages.
 
 Route::get('/disclaimer', function () {

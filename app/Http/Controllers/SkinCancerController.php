@@ -54,6 +54,7 @@ class SkinCancerController extends Controller
             $request->input('var_mf_skin_body_cancer_options');
 
         return $totalValues_skin;
+
     }
 
 
@@ -61,16 +62,16 @@ class SkinCancerController extends Controller
     {
         $totalValues_skin = $this->computeskincancer();
         if ($totalValues_skin == 0 || $totalValues_skin == 1) {
-            $errorMessage = "In General skin cnacer is not common";
+            $option = "In General skin cnacer is not common";
 
         } else if ($totalValues_skin <= 2 || $totalValues_skin <= 3) {
-            $errorMessage = 'You are at average risk of skin cancer and need to be careful in sun ';
+            $option = 'You are at average risk of skin cancer and need to be careful in sun ';
         } else if ($totalValues_skin >= 4) {
-            $errorMessage = 'You are at above average risk of skin cancer and need to be careful in sun ';
+            $option = 'You are at above average risk of skin cancer and need to be careful in sun ';
 
         }
 
-        return view('forms.Inspection', ['yourMessage' => $errorMessage]);
+        return view('forms.Inspection')->with('Skin_Cancer_Results', $option);
     }
 
 }

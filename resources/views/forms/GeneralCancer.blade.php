@@ -418,7 +418,7 @@
                                     <div class="checkbox-inline ">
                                         <label class="checkbox-inline">
                                             <input class="form-check-input" type="checkbox" name="c_hb"
-                                                   id="var_male_c_hb">] anaemia (Haemoglobin < 11g/dL)?<
+                                                   id="var_male_c_hb"> anaemia (Haemoglobin < 11g/dL)?<
                                         </label>
                                     </div>
                                 </label>
@@ -458,6 +458,8 @@
                                     </div>
                                 </label>
                             </div>
+
+                            <input type="hidden" name="town" value="1">
 
                             <div class="form-check-inline col-md-offset-1">
                                 <label class="form-check-inline col-md-offset-0">

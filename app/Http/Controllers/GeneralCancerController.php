@@ -80,62 +80,68 @@ class GeneralCancerController extends Controller
 
 
         $blood_cancer_score = exp($this->blood_cancer_male($request));
-        $resultsarray[$i]['score'] = $blood_cancer_score;
+        $resultsarray[$i]['score'] = round($blood_cancer_score, 4, PHP_ROUND_HALF_UP);
         $resultsarray[$i]['name'] = "blood_cancer_score";
         $sum += $blood_cancer_score;
 
 
         $colorectal_cancer_male = exp($this->colorectal_cancer_male($request));
-        $resultsarray[2]['score'] = $colorectal_cancer_male;
+        $resultsarray[2]['score'] = round($colorectal_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[2]['name'] = "colorectal_cancer_male";
         $sum += $colorectal_cancer_male;
 
         $gastro_oesophageal_cancer_male = exp($this->gastro_oesophageal_cancer_male($request));
-        $resultsarray[3]['score'] = $gastro_oesophageal_cancer_male;
+        $resultsarray[3]['score'] = round($gastro_oesophageal_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[3]['name'] = "gastro_oesophageal_cancer_male";
         $sum += $gastro_oesophageal_cancer_male;
 
         $lung_cancer_male = exp($this->lung_cancer_male($request));
-        $resultsarray[4]['score'] = $lung_cancer_male;
+        $resultsarray[4]['score'] = round($lung_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[4]['name'] = "lung_cancer_male";
         $sum += $lung_cancer_male;
 
         $other_cancer_male = exp($this->other_cancer_male($request));
-        $resultsarray[5]['score'] = $other_cancer_male;
+        $resultsarray[5]['score'] = round($other_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[5]['name'] = "other_cancer_male";
         $sum += $other_cancer_male;
 
         $pancreatic_cancer_male = exp($this->pancreatic_cancer_male($request));
-        $resultsarray[6] ['score'] = $pancreatic_cancer_male;
+        $resultsarray[6] ['score'] = round($pancreatic_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[6]['name'] = "pancreatic_cancer_male";
         $sum += $pancreatic_cancer_male;
 
         $prostate_cancer_male = exp($this->prostate_cancer_male($request));
-        $resultsarray[7] ['score'] = $prostate_cancer_male;
+        $resultsarray[7] ['score'] = round($prostate_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[7] ['name'] = "prostate_cancer_male";
         $sum += $prostate_cancer_male;
 
         $renal_tract_cancer_male = exp($this->renal_tract_cancer_male($request));
-        $resultsarray[8]['score'] = $renal_tract_cancer_male;
+        $resultsarray[8]['score'] = round($renal_tract_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[8]['name'] = "renal_tract_cancer_male";
         $sum += $renal_tract_cancer_male;
 
         $testicular_cancer_male = exp($this->testicular_cancer_male($request));
-        $resultsarray[9]['score'] = $testicular_cancer_male;
+        $resultsarray[9]['score'] = round($testicular_cancer_male, 4, PHP_ROUND_HALF_UP);
         $resultsarray[9]['name'] = "testicular_cancer_male";
         $sum += $testicular_cancer_male;
 
 
         for ($j = 1, $sum2 = 0; $j < 10; $j++) {
 
-            $resultsarray[$j]['score'] *= 100 / $sum;  //resultsArray[i]=(resultArray[i]*100)/sum
+            $resultsarray[$j]['score'] *= 100 / $sum;
             $sum2 += $resultsarray[$j]['score'];
-            //sum2=sum2+resultsArray[i]
         }
 
+
+        $resultsarray[10]['score'] = round($sum2, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[10]['name'] = "Percentage Risk of Any Cancer";
+
         /*  Add the risk of no event to the start of the result array */
-        $resultsarray[0] = 100 - $sum2;
-        return view('forms.Inspection')->with('resultsarray', $resultsarray);
+        $resultsarray[0]['score'] = round(100 - $sum2, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[0]['name'] = "Percentage Risk of Being Detected of Cancer";
+
+
+        return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
 
     }
 

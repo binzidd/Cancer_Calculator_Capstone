@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@yield('title')
+<title>Results</title>
+
 @section('content')
 
     <div class="container">
@@ -20,31 +23,39 @@
                         </tr>
                     @endforeach
                 </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2>2. Results for Skin Cancer</h2>
-                {{$Skin_Cancer_Results}}
+                <br>
+                <button class="btn-success" onClick="window.print()">Print this page</button>
+                <br>
 
             </div>
         </div>
     </div>
 
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-8 col-md-offset-2">--}}
+    {{--<h2>2. Results for Skin Cancer</h2>--}}
+    {{--{{$Skin_Cancer_Results}}--}}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2>3. Results for Bowel Cancer</h2>
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
-            </div>
-        </div>
-    </div>
 
-    <button onClick="window.print()">Print this page</button>
+    {{--<div class="container">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-8 col-md-offset-2">--}}
+    {{--<h2>3. Results for Bowel Cancer</h2>--}}
+
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+
+
+
+
+
+
 
 
 

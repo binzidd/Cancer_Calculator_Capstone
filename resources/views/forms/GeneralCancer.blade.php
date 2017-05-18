@@ -14,6 +14,8 @@
                         <strong>{{$yourMessage}}!</strong>
                     </div>
                 @endif
+
+
                 {{--TODO: Change this to post and link DB--}}
                 <form action="{{route ('inspect')}}" method="post">
                     <div class="form-control">Session Based Calculation for QCancer</div>

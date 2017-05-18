@@ -134,11 +134,11 @@ class GeneralCancerController extends Controller
 
 
         $resultsarray[10]['score'] = round($sum2, 4, PHP_ROUND_HALF_UP);
-        $resultsarray[10]['name'] = "Percentage Risk of Any Cancer";
+        $resultsarray[10]['name'] = "Any Cancer";
 
         /*  Add the risk of no event to the start of the result array */
         $resultsarray[0]['score'] = round(100 - $sum2, 4, PHP_ROUND_HALF_UP);
-        $resultsarray[0]['name'] = "Percentage Risk of Being Detected of Cancer";
+        $resultsarray[0]['name'] = "No Cancer";
 
 
         return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);

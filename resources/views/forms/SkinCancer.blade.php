@@ -13,13 +13,16 @@
                         <strong>{{$yourMessage}}!</strong>
                     </div>
                 @endif
-                <form action="{{route ('skin_cancer_calculator')}}" method="post">
+                <form id="inputvalues" data-toggle="validator" action="{{route ('skin_cancer_calculator')}}"
+                      method="post">
 
-                    <div class="form-control">Session Based Calculation for Detection of Skin Cancer</div>
+
+                    <div class="form-control .progress">Session Based Calculation for Detection of Skin Cancer</div>
                     <br>
+                    <h3 align="center"> All the questions in this section are <b>compulsory</b></h3>
                     <div class="form-group col-md-offset-1">
                         <label class="col-md-offset-1">
-                            <strong> Q. What is the natural color of your hair?</strong>
+                            <h2>Q. What is the natural color of your hair? *</h2>
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-option" type="radio" name="var_mf_skin_options"
@@ -36,9 +39,10 @@
                         </label>
                     </div>
 
+
                     <div class="form-group col-md-offset-1">
                         <label class="form-group col-md-offset-1 ">
-                            <strong> Q. What is the natural color of your Skin? </strong>
+                            <h2> Q. What is the natural color of your Skin? </strong> </h2>
                             <div class="'form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" name="var_mf_skin_body_options"
@@ -61,9 +65,9 @@
 
                     <div class="form-group col-md-offset-1">
                         <label class="form-group col-md-offset-1">
-                            <strong> Q. If you did not use any sun protection and spent 11am to 1pm in the Summer
+                            <h2>Q. If you did not use any sun protection and spent 11am to 1pm in the Summer
                                 Sun,<br>
-                                how would you expect your skin to react? </strong>
+                                how would you expect your skin to react? </h2>
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio"
@@ -87,7 +91,7 @@
                     <div class="form-group col-md-offset-1">
 
                         <label class="form-group col-md-offset-1">
-                            <strong> Q. Do you have moles on your skin? </strong>
+                            <h2> Q. Do you have moles on your skin? </h2>
                             <div class="'form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio"
@@ -121,7 +125,7 @@
                     <div class="form-group col-md-offset-1">
 
                         <label class="form-group col-md-offset-1">
-                            <strong> Q. Have you ever been diagnosed with skin cancer? </strong>
+                            <h2> Q. Have you ever been diagnosed with skin cancer? </h2>
                             <div class="'form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio"
@@ -139,7 +143,7 @@
                                 </label>
                             </div>
                         </label> <br>
-                        <input class="col-md-offset-4" type="submit" name="submit" value="submit">
+                        <input class="col-md-offset-4 btn-success" type="submit" name="submit" value="submit">
 
 
                         <input type="hidden" name="_token" value="{{Session::token()}} ">

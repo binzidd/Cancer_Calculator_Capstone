@@ -8,11 +8,11 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Welcome {{ Auth::user()->name }}</div>
-
+                    TEST
                     <div class="panel-body">
                         <div class="form-control"> Let us get familiar</div>
                         <br>
-                        <form data-toggle="validator" action="{{route('inspect')}}" method="post">
+                        <form id="inputvalues" data-toggle="validator" action="{{route('basicinfo')}}" method="post">
                             {{--Date of Birth--}}
                             <div class="form-group col-md-offset-1">
                                 <label class="col-md-offset-1">
@@ -54,7 +54,7 @@
                                     <div class="'form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="number" name="height"
-                                                   id="height" required="true">
+                                                   id="height" required="true" min="40" max="400">
                                         </label>
                                     </div>
                                 </label>
@@ -67,7 +67,7 @@
                                     <div class="'form-check">
                                         <label class="form-check-label">
                                             <input required class="form-check-input" type="number" name="weight"
-                                                   id="user_weight" required="true">
+                                                   id="user_weight" required="true" min="1" max="300">
                                         </label>
                                     </div>
                                 </label>
@@ -75,39 +75,6 @@
                             <button type="submit" class="btn btn-success"> Submit</button>
                             <input type="hidden" name="_token" value="{{Session::token()}}">
                         </form>
-                        {{--<script>--}}
-
-                        {{--$(document).ready(function() {--}}
-                        {{--$('#dob').formValidation({--}}
-                        {{--framework: 'bootstrap',--}}
-                        {{--icon: {--}}
-                        {{--valid: 'glyphicon glyphicon-ok',--}}
-                        {{--invalid: 'glyphicon glyphicon-remove',--}}
-                        {{--validating: 'glyphicon glyphicon-refresh'--}}
-                        {{--},--}}
-                        {{--fields: {--}}
-                        {{--latitude: {--}}
-                        {{--validators: {--}}
-                        {{--between: {--}}
-                        {{--min: -90,--}}
-                        {{--max: 90,--}}
-                        {{--message: 'The latitude must be between -90.0 and 90.0'--}}
-                        {{--}--}}
-                        {{--}--}}
-                        {{--},--}}
-                        {{--longitude: {--}}
-                        {{--validators: {--}}
-                        {{--between: {--}}
-                        {{--min: -180,--}}
-                        {{--max: 180,--}}
-                        {{--message: 'The longitude must be between -180.0 and 180.0'--}}
-                        {{--}--}}
-                        {{--}--}}
-                        {{--}--}}
-                        {{--}--}}
-                        {{--});--}}
-                        {{--});--}}
-                        {{--</script>--}}
                     </div>
                 </div>
             </div>

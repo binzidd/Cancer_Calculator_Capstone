@@ -20,7 +20,7 @@ class FormController extends Controller
         if (!empty($userInfo->age)) {
             return view('forms.FormIntroduction');
         } else {
-            return view('home');
+            return view('forms.Disclaimer');
         }
     }
 

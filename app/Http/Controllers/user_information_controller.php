@@ -30,7 +30,7 @@ class user_information_controller extends Controller
 
         $user_information->save();
 
-        return view('forms.FormIntroduction');
+        return view('forms.Disclaimer');
     }
 
 

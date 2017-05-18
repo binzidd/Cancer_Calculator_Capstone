@@ -32,7 +32,7 @@ class HomeController extends Controller
         if (!empty($userInfo->id)) {
             return view('forms.Disclaimer');
         } else {
-            return view('home');
+            return view('forms.GettingStarted');
         }
 
 

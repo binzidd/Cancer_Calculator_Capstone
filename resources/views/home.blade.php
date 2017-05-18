@@ -9,6 +9,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Welcome {{ Auth::user()->name }}</div>
+                    am i here
 
                     <div class="panel-body">
                         <div class="form-control"> Let us get familiar</div>

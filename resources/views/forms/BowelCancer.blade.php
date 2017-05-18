@@ -44,20 +44,13 @@
                                     <li>Your grandparents</li>
                                 </ul>
 
-
-                                <div class="form-check ">
-                                    <label class="form-check-label">
-                                        <input class="form-check-option" type="radio" name="assoc"
-                                               id="assoc_yes" value="1"> Yes, a genetic condition has been recognised
-                                        within the family
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="assoc"
-                                               id="assoc_no" value="0"> No, genetic condition within the family is known
-                                        black
-                                    </label>
+                                <div class="form-group form-group-nonfam form-group-radio">
+                                    <fieldset class="radio ">
+                                        <label><input type="radio" name="assoc" value="yes">
+                                            <span>Yes, a genetic condition has been recognised within the family</span></label>
+                                        <label><input type="radio" name="assoc" value="no">
+                                            <span>No genetic condition within the family is known</span></label>
+                                    </fieldset>
                                 </div>
                             </div>
                         </label>

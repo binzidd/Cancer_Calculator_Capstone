@@ -146,7 +146,8 @@ class BowelCancerController extends Controller
 
         $arraycompare = array_diff_assoc($responsearray[0], $inititalpostvalue[0]);
 
-        print_r($arraycompare);
+        print_r($responsearray);
+        die;
 
 
         foreach ($arraycompare as $generatedresult) {

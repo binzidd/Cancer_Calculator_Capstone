@@ -19,7 +19,7 @@
                     <br>
                     <div class="form-group col-md-offset-1">
                         <label class="col-md-offset-1">
-                            <strong> Q. What is the natural color of your hair? </strong>
+                            <strong> Q. What is the natural color of your hair?</strong>
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-option" type="radio" name="var_mf_skin_options"

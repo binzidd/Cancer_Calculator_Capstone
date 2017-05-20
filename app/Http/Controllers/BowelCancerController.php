@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class BowelCancerController extends Controller
 {
+
+    function getview()
+    {
+        $viewbowelcancervalue = self::viewbowelcancer();
+        return view('forms.BowelCancer')->with('default_array', json_encode($viewbowelcancervalue));
+
+    }
+
     function viewbowelcancer()
     {
-//        $blood_cancer_score = exp($this->blood_cancer_male($request));
-//        $resultsarray[$i]['score'] = $blood_cancer_score;
-//        $resultsarray[$i]['name'] = "blood_cancer_score";
-//
+
         $i = 0;
         $default_array[$i]['name'] = "crc_ms_parent";
         $default_array[$i]['score'] = 0;
@@ -47,9 +52,10 @@ class BowelCancerController extends Controller
         $default_array[$i]['name'] = "crc_bs_nieneph";
         $default_array[$i]['score'] = 0;
 
-        $default_array = json_encode($default_array);
 
-        return view('forms.BowelCancer')->with('default_array', $default_array);
+        return ($default_array);
+
+//        return view('forms.BowelCancer')->with('default_array',$default_array);
     }
 
 //        $default_array = [
@@ -68,10 +74,10 @@ class BowelCancerController extends Controller
 
     function onpost_Default_Value(Request $request)
     {
-        $inititalpostvalue = json_decode($request->get('default_values_set'), true);
+        //$inititalpostvalue = json_decode($request->get('default_values_set'), true);
+        $inititalpostvalue = $this->viewbowelcancer();
 
         $i = 0;
-
 
         //Capture the post values
         $crc_ms_parent = $request->get('crc_ms_parent');
@@ -142,13 +148,13 @@ class BowelCancerController extends Controller
 //            "crc_bs_children" => $crc_bs_children,
 //            "crc_bs_nieneph" => $crc_bs_nieneph
 //        ];
-
-
-        $arraycompare = array_diff_assoc($responsearray[0], $inititalpostvalue[0]);
-
+        echo "<pre>";
         print_r($responsearray);
-        die;
+        print_r($inititalpostvalue);
+//        die;
+        $arraycompare = array_diff($responsearray, $inititalpostvalue);
 
+        print_r($arraycompare);
 
         foreach ($arraycompare as $generatedresult) {
             print_r($generatedresult);

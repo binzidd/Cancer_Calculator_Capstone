@@ -11,47 +11,48 @@
                 <h1> Summary Results </h1>
 
 
-                {{--<div class="container">--}}
-                {{--<div class="row">--}}
-                {{--<div class="col-md-8 col-md-offset-2">--}}
-                {{--<h2>2. Results for Skin Cancer</h2>--}}
-                {{--{{$userId= Auth::user()->id }}--}}
-                {{--{{$skincancer_value = DB::table('skin_cancers')->where('user_id', Auth::User()->id)->value('skin_cancer_score');}}--}}
-                {{--{{print_r($skincancer_value);}}--}}
-                {{--{{die;}}--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
 
+                            <div class="skincancer">
+                                <h2>1.Result for Skin Cancer</h2>
+                                {{ $Skin_Cancer_Results }}
 
-                <div class="generalcancer">
-                    <h2>1. Results for General Cancer</h2>
-                    <table>
-                        <tr>
-                            <td><strong>Name</strong></td>
-                            <td><strong>Score</strong></td>
-                        </tr>
-                        @foreach($generalCancerValuestoView as $value)
-                            <tr>
-                                <td> {{ $value['name'] }} </td>
-                                <td> {{ $value['score'] }} {{"%"}} </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                    <br>
+                                <div class="generalcancer">
+                                    <h2>2. Results for General Cancer</h2>
+                                    <table>
+                                        <tr>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Score</strong></td>
+                                        </tr>
+                                        @foreach($GeneralCancer as $value)
+                                            <tr>
+                                                <td> {{ $value['name'] }} </td>
+                                                <td> {{ $value['score'] }} {{"%"}} </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                    <br>
 
-                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-8 col-md-offset-3">
+                <button class="btn-success" onClick="window.print()"> Print this page</button>
             </div>
         </div>
     </div>
 
 
 
-    <button class="btn-success  onClick=" window.print()">Print this page</button>
+
 
 @endsection
-
 
 
 

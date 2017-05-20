@@ -75,7 +75,7 @@ Route::get('/skincancer',[
 ]);
 
 Route::get('/bowelcancer',[
-    'uses'=>'BowelCancerController@viewbowelcancer',
+    'uses' => 'BowelCancerController@getview',
     'as'=>'bowel_cancer_renderer'
 ]);
 
@@ -100,9 +100,10 @@ Route::post('/generalcancer2', [
 ]);
 
 
-Route::get('/inspection', function () {
-    return view('forms.Inspection');
-});
+Route::get('/inspection', [
+    'uses' => 'ResultsController@getvalueCancer',
+    'as' => 'Results'
+]);
 
 
 

@@ -139,18 +139,12 @@ class GeneralCancerController extends Controller
         /*  Add the risk of no event to the start of the result array */
         $resultsarray[0]['score'] = round(100 - $sum2, 4, PHP_ROUND_HALF_UP);
         $resultsarray[0]['name'] = "No Cancer";
-
+        $request->session()->put('Generalcancer', $resultsarray);  // required for stroing the values in session
         return ($resultsarray);
         //return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
 
     }
 
-    public static function passanswer(Request $request)
-    {
-        $generalcancerresults = GeneralCancerController::calculate_all_male_cancer($request);
-
-        return $generalcancerresults;
-    }
 
     public static function calculatebmi(Request $request)
     {
@@ -481,8 +475,6 @@ class GeneralCancerController extends Controller
 
     function other_cancer_male(Request $request)
     {
-
-
 
         /* The conditional arrays */
 
@@ -851,11 +843,109 @@ class GeneralCancerController extends Controller
 
     /* Female Functions */
 
+    /*
+1. blood_cancer_female
+2. breast_cancer_female
+3. cervical_cancer_female
+4. colorectal_cancer_female
+5. gastro_oesophageal_cancer_female
+6. lung_cancer_female
+7. other_cancer_female
+8. ovarian_cancer_female
+9. pancreatic_cancer_female
+10.renal_tract_cancer_female
+11.uterine_cancer_female
+
+
+*/
+
+    public function calculate_all_female_cancer(Request $request)
+    {
+        $i = 1;
+        $sum = 1;
+
+
+        $blood_cancer_score = exp($this->blood_cancer_female($request));
+        $resultsarray[$i]['score'] = round($blood_cancer_score, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[$i]['name'] = "blood_cancer_score";
+        $sum += $blood_cancer_score;
+
+
+        $breast_cancer_female = exp($this->breast_cancer_female($request));
+        $resultsarray[2]['score'] = round($breast_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[2]['name'] = "colorectal_cancer_male";
+        $sum += $breast_cancer_female;
+
+        $cervical_cancer_female = exp($this->cervical_cancer_female($request));
+        $resultsarray[3]['score'] = round($cervical_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[3]['name'] = "cervical_cancer_female";
+        $sum += $cervical_cancer_female;
+
+        $colorectal_cancer_female = exp($this->colorectal_cancer_female($request));
+        $resultsarray[4]['score'] = round($colorectal_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[4]['name'] = "colorectal_cancer_female";
+        $sum += $colorectal_cancer_female;
+
+        $gastro_oesophageal_cancer_female = exp($this->gastro_oesophageal_cancer_female($request));
+        $resultsarray[5]['score'] = round($gastro_oesophageal_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[5]['name'] = "gastro_oesophageal_cancer_female";
+        $sum += $gastro_oesophageal_cancer_female;
+
+        $lung_cancer_female = exp($this->lung_cancer_female($request));
+        $resultsarray[6] ['score'] = round($lung_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[6]['name'] = "lung_cancer_female";
+        $sum += $lung_cancer_female;
+
+        $other_cancer_female = exp($this->other_cancer_female($request));
+        $resultsarray[7] ['score'] = round($other_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[7] ['name'] = "other_cancer_female";
+        $sum += $other_cancer_female;
+
+        $ovarian_cancer_female = exp($this->ovarian_cancer_female($request));
+        $resultsarray[8]['score'] = round($ovarian_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[8]['name'] = "ovarian_cancer_female";
+        $sum += $ovarian_cancer_female;
+
+        $pancreatic_cancer_female = exp($this->pancreatic_cancer_female($request));
+        $resultsarray[9]['score'] = round($pancreatic_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[9]['name'] = "pancreatic_cancer_female";
+        $sum += $pancreatic_cancer_female;
+
+        $renal_tract_cancer_female = exp($this->renal_tract_cancer_female($request));
+        $resultsarray[10]['score'] = round($renal_tract_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[10]['name'] = "renal_tract_cancer_female";
+        $sum += $renal_tract_cancer_female;
+
+        $uterine_cancer_female = exp($this->uterine_cancer_female($request));
+        $resultsarray[11]['score'] = round($uterine_cancer_female, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[11]['name'] = "uterine_cancer_female";
+        $sum += $uterine_cancer_female;
+
+        for ($j = 1, $sum2 = 0; $j < 12; $j++) {
+
+            $resultsarray[$j]['score'] *= 100 / $sum;
+            $sum2 += $resultsarray[$j]['score'];
+        }
+
+
+        $resultsarray[12]['score'] = round($sum2, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[12]['name'] = "Any Cancer";
+
+        /*  Add the risk of no event to the start of the result array */
+        $resultsarray[0]['score'] = round(100 - $sum2, 4, PHP_ROUND_HALF_UP);
+        $resultsarray[0]['name'] = "No Cancer";
+        $request->session()->put('Generalcancer', $resultsarray);  // required for stroing the values in session
+        return ($resultsarray);
+        //return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
+
+    }
+
+
+
     function blood_cancer_female(Request $request)
     {
 
         /* The conditional arrays */
-
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
@@ -1006,7 +1096,7 @@ class GeneralCancerController extends Controller
 
     /* cervical_cancer */
 
-    function cervical_cancer_female_(Request $request)
+    function cervical_cancer_female(Request $request)
 
     {
         $survivor = array();
@@ -1083,7 +1173,7 @@ class GeneralCancerController extends Controller
 
     /* colorectal_cancer */
 
-    function colorectal_cancer_female_raw(Request $request)
+    function colorectal_cancer_female(Request $request)
     {
 
 
@@ -1162,10 +1252,9 @@ class GeneralCancerController extends Controller
 
     /* gastro_oesophageal_cancer */
 
-    function gastro_oesophageal_cancer_female_raw(Request $request)
+    function gastro_oesophageal_cancer_female(Request $request)
 
     {
-
 
         /* The conditional arrays */
 
@@ -1250,8 +1339,6 @@ class GeneralCancerController extends Controller
 
     {
 
-
-
         /* The conditional arrays */
 
         $Ismoke[] = array(
@@ -1335,7 +1422,7 @@ class GeneralCancerController extends Controller
 
     /* other_cancer */
 
-    function other_cancer_female_raw(Request $request)
+    function other_cancer_female(Request $request)
     {
 
 
@@ -1441,7 +1528,7 @@ class GeneralCancerController extends Controller
 
     /* ovarian_cancer */
 
-    function ovarian_cancer_female_raw(Request $request)
+    function ovarian_cancer_female(Request $request)
     {
 
 
@@ -1720,7 +1807,7 @@ class GeneralCancerController extends Controller
 
     /* uterine_cancer */
 
-    function uterine_cancer_female_raw(Request $request)
+    function uterine_cancer_female(Request $request)
 
     {
 

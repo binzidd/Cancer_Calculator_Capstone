@@ -74,8 +74,7 @@ class SkinCancerController extends Controller
             $option = 'You are at above average risk of skin cancer and need to be careful in sun ';
 
         }
-        return ($option);
-        //return view('forms.Inspection')->with('Skin_Cancer_Results', $option);
+        ResultsController::returntoview(NULL, $option);        //return view('forms.Inspection')->with('Skin_Cancer_Results', $option);
     }
 
 }

@@ -140,11 +140,17 @@ class GeneralCancerController extends Controller
         $resultsarray[0]['score'] = round(100 - $sum2, 4, PHP_ROUND_HALF_UP);
         $resultsarray[0]['name'] = "No Cancer";
 
-
-        return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
+        return ($resultsarray);
+        //return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
 
     }
 
+    public static function passanswer(Request $request)
+    {
+        $generalcancerresults = GeneralCancerController::calculate_all_male_cancer($request);
+
+        return $generalcancerresults;
+    }
 
     public static function calculatebmi(Request $request)
     {

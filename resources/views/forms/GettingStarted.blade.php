@@ -8,7 +8,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Welcome {{ Auth::user()->name }}</div>
-                    TEST
                     <div class="panel-body">
                         <div class="form-control"> Let us get familiar</div>
                         <br>
@@ -16,8 +15,8 @@
                             {{--Date of Birth--}}
                             <div class="form-group col-md-offset-1">
                                 <label class="col-md-offset-1">
-                                    <h3>All the Questions in this Sections are Mandatory</h3>
-                                    <strong> Date of birth </strong>
+                                    <h4>All the Questions in this Sections are Mandatory</h4>
+                                    <strong> Date of birth * </strong>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-option" type="date" name="dob"
@@ -30,7 +29,7 @@
                             {{--Gender --}}
                             <div class="form-group col-md-offset-1">
                                 <label class="form-group col-md-offset-1 ">
-                                    <strong> Gender </strong>
+                                    <strong> Gender * </strong>
                                     <div class="'form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="gender"
@@ -50,7 +49,7 @@
                             {{--Height in Cms--}}
                             <div class="form-group col-md-offset-1">
                                 <label class="form-group col-md-offset-1 ">
-                                    <strong> Height in CM </strong>
+                                    <strong> Height in CM * </strong>
                                     <div class="'form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="number" name="height"
@@ -63,7 +62,7 @@
 
                             <div class="form-group col-md-offset-1">
                                 <label class="form-group col-md-offset-1 ">
-                                    <strong> Weight in KG </strong>
+                                    <strong> Weight in KG * </strong>
                                     <div class="'form-check">
                                         <label class="form-check-label">
                                             <input required class="form-check-input" type="number" name="weight"

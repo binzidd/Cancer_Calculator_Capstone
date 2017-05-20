@@ -37,10 +37,11 @@ class SkinCancerController extends Controller
         $SkinCancer->user_id = $user->id;  // for user
 
         $SkinCancer->save();
-
         $errorMessage = "You have completed Skin Cancer Questions";
 
-        return view('forms.Inspection', ['yourMessage' => $errorMessage]);
+        return ($errorMessage);
+
+        //   return view('forms.Inspection', ['yourMessage' => $errorMessage]);
     }
 
 
@@ -55,12 +56,15 @@ class SkinCancerController extends Controller
 
         return $totalValues_skin;
 
+        // return view('forms.Inspection')->with('resultsarray_general_cancer', $resultsarray);
     }
 
 
-    function display_results(Request $request)
+    public static function display_results(Request $request)
     {
-        $totalValues_skin = $this->computeskincancer();
+        //$totalValues_skin = $this->computeskincancer();
+        $totalValues_skin = SkinCancerController::computeskincancer();
+
         if ($totalValues_skin == 0 || $totalValues_skin == 1) {
             $option = "In General skin cnacer is not common";
 
@@ -70,8 +74,8 @@ class SkinCancerController extends Controller
             $option = 'You are at above average risk of skin cancer and need to be careful in sun ';
 
         }
-
-        return view('forms.Inspection')->with('Skin_Cancer_Results', $option);
+        return ($option);
+        //return view('forms.Inspection')->with('Skin_Cancer_Results', $option);
     }
 
 }

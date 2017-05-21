@@ -29,9 +29,9 @@ class GeneralCancerController extends Controller
     public function calculateCancer()
     {
         $gender = $this->getGender();
-        if ($gender == "F") {
+        if ($gender == "Female") {
             $this->calculate_all_female_cancer();
-        } elseif ($gender == "M") {
+        } elseif ($gender == "Male") {
             $this->calculate_all_female_cancer();
         }
 

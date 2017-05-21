@@ -16,7 +16,6 @@
                 @endif
 
 
-                {{--TODO: Change this to post and link DB--}}
                 <form action="{{route ('inspect')}}" method="post">
                     <div class="form-control">Session Based Calculation for QCancer</div>
                     <br>
@@ -24,7 +23,8 @@
                         <label class="col-md-offset-0">
                             Age
                         </label>
-                        <input type="number" class="form-control" id="age" value="{{$userinfo->age}}">
+                        <input type="number" class="form-control" id="gender" value="{{$userinfo->age}}">
+                        <input type="number" class="form-control" id="age" value="{{$userinfo->gender}}">
 
 
                     </div>

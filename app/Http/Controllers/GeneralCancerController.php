@@ -9,11 +9,32 @@ use Illuminate\Support\Facades\DB;
 
 class GeneralCancerController extends Controller
 {
+
+    /* Retrieve Age from DB by using session request and Model */
     public static function retrieveage(Request $request)
     {
         $userId = Auth::user()->id;
         $age = DB::table('user_informations')->where('user_id', $userId)->value('age');
         return $age;
+    }
+
+    /* Retrieve Gender from DB by using session request and Model */
+    public function getGender()
+    {
+        $userId = Auth::user()->id;
+        $gender = DB::table('user_informations')->where('user_id', $userId)->value('gender');
+        return $gender;
+    }
+
+    public function calculateCancer()
+    {
+        $gender = $this->getGender();
+        if ($gender == "F") {
+            $this->calculate_all_female_cancer();
+        } elseif ($gender == "M") {
+            $this->calculate_all_female_cancer();
+        }
+
     }
 
 
@@ -26,18 +47,6 @@ class GeneralCancerController extends Controller
 //  getGender() Camel case method
 //GetGender Pascal Case class
 // routes "post-welcome";
-
-    public function getgender(Request $request)
-    {
-        $userId = Auth::user()->id;
-        $gender = DB::table('user_informations')->where('user_id', $userId)->value('gender');
-
-        if ($gender == "F") {
-            $this->calculate_all_female_cancer();
-        } elseif ($gender == 'M') {
-            $this->calculate_all_male_cancer($request);
-        }
-    }
 
 
     /*Calculating different form of Cancers based on these inputs

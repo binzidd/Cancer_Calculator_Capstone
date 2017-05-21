@@ -85,20 +85,7 @@ Route::any('/generalcancer', [
     'as' => 'general_cancer_renderer'
 ]);
 
-//          Post Calls for Calculations
-
-// step-3
-Route::get('/generalcancer1', [
-    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
-    'as' => 'compute_cancer']);
-
-//step-2
-//Debugging Center
-Route::post('/generalcancer2', [
-    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
-    'as' => 'inspect'
-]);
-
+//
 
 Route::get('/inspection', [
     'uses' => 'ResultsController@getvalueCancer',
@@ -106,7 +93,19 @@ Route::get('/inspection', [
 ]);
 
 
-
+//          Post Calls for Calculations
+//
+//// step-3
+//Route::get('/generalcancer1', [
+//    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
+//    'as' => 'compute_cancer']);
+//
+////step-2
+////Debugging Center
+//Route::post('/generalcancer2', [
+//    'uses' => 'GeneralCancerController@calculate_all_male_cancer',
+//    'as' => 'inspect'
+//]);
 
 //Route::get('/finddata',function (){
 //

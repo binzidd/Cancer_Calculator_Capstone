@@ -9,7 +9,7 @@
 
     <div class="jumbotron">
         <div style="background:transparent !important; " class="container">
-            <h3>The Lifehouse Cancer Risk Reduction Clinic Pre-visit Survey</h3>
+            <h3 align="left" style="color: black">The Lifehouse Cancer Risk Reduction Clinic Pre-visit Survey</h3>
             <p> We are looking forward to seeing you at the Chris O'Brien Lifehouse Cancer Risk
                 Reduction Clinic soon.
                 This is a new service designed to help you develop a personalised cancer risk reduction
@@ -29,26 +29,28 @@
                 as accurately as you can.</p>
             <p>Best Wishes</p>
             <p>Lyndall Trevena</p>
+
+            <br>
+            <br>
+
+
+            <h3 align="left" style="color: black">Please click on the following links to proceed on Cancer
+                Calculations </h3>
+
+            <a class="btn btn-default inline " name="skin_cancer" id="skin_cancer"
+               href="{{route('skin_cancer_renderer')}}">Skin Cancer</a>
+            <a class="btn btn-default inline " name="bowel_cancer" id="bowel_cancer"
+               href="{{route('bowel_cancer_renderer')}}">Bowel Cancer</a>
+            <a class="btn btn-default inline " name="general_cancer" id="general_cancer"
+               href="{{route('general_cancer_renderer')}}">General
+                Cancer</a>
+
         </div>
+    </div>
 
     </div>
-            <div class="row-fluid">
 
 
-                <div class="col-md-8 col-md-offset-2">
 
-                    <h3 >Please click on the following links to proceed on Cancer Calculations </h3>
-
-
-                    <div class="container-fluid">
-
-                        <a class="btn btn-default inline " href="{{route('skin_cancer_renderer')}}">Skin Cancer</a>
-                        <a class="btn btn-default inline " href="{{route('bowel_cancer_renderer')}}">Bowel Cancer</a>
-                        <a class="btn btn-default inline " href="{{route('general_cancer_renderer')}}">General
-                            Cancer</a>
-
-                     </div>
-                </div>
-            </div>
 
 @endsection

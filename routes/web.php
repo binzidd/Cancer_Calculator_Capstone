@@ -44,20 +44,6 @@ Route::post('/home', [
 //    'as' => 'general_cancer_calculator'
 //]);
 
-Route::post('/skincancer', [
-    'uses' => 'SkinCancerController@postsubmit',
-    'as' => 'skin_cancer_calculator'
-]);
-
-Route::post('/disclaimer', [
-    'uses' => 'FormController@postroute',
-    'as' => 'disclaimer_accepted'
-]);
-
-Route::post('/bowelcancer', [
-    'uses' => 'BowelCancerController@onpost_Default_Value',
-    'as' => 'bowel_onpost'
-]);
 // Get Calls for rendering pages.
 
 Route::get('/disclaimer', function () {
@@ -80,17 +66,37 @@ Route::get('/bowelcancer',[
 ]);
 
 //step-1
-Route::any('/generalcancer', [
-    'uses'=>'GeneralCancerController@viewgeneralcancer',
+Route::get('/generalcancer', [
+    'uses' => 'GeneralCancerController@viewGeneralCancer',
     'as' => 'general_cancer_renderer'
 ]);
-
-//
 
 Route::get('/inspection', [
     'uses' => 'ResultsController@getvalueCancer',
     'as' => 'Results'
 ]);
+
+/*post Calls */
+Route::post('/skincancer', [
+    'uses' => 'SkinCancerController@postsubmit',
+    'as' => 'skin_cancer_calculator'
+]);
+
+Route::post('/disclaimer', [
+    'uses' => 'FormController@postroute',
+    'as' => 'disclaimer_accepted'
+]);
+
+Route::post('/bowelcancer', [
+    'uses' => 'BowelCancerController@onpost_Default_Value',
+    'as' => 'bowel_onpost'
+]);
+
+Route::post('/generalcancer', [
+    'uses' => 'GeneralCancerController@calculateCancer',
+    'as' => 'general_cancer_renderer'
+]);
+
 
 
 //          Post Calls for Calculations

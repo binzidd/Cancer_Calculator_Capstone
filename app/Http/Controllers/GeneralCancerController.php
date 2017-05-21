@@ -26,19 +26,23 @@ class GeneralCancerController extends Controller
         return $gender;
     }
 
-    public function calculateCancer()
+    public function calculateCancer(Request $request)
     {
         $gender = $this->getGender();
         if ($gender == "Female") {
-            $this->calculate_all_female_cancer();
+            $this->calculate_all_female_cancer($request);
         } elseif ($gender == "Male") {
-            $this->calculate_all_female_cancer();
+            $this->calculate_all_female_cancer($request);
         }
 
+        $resultOfGeneralCancer = "You have Completed General Cancer";
+        $request->session()->put('generalCancerResults', $resultOfGeneralCancer);
+
+        return view('forms.FormIntroduction');
     }
 
 
-    public static function viewgeneralcancer()
+    public static function viewGeneralCancer()
     {
         $userId = Auth::user()->id;
         $userInfo = user_information::where('user_id', $userId)->first();
@@ -1032,7 +1036,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional arrays */
 
-        $Ialcohol[] = array("0", "0.0543813075945134560000000", "0.1245709972983817800000000", "0.1855198679261514700000000");
+        $Ialcohol = array("0", "0.0543813075945134560000000", "0.1245709972983817800000000", "0.1855198679261514700000000");
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
@@ -1061,7 +1065,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional sums */
 
-        $Ialcohol[$request->get('alcohol_cat4')] += $b;
+        $Ialcohol[$request->get('alcohol_cat4')] = $b;
         $a += $b;
 
         /* Sum from continuous values */
@@ -1108,12 +1112,12 @@ class GeneralCancerController extends Controller
     function cervical_cancer_female(Request $request)
 
     {
-        $survivor = array();
+
 
 
         /* The conditional arrays */
 
-        $Ismoke[5] = array("0", "0.3247875277095715300000000", "0.7541211259076738800000000", "0.7448343035139659600000000", "0.6328348533913806800000000");
+        $Ismoke = array("0", "0.3247875277095715300000000", "0.7541211259076738800000000", "0.7448343035139659600000000", "0.6328348533913806800000000");
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
@@ -1188,7 +1192,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional arrays */
 
-        $Ialcohol[4] = array(
+        $Ialcohol = array(
             "0",
             "0.2429014262884695900000000",
             "0.2359224520197608100000000",
@@ -1267,7 +1271,7 @@ class GeneralCancerController extends Controller
 
         /* The conditional arrays */
 
-        $Ismoke[5] = array(
+        $Ismoke = array(
             '0',
             '0.2108835385994093400000000',
             '0.4020914846651602000000000',
@@ -1347,15 +1351,14 @@ class GeneralCancerController extends Controller
     function lung_cancer_female(Request $request)
 
     {
-
         /* The conditional arrays */
 
-        $Ismoke[] = array(
-            '0',
-            '1.3397416191950409000000000',
-            '1.9500839456663224000000000',
-            '2.1881694694325233000000000',
-            '2.4828660433307768000000000'
+        $Ismoke[5] = array(
+            "0",
+            "1.3397416191950409000000000",
+            "1.9500839456663224000000000",
+            "2.1881694694325233000000000",
+            "2.4828660433307768000000000"
         );
 
         /* Applying the fractional polynomial transforms */
@@ -1381,11 +1384,11 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->get('smoke_cat')];
-
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
         /* Sum from continuous values */
 
         $a += $age_1 * -117.2405737502962500000000000;
@@ -1435,22 +1438,21 @@ class GeneralCancerController extends Controller
     {
 
 
-
         /* The conditional arrays */
 
-        $Ialcohol[4] = array(
-            '0',
-            '0.1129292517088995400000000',
-            '0.1389183205617967600000000',
-            '0.3428114766789586200000000'
+        $Ialcohol = array(
+            "0",
+            "0.1129292517088995400000000",
+            "0.1389183205617967600000000",
+            "0.3428114766789586200000000"
         );
 
-        $Ismoke[5] = array(
-            '0',
-            '0.0643839792551647580000000',
-            '0.1875068101660691500000000',
-            '0.3754052152821668000000000',
-            '0.5007337952210844100000000'
+        $Ismoke = array(
+            "0",
+            "0.0643839792551647580000000",
+            "0.1875068101660691500000000",
+            "0.3754052152821668000000000",
+            "0.5007337952210844100000000"
         );
 
         /* Applying the fractional polynomial transforms */
@@ -1631,11 +1633,11 @@ class GeneralCancerController extends Controller
         /* The conditional arrays */
 
         $Ismoke[5] = array(
-            '0',
-            '-0.0631301848152044240000000',
-            '0.3523695950528934500000000',
-            '0.7146003670327156800000000',
-            '0.8073207410335441200000000'
+            "0",
+            "-0.0631301848152044240000000",
+            "0.3523695950528934500000000",
+            "0.7146003670327156800000000",
+            "0.8073207410335441200000000"
         );
 
         /* Applying the fractional polynomial transforms */
@@ -1660,11 +1662,11 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->get('smoke_cat')];
-
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
         /* Sum from continuous values */
 
         $a += $age_1 * -6.8219654517231225000000000;
@@ -1729,12 +1731,12 @@ class GeneralCancerController extends Controller
 
         /* The conditional arrays */
 
-        $Ismoke[] = array(
-            '0',
-            '0.2752175727739372700000000',
-            '0.5498656631475861100000000',
-            '0.6536242182136680100000000',
-            '0.9053763661785879700000000');
+        $Ismoke[5] = array(
+            "0",
+            "0.2752175727739372700000000",
+            "0.5498656631475861100000000",
+            "0.6536242182136680100000000",
+            "0.9053763661785879700000000");
 
         /* Applying the fractional polynomial transforms */
         /* (which includes scaling)                      */
@@ -1758,10 +1760,11 @@ class GeneralCancerController extends Controller
 
         /* Start of Sum */
         $a = 0;
-
+        $b = 0;
         /* The conditional sums */
 
-        $a += $Ismoke[$request->get('smoke_cat')];
+        $Ismoke[$request->get('smoke_cat')] = $b;
+        $a += $b;
 
         /* Sum from continuous values */
 
